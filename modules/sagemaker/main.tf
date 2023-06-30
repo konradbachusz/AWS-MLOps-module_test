@@ -5,7 +5,7 @@ module "iam" {
 
 resource "aws_sagemaker_model" "my_model" {
   name               = var.model_name
-  execution_role_arn = module.iam.aws_iam_role.sagemaker_role.arn
+  execution_role_arn = module.iam.sagemaker_role_arn
 
   primary_container {
     image = data.aws_sagemaker_prebuilt_ecr_image.image.registry_path
