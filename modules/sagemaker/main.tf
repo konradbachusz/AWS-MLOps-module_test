@@ -33,10 +33,8 @@ resource "aws_sagemaker_endpoint_configuration" "endpoint_configuration" {
 resource "aws_sagemaker_endpoint" "model_endpoint" {
   name                 = "${var.model_name}-endpoint"
   endpoint_config_name = aws_sagemaker_endpoint_configuration.endpoint_configuration.name
-
-  tags = var.tags
+  tags                 = var.tags
 }
 
 #TODO: Add tags everywhere
 #TODO Add API Gateway
-#TODO Add Lambda

@@ -11,3 +11,12 @@ module "iam" {
   source = "./modules/iam"
   tags   = var.tags
 }
+
+module "s3" {
+  source     = "./modules/s3"
+  model_name = var.model_name
+  tags       = var.tags
+}
+
+/*TODO
+Add Lambda module*/

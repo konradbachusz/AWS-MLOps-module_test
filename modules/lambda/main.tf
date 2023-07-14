@@ -14,7 +14,7 @@ resource "aws_lambda_function" "model_endpoint_lambda" {
   environment {
     variables = {
       ENDPOINT_NAME = aws_sagemaker_endpoint.model_endpoint.name
-      API_ENDPOINT  = var.model_api_endpoint #TODO create this
+      API_ENDPOINT  = var.model_api_endpoint #TODO create this in terraform
     }
   }
 

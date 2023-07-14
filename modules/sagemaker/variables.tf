@@ -24,5 +24,4 @@ variable "tags" {
 variable "endpoint_instance_type" {
   description = "Instance type used for sagemaker model endpoint"
   type        = string
-
 }
