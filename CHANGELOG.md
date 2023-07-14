@@ -1,5 +1,8 @@
 # AWS-MLOps-module
 
+## [1.0.w] - 14-07-2023
+* Added S3, iam, sagemaker resources
+  
 ## [1.0.1] - 09-06-2023
 * Added S3 resources
 
