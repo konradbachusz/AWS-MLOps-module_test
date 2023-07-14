@@ -1,0 +1,58 @@
+name: "Code Quality"
+on: push
+
+jobs: 
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+
+      - name: Install and run pylint
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+          pylint **/*.py
+        continue-on-error: true
+
+      - name: Install and run flake8
+        run: | # stop if there are Python syntax errors or undefined names
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Install and run pytest
+        run: |
+          pip install -U pytest
+          pytest --version
+          pytest tests/
+
+      - name: Terraform Init
+        id: init
+        working-directory: .
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        id: validate
+        working-directory: .
+        run: terraform validate -no-color
+
+      - name: Terraform format
+        id: fmt
+        working-directory: .
+        run: terraform fmt -check -diff -recursive
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: latest
+          
+      - name: Run TFLint
+        run: |
+          tflint --version
+          tflint --init
+          tflint -f compact --recursive 
