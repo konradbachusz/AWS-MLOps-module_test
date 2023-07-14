@@ -12,12 +12,17 @@ variable "sagemaker_image_repository_name" {
   type        = string
 }
 
-
-variable "lambda_handler" {
-  #TODO finish
+variable "sagemaker_execution_role_arn" {
+  description = "ARN of the role used for sagemaker execution"
+  type        = string
 }
 
-variable "lambda_timeout" {
-  #TODO finish
-  type = number
+variable "tags" {
+  description = "Tags applied to your resources"
+}
+
+variable "endpoint_instance_type" {
+  description = "Instance type used for sagemaker model endpoint"
+  type        = string
+
 }

@@ -18,7 +18,7 @@ resource "aws_iam_role" "sagemaker_role" {
   ]
 }
 EOF
-tags = var.tags
+  tags               = var.tags
 }
 
 resource "aws_iam_policy" "sagemaker_policy" {

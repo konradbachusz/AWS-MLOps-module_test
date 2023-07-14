@@ -1,4 +1,13 @@
 ##########################################
+# Common
+##########################################
+
+variable "tags" {
+  description = "Tags applied to your resources"
+  default     = {}
+}
+
+##########################################
 # Sagemaker
 ##########################################
 
@@ -18,4 +27,23 @@ variable "endpoint_instance_type" {
   description = "Type of EC2 instance used for model endpoint"
   type        = string
   default     = ""
+}
+
+##########################################
+# Lambda
+##########################################
+
+variable "lambda_handler" {
+  description = "Method in your Python code that processes events"
+  type        = string
+}
+
+variable "lambda_timeout" {
+  description = "Maximum amount of time in seconds that a Lambda function can run"
+  type        = number
+}
+
+variable "model_api_endpoint" {
+  description = "Name of the API endpoint used for the machine learning model"
+  type        = string
 }

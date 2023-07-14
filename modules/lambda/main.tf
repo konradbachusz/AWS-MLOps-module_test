@@ -13,8 +13,8 @@ resource "aws_lambda_function" "model_endpoint_lambda" {
   runtime = var.runtime
   environment {
     variables = {
-      ENDPOINT_NAME = "streaming-data-platform-endpoint"
-      API_ENDPOINT  = var.alb_dns
+      ENDPOINT_NAME = aws_sagemaker_endpoint.model_endpoint.name
+      API_ENDPOINT  = var.model_api_endpoint #TODO create this
     }
   }
 
