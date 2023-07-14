@@ -13,3 +13,9 @@ variable "sagemaker_image_repository_name" {
   type        = string
   default     = ""
 }
+
+variable "endpoint_instance_type" {
+  description = "Type of EC2 instance used for model endpoint"
+  type        = string
+  default     = ""
+}
