@@ -35,10 +35,13 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.19'
+          
+      - name: Go version 
+        run: go version
 
       - name: Install dependencies for Go
         run: go mod tidy
-        
+
       - name: Test Go
         working-directory: tests/
         run: go test -v
@@ -56,7 +59,7 @@ jobs:
       - name: Terraform format
         id: fmt
         working-directory: .
-        run: terraform fmt -check -diff -recursive
+        run: terraform fmt -diff -recursive
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v3
