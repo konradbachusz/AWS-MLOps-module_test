@@ -72,6 +72,6 @@ jobs:
           go get github.com/gruntwork-io/terratest/modules/terraform
 
       - name: Terragrunt tests
-        working-directory: $TEST_DIR
+        working-directory: ${TEST_DIR}
         run: go test -v
 
