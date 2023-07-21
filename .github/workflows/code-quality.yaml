@@ -31,24 +31,6 @@ jobs:
           pytest --version
           pytest tests/
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.19'
-
-      - name: Go version 
-        run: go version
-
-      - name: Install dependencies for Go
-        run: |
-          go mod init github.com/konradbcredera/AWS-MLOps-module
-          go mod tidy
-          go get github.com/gruntwork-io/terratest/modules/terraform
-
-      - name: Test Go
-        working-directory: tests/
-        run: go test -v
-
       - name: Terraform Init
         id: init
         working-directory: .
@@ -74,3 +56,22 @@ jobs:
           tflint --version
           tflint --init
           tflint -f compact --recursive 
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+
+      - name: Go version 
+        run: go version
+
+      - name: Install dependencies for Go
+        run: |
+          go mod init github.com/konradbcredera/AWS-MLOps-module
+          go mod tidy
+          go get github.com/gruntwork-io/terratest/modules/terraform
+
+      - name: Test Go
+        working-directory: tests/
+        run: go test -v
+
