@@ -10,7 +10,7 @@ import (
 func TestTerraformHelloWorldExample(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// Set the path to the Terraform code that will be tested.
-		TerraformDir: "../tests/",
+		TerraformDir: "../tests-examples/",
 	})
 
 	// Clean up resources 
