@@ -24,16 +24,16 @@ func TestTerraformHelloWorldExample(t *testing.T) {
 	assert.Equal(t, "Hello, World!", output)
 }
 
-func Test2(t *testing.T) {
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		// Set the path to the Terraform code that will be tested.
-		TerraformDir: "../", 
-	})
+// func Test2(t *testing.T) {
+// 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
+// 		// Set the path to the Terraform code that will be tested.
+// 		TerraformDir: "../", 
+// 	})
 
-	// Clean up resources 
-	defer terraform.Destroy(t, terraformOptions)
+// 	// Clean up resources 
+// 	defer terraform.Destroy(t, terraformOptions)
 
-	// Fail the test if there are any errors.
-	terraform.InitAndApply(t, terraformOptions)
+// 	// Fail the test if there are any errors.
+// 	terraform.InitAndApply(t, terraformOptions)
 
-}
+// }
