@@ -70,5 +70,5 @@ jobs:
 
       - name: Terragrunt tests
         working-directory: tests/
-        run: go test -v
+        run: go test -v ./...
 
