@@ -41,7 +41,7 @@ jobs:
 
       - name: Install dependencies for Go
         run: |
-          go mod init github.com/konradbcredera/AWS-MLOps-module/tests
+          go mod init github.com/konradbcredera/AWS-MLOps-module
           go mod tidy
           go get github.com/gruntwork-io/terratest/modules/terraform
 
