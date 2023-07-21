@@ -47,9 +47,7 @@ jobs:
 
       - name: Test Go
         working-directory: tests/
-        run: |
-          pwd
-          go test hello-world_test.go
+        run: go test -v
 
       - name: Terraform Init
         id: init
