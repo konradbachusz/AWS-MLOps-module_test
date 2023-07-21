@@ -1,3 +1,4 @@
+# https://terratest.gruntwork.io/docs/getting-started/quick-start/ - example test for terratest
 terraform {
   required_version = ">= 0.12.26"
 }
