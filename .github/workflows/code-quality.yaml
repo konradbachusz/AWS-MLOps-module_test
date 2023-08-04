@@ -55,7 +55,8 @@ jobs:
         run: |
           tflint --version
           tflint --init
-          tflint -f compact --recursive --config=.tflint.hcl     
+          pwd
+          tflint -f compact --recursive --config=.github/workflows/.tflint.hcl     
 
       - name: Set up Go
         uses: actions/setup-go@v4
