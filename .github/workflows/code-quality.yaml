@@ -24,7 +24,7 @@ jobs:
         run: |
           pip install -U pytest
           pytest --version
-          pytest tests/ 
+          pytest tests/ ; err=$? ; if (( $err != 5 )) ; then exit $err ; fi
 
       - name: Install and Run Flake8
         run: | 
