@@ -23,7 +23,7 @@ jobs:
       - name: Install and run flake8
         run: | # stop if there are Python syntax errors or undefined names
           pip install flake8
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --select=E9,F63,F7,F82,F841 --show-source --statistics
 
       - name: Install and run pytest
         run: |
@@ -41,10 +41,10 @@ jobs:
         working-directory: .
         run: terraform validate -no-color
 
-      - name: Terraform format
+      - name: Terraform Format
         id: fmt
         working-directory: .
-        run: terraform fmt -diff -recursive
+        run: terraform fmt -recursive
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v3
@@ -68,7 +68,7 @@ jobs:
           go mod tidy
           go get github.com/gruntwork-io/terratest/modules/terraform
 
-      - name: Terragrunt tests
+      - name: Terratests
         working-directory: tests/
         run: go test -v ./...
 
