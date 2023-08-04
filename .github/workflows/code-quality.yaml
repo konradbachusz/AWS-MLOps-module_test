@@ -25,11 +25,12 @@ jobs:
           pip install flake8
           flake8 . --count --show-source --statistics
 
+      # ignore exit code 5 - reports when no tests collected 
       - name: Install and Run Pytest
         run: |
           pip install -U pytest
           pytest --version
-          pytest tests/
+          pytest tests/ ; exit $(( $? == 5 ? 0 : $? ))
 
       - name: Terraform Init
         id: init
