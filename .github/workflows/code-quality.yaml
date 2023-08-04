@@ -55,7 +55,7 @@ jobs:
         working-directory: .
         run: |
           tflint --init
-          tflint -f compact --recursive --config= $PWD/.github/workflows/.tflint.hcl     
+          tflint -f compact --recursive     
 
       - name: Set up Go
         uses: actions/setup-go@v4
