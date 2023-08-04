@@ -13,7 +13,7 @@ resource "aws_lambda_function" "model_endpoint_lambda" {
   runtime = var.runtime
   environment {
     variables = {
-      ENDPOINT_NAME = var.model_endpoint_name
+      ENDPOINT_NAME = "${var.model_name}-endpoint"
       API_ENDPOINT  = var.model_api_endpoint #TODO create this in terraform
     }
   }

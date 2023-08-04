@@ -18,6 +18,3 @@ variable "runtime" {
 
 variable "role" {
 }
-
-variable "model_endpoint_name" {
-}
