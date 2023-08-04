@@ -4,7 +4,7 @@
 ## [1.0.3] - 04-08-2023
 * Added CICD pipeline to trigger on commit with the following stages: tf format, tf validate, tflint, pytest, pylint, Flake8, terratest
 
-## [1.0.w] - 14-07-2023
+## [1.0.2] - 14-07-2023
 * Added S3, iam, sagemaker resources
   
 ## [1.0.1] - 09-06-2023
