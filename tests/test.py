@@ -1,3 +1,3 @@
 #placeholder file for testing
-def placeholdertest:
+def placeholdertest():
     pass
