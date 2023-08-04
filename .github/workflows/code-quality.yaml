@@ -54,10 +54,8 @@ jobs:
       - name: Run TFLint
         working-directory: .
         run: |
-          tflint --version
           tflint --init
-          pwd
-          tflint -f compact --recursive --config=AWS-MLOps-module/.github/workflows/.tflint.hcl     
+          tflint -f compact --recursive --config= $PWD/.github/workflows/.tflint.hcl     
 
       - name: Set up Go
         uses: actions/setup-go@v4
