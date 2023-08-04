@@ -2,7 +2,7 @@
 name = "tfl-ml-wrapper"
 version = "0.1.0"
 description = ""
-authors = ["David Lass <david.lass@credera.co.uk>"]
+authors = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
