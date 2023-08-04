@@ -1,9 +1,3 @@
-#placeholder file for testing
-def placeholdertest():
-    pass
-
-def func(x):
-    return x + 1
-
-def test_answer():
-    assert func(3) == 4
+# placeholder file for testing
+def placeholder_test():
+    return True
