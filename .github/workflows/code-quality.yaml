@@ -13,14 +13,17 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Run Pylint
+      - name: Instal Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r dev-requirements.txt
+          pip install -r .github/workflows/dev-requirements.txt
+
+      - name: Run Pylint
+        run: |
           cd ..
           pylint AWS-MLOps-module --errors-only
 
-      - name: Run Pytest #needs changing
+      - name: Run Pytest 
         run: |
           pytest tests/ 
 
