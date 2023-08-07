@@ -18,5 +18,14 @@ module "s3" {
   tags       = var.tags
 }
 
-/*TODO
-Add Lambda module*/
+module "lambda" {
+  source             = "./modules/lambda"
+  model_name         = var.model_name
+  filename           = "${path.module}/../lambda-ml-wrapper/ml-wrapper.zip"
+  runtime            = "python3.9"
+  lambda_timeout     = var.lambda_timeout
+  model_api_endpoint = var.model_api_endpoint
+  role               = module.iam.sagemaker_role_arn
+  tags               = var.tags
+}
+

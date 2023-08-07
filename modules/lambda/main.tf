@@ -1,19 +1,19 @@
 data "local_file" "lambda_zip" {
-  filename = var.lambda_filename
+  filename = var.filename
 }
 
 resource "aws_lambda_function" "model_endpoint_lambda" {
-  filename         = data.local_file.lambda_zip.filename
+  filename         = var.filename
   function_name    = "${var.model_name}-model-endpoint-lambda"
-  role             = aws_iam_role.sagemaker_role.arn
-  handler          = var.lambda_handler #TODO check how we define "tfl_lambda.lambda_function.lambda_handler"
+  role             = var.role
+  handler          = "ml_wrapper.lambda_function.lambda_handler"
   timeout          = var.lambda_timeout
   source_code_hash = filebase64sha256(data.local_file.lambda_zip.filename)
 
   runtime = var.runtime
   environment {
     variables = {
-      ENDPOINT_NAME = aws_sagemaker_endpoint.model_endpoint.name
+      ENDPOINT_NAME = "${var.model_name}-endpoint"
       API_ENDPOINT  = var.model_api_endpoint #TODO create this in terraform
     }
   }
@@ -21,4 +21,3 @@ resource "aws_lambda_function" "model_endpoint_lambda" {
   tags = var.tags
 }
 
-#TODO add Python code and Lambda zip stuff

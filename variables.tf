@@ -33,11 +33,6 @@ variable "endpoint_instance_type" {
 # Lambda
 ##########################################
 
-variable "lambda_handler" {
-  description = "Method in your Python code that processes events"
-  type        = string
-}
-
 variable "lambda_timeout" {
   description = "Maximum amount of time in seconds that a Lambda function can run"
   type        = number
@@ -47,3 +42,4 @@ variable "model_api_endpoint" {
   description = "Name of the API endpoint used for the machine learning model"
   type        = string
 }
+

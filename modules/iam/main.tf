@@ -1,5 +1,4 @@
 resource "aws_iam_role" "sagemaker_role" {
-  #TODO: Fix this instead of hardcoding the policy
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -22,8 +21,7 @@ EOF
 }
 
 resource "aws_iam_policy" "sagemaker_policy" {
-  name = "sagemaker-role"
-  #TODO: Fix this instead of hardcoding the policy
+  name   = "sagemaker-role"
   policy = <<EOF
 {
     "Version": "2012-10-17",
