@@ -7,10 +7,10 @@ terraform {
       version = ">= 4.0"
     }
 
-    # local = {
-    #   source  = "hashicorp/local"
-    #   version = ">= 2.4"
-    # }
+    local = {
+      source  = "hashicorp/local"
+      version = ">= 2.4"
+    }
 
   }
 }
