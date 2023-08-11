@@ -5,15 +5,16 @@ resource "aws_sagemaker_model" "my_model" {
   execution_role_arn = var.sagemaker_execution_role_arn
 
   primary_container {
-    image          = data.aws_sagemaker_prebuilt_ecr_image.image.registry_path
+    image          = var.sagemaker_image_repository_name
     model_data_url = "s3://${var.model_name}-model/${var.model_name}-model.tar.gz"
   }
   tags = var.tags
 }
 
-data "aws_sagemaker_prebuilt_ecr_image" "image" {
-  repository_name = var.sagemaker_image_repository_name
-}
+#TODO fix
+# data "aws_sagemaker_prebuilt_ecr_image" "image" {
+#   repository_name = var.sagemaker_image_repository_name
+# }
 
 
 resource "aws_sagemaker_endpoint_configuration" "endpoint_configuration" {
