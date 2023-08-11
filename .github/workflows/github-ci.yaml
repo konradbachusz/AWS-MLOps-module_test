@@ -94,15 +94,8 @@ jobs:
       security-events: write
     steps:
       - uses: actions/checkout@v3
-
-      # - name: Install and Run tfsec
-      #   working-directory: .
-      #   run: |
-      #     curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
-      #     tfsec --version
-      #     tfsec .
       
-      - name: tfsec alerts 
+      - name: tfsec 
         uses: aquasecurity/tfsec-sarif-action@v0.1.4
         with:
           sarif_file: tfsec.sarif          
