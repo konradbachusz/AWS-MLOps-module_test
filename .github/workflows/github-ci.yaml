@@ -100,7 +100,6 @@ jobs:
       
       - name: tfsec alerts 
         uses: aquasecurity/tfsec-sarif-action@v0.1.4
-        working-directory: .
         with:
           sarif_file: tfsec.sarif          
 
