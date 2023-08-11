@@ -1,5 +1,6 @@
 # AWS-MLOps-module
-
+## [1.0.4] - 04-08-2023
+* Added the lambda resource
 
 ## [1.0.3] - 04-08-2023
 * Added CICD pipeline to trigger on commit with the following stages: tf format, tf validate, tflint, pytest, pylint, Flake8, terratest
