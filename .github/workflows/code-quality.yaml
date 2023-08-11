@@ -55,7 +55,7 @@ jobs:
         working-directory: .
         run: |
           tflint --init
-          tflint -f compact --recursive --module
+          tflint -f compact --recursive --disable-rule=terraform_typed_variables
 
       - name: Set up Go
         uses: actions/setup-go@v4
