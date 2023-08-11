@@ -9,9 +9,9 @@ ENDPOINT_NAME = os.environ["ENDPOINT_NAME"]
 API_ENDPOINT = os.environ["API_ENDPOINT"]
 runtime = boto3.client("runtime.sagemaker")
 
-#TODO generalize the logic in this function
-def lambda_handler(event, context):
 
+# TODO generalize the logic in this function
+def lambda_handler(event, context):
 
     data = json.loads(json.dumps(event))
 
