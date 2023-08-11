@@ -1,10 +1,9 @@
-name: "Code Quality"
+name: "MLOps CICD Pipeline"
 on: push
 
 jobs: 
-  code-quality:
+  install-dependencies:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -18,14 +17,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r .github/workflows/dev-requirements.txt
 
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+
+      - name: Get Terratest Dependency
+        run: |
+          go mod init github.com/konradbcredera/AWS-MLOps-module
+          go mod tidy
+          go get github.com/gruntwork-io/terratest/modules/terraform
+          
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: latest
+
+  code-quality:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - uses: actions/checkout@v3
+
       - name: Run Pylint
         run: |
           cd ..
           pylint AWS-MLOps-module --errors-only
-
-      - name: Run Pytest 
-        run: |
-          pytest tests/ 
 
       - name: Run Flake8
         run: | 
@@ -45,11 +62,6 @@ jobs:
         id: fmt
         working-directory: .
         run: terraform fmt -recursive
-
-      - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v3
-        with:
-          tflint_version: latest
           
       - name: Run TFLint
         working-directory: .
@@ -57,18 +69,19 @@ jobs:
           tflint --init
           tflint -f compact --recursive --disable-rule=terraform_typed_variables
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.19'
-
-      - name: Get Terratest Dependency
+  tests:
+    runs-on: ubuntu-latest
+    needs: code-quality
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Pytest 
         run: |
-          go mod init github.com/konradbcredera/AWS-MLOps-module
-          go mod tidy
-          go get github.com/gruntwork-io/terratest/modules/terraform
+          pytest tests/ 
 
       - name: Terratests
         working-directory: tests/
         run: go test -v ./...
+      
+
+
 
