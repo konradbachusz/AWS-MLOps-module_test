@@ -40,6 +40,11 @@ jobs:
         id: fmt
         working-directory: .
         run: terraform fmt -recursive
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: latest
           
       - name: Run TFLint
         working-directory: .
@@ -51,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
