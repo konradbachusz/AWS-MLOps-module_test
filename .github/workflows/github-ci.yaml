@@ -91,12 +91,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install and Run tfsec
-        working-directory: .
-        run: |
-          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
-          tfsec --version
-          tfsec .
+      # - name: Install and Run tfsec
+      #   working-directory: .
+      #   run: |
+      #     curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
+      #     tfsec --version
+      #     tfsec .
       
       - name: tfsec alerts 
         uses: aquasecurity/tfsec-sarif-action@v0.1.0
