@@ -1,14 +1,16 @@
-data "local_file" "lambda_zip" {
-  filename = var.filename
+data "archive_file" "ml_wrapper_lambda" {
+  type        = "zip"
+  source_file = "${path.module}/../lambda-ml-wrapper/ml_wrapper/lambda_function.py"
+  output_path = "ml-wrapper.zip"
 }
 
 resource "aws_lambda_function" "model_endpoint_lambda" {
-  filename         = var.filename
   function_name    = "${var.model_name}-model-endpoint-lambda"
   role             = var.role
   handler          = "ml_wrapper.lambda_function.lambda_handler"
   timeout          = var.lambda_timeout
-  source_code_hash = filebase64sha256(data.local_file.lambda_zip.filename)
+  filename         = data.archive_file.ml_wrapper_lambda.output_path
+  source_code_hash = data.archive_file.ml_wrapper_lambda.output_base64sha256
 
   runtime = var.runtime
   environment {
