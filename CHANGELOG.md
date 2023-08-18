@@ -1,5 +1,8 @@
 # AWS-MLOps-module
 
+## [1.0.6] - 18-08-2023
+* Lambda zip file fix
+
 ## [1.0.5] - 18-08-2023
 * Added tfsec job to CICD pipeline
 
