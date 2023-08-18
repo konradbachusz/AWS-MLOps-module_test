@@ -1,4 +1,8 @@
 # AWS-MLOps-module
+
+## [1.0.5] - 18-08-2023
+* Added tfsec job to CICD pipeline
+
 ## [1.0.4] - 04-08-2023
 * Added the lambda resource
 
