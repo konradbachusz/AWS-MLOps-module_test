@@ -10,9 +10,6 @@ variable "lambda_timeout" {
 variable "model_api_endpoint" {
 }
 
-variable "filename" {
-}
-
 variable "runtime" {
 }
 
