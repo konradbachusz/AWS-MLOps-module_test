@@ -1,6 +1,6 @@
 data "archive_file" "ml_wrapper_lambda" {
   type        = "zip"
-  source_file = "${path.module}/../lambda-ml-wrapper/ml_wrapper/lambda_function.py"
+  source_file = "${path.module}/lambda-ml-wrapper/ml_wrapper/lambda_function.py"
   output_path = "ml-wrapper.zip"
 }
 
