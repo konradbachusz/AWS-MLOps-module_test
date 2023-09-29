@@ -29,15 +29,6 @@ variable "endpoint_instance_type" {
   default     = ""
 }
 
-##########################################
-# Lambda
-##########################################
-
-variable "lambda_timeout" {
-  description = "Maximum amount of time in seconds that a Lambda function can run"
-  type        = number
-}
-
 variable "model_api_endpoint" {
   description = "Name of the API endpoint used for the machine learning model"
   type        = string

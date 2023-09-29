@@ -18,13 +18,3 @@ module "s3" {
   tags       = var.tags
 }
 
-module "lambda" {
-  source             = "./modules/lambda"
-  model_name         = var.model_name
-  runtime            = "python3.9"
-  lambda_timeout     = var.lambda_timeout
-  model_api_endpoint = var.model_api_endpoint
-  role               = module.iam.sagemaker_role_arn
-  tags               = var.tags
-}
-
