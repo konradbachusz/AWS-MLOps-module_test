@@ -52,3 +52,9 @@ variable "retraining_schedule" {
   description = "Cron expression of the model retraing frequency"
   type        = string
 }
+
+variable "retrain_model_bool" {
+  description = "Boolean to indicate if the retraining pipeline shoud be added"
+  type        = bool
+  default     = false
+}

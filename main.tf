@@ -21,6 +21,7 @@ module "s3" {
 }
 
 module "retraining_job" {
+  count                   = var.retrain_model_bool ? 1 : 0
   source                  = "./modules/glue"
   model_name              = var.model_name
   tags                    = var.tags
