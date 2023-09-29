@@ -29,8 +29,9 @@ variable "endpoint_instance_type" {
   default     = ""
 }
 
-variable "model_api_endpoint" {
-  description = "Name of the API endpoint used for the machine learning model"
+### S3 ####
+variable "s3_data_source_path" {
+  description = "Path to an S3 bucket "
   type        = string
 }
 
