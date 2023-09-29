@@ -1,5 +1,8 @@
 # AWS-MLOps-module
 
+## [1.0.7] -29/09/23
+* Removed Lambda resorces, added domain and Glue resources
+
 ## [1.0.6] - 18-08-2023
 * Lambda zip file fix
 
@@ -10,7 +13,7 @@
 * Added the lambda resource
 
 ## [1.0.3] - 04-08-2023
-* Added CICD pipeline to trigger on commit with the following stages: tf format, tf validate, ${var.model_name}int, pytest, pylint, Flake8, terratest
+* Added CICD pipeline to trigger on commit with the following stages: tf format, tf validate, tfint, pytest, pylint, Flake8, terratest
 
 ## [1.0.2] - 14-07-2023
 * Added S3, iam, sagemaker resources
