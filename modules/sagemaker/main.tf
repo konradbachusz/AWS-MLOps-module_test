@@ -36,4 +36,15 @@ resource "aws_sagemaker_endpoint" "model_endpoint" {
   tags                 = var.tags
 }
 
+resource "aws_sagemaker_domain" "example" {
+  domain_name = "${var.model_name}-domain"
+  auth_mode   = "IAM"
+  vpc_id      = var.vpc_id
+  subnet_ids  = var.subnet_ids
+
+  default_user_settings {
+    execution_role = var.sagemaker_execution_role_arn
+  }
+}
+
 #TODO Add API Gateway

@@ -21,3 +21,11 @@ variable "tags" {
 variable "endpoint_instance_type" {
 
 }
+
+variable "vpc_id" {
+
+}
+
+variable "subnet_ids" {
+
+}

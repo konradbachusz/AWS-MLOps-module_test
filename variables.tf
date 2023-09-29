@@ -34,3 +34,15 @@ variable "model_api_endpoint" {
   type        = string
 }
 
+#### Networking ####
+
+variable "vpc_id" {
+  description = "The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication."
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "The VPC subnets that Studio uses for communication."
+  type        = list(any)
+}
+
