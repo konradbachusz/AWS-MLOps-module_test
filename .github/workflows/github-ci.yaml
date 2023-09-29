@@ -41,16 +41,16 @@ jobs:
         working-directory: .
         run: terraform fmt -recursive
 
-      - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v3
+      - name: Setup ${var.model_name}int
+        uses: terraform-linters/setup-${var.model_name}int@v3
         with:
-          tflint_version: latest
+          ${var.model_name}int_version: latest
           
-      - name: Run TFLint
+      - name: Run ${var.model_name}int
         working-directory: .
         run: |
-          tflint --init
-          tflint -f compact --recursive --disable-rule=terraform_typed_variables 
+          ${var.model_name}int --init
+          ${var.model_name}int -f compact --recursive --disable-rule=terraform_typed_variables 
 
   tests:
     runs-on: ubuntu-latest

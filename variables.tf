@@ -31,7 +31,7 @@ variable "endpoint_instance_type" {
 
 ### S3 ####
 variable "s3_data_source_path" {
-  description = "Path to an S3 bucket "
+  description = "Path to an S3 bucket with data used for training and testing"
   type        = string
 }
 
@@ -47,3 +47,8 @@ variable "subnet_ids" {
   type        = list(any)
 }
 
+### Glue ####
+variable "retraining_schedule" {
+  description = "Cron expression of the model retraing frequency"
+  type        = string
+}
