@@ -1,6 +1,6 @@
 #Upload retraining_job.py to s3
 resource "aws_s3_object" "retraining_job_script" {
-  bucket = aws_s3_bucket.config_bucket.id
+  bucket = var.config_bucket_id
   key    = "glue_scripts/retraining_job.py"
   source = "./modules/glue/glue_jobs/retraining_job.py"
   etag   = filemd5("./modules/glue/glue_jobs/retraining_job.py")
@@ -14,15 +14,15 @@ resource "aws_glue_job" "retraining_glue_job" {
   role_arn = aws_iam_role.iam_for_glue_retraining_job_role.arn
 
   command {
-    script_location = "s3://${aws_s3_bucket.config_bucket.id}/glue_scripts/retraining_job.py"
+    script_location = "s3://${var.config_bucket_id}/glue_scripts/retraining_job.py"
   }
 
   default_arguments = {
-    "--job-language"        = "python"
-    "--glue_version"        = "3.0"
-    "--enable-metrics"      = "true"
-    "--s3_data_source_path" = var.s3_data_source_path
-    "--job-bookmark-option" = "job-bookmark-enable"
+    "--job-language"            = "python"
+    "--glue_version"            = "3.0"
+    "--enable-metrics"          = "true"
+    "--data_source_bucket_name" = var.data_source_bucket_name
+    "--job-bookmark-option"     = "job-bookmark-enable"
   }
   tags = var.tags
 }
