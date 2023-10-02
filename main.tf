@@ -20,3 +20,13 @@ module "s3" {
   tags       = var.tags
 }
 
+module "retraining_job" {
+  count                   = var.retrain_model_bool ? 1 : 0
+  source                  = "./modules/glue"
+  model_name              = var.model_name
+  tags                    = var.tags
+  config_bucket_id        = module.s3.config_bucket_id
+  data_source_bucket_name = var.data_source_bucket_name
+  retraining_schedule     = var.retraining_schedule
+}
+

@@ -29,8 +29,9 @@ variable "endpoint_instance_type" {
   default     = ""
 }
 
-variable "model_api_endpoint" {
-  description = "Name of the API endpoint used for the machine learning model"
+### S3 ####
+variable "data_source_bucket_name" {
+  description = "Path to an S3 bucket with data used for training and testing"
   type        = string
 }
 
@@ -46,3 +47,14 @@ variable "subnet_ids" {
   type        = list(any)
 }
 
+### Glue ####
+variable "retraining_schedule" {
+  description = "Cron expression of the model retraing frequency"
+  type        = string
+}
+
+variable "retrain_model_bool" {
+  description = "Boolean to indicate if the retraining pipeline shoud be added"
+  type        = bool
+  default     = false
+}
