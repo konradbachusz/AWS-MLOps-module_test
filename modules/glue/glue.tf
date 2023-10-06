@@ -2,8 +2,8 @@
 resource "aws_s3_object" "retraining_job_script" {
   bucket = var.config_bucket_id
   key    = "glue_scripts/retraining_job.py"
-  source = "./modules/glue/glue_jobs/retraining_job.py"
-  etag   = filemd5("./modules/glue/glue_jobs/retraining_job.py")
+  source = "${path.module}/glue_jobs/retraining_job.py"
+  etag   = filemd5("${path.module}/glue_jobs/retraining_job.py")
   tags   = var.tags
 }
 
