@@ -7,5 +7,4 @@ variable "mlops_s3_bucket" {
 }
 
 variable "model_name" {
-
 }
