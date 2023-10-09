@@ -56,7 +56,6 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   role_arn              = aws_iam_role.sagemaker_role.arn
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.sagemaker_lifecycle_configuration.name
   tags                  = var.tags
-  depends_on            = [aws_s3_bucket.s3_mlops_feature_engineering]
 }
 
 resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_lifecycle_configuration" {

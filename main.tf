@@ -1,3 +1,10 @@
+module "s3" {
+  source          = "./modules/s3"
+  model_name      = var.model_name
+  tags            = var.tags
+  mlops_s3_bucket = var.mlops_s3_bucket
+}
+
 module "sagemaker" {
   source                          = "./modules/sagemaker"
   model_name                      = var.model_name
@@ -12,7 +19,9 @@ module "sagemaker" {
   s3_bucket                       = var.s3_bucket
   s3_mlops_bucket                 = var.s3_mlops_bucket
   s3_obj_key                      = var.s3_obj_key
+  depends_on                      = [modules.s3]
 }
+
 
 module "iam" {
   source     = "./modules/iam"
@@ -21,12 +30,6 @@ module "iam" {
   account_id = var.account_id
 }
 
-module "s3" {
-  source          = "./modules/s3"
-  model_name      = var.model_name
-  tags            = var.tags
-  mlops_s3_bucket = var.mlops_s3_bucket
-}
 
 module "retraining_job" {
   count                   = var.retrain_model_bool ? 1 : 0
