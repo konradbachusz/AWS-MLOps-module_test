@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 
 
 locals {
-  file_path = "${path.module}/../../../mlops_ml_models"
+  file_path = "${path.module}/../../mlops_ml_models"
   files_to_upload = concat(
     tolist(fileset(local.file_path, "*.ipynb")),
     tolist(fileset(local.file_path, "*.py"))
@@ -36,3 +36,4 @@ resource "aws_s3_bucket_object" "s3_files" {
   etag     = filemd5("${local.file_path}/${each.value}")
   tags     = var.tags
 }
+
