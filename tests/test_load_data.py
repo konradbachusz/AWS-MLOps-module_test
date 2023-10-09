@@ -16,5 +16,4 @@ def mock_df() -> pd.DataFrame:
 def test_load_data(mock_df: pd.DataFrame) -> None:
     with patch('pandas.read_csv', return_value=mock_df):
         result = load_data("mlops_ml_models/tests/resources/sample.csv")
-        
     pd.testing.assert_frame_equal(result, mock_df)

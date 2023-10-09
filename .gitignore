@@ -162,3 +162,7 @@ cython_debug/
 #terraform
 .terraform
 .terraform.lock.hcl
+
+
+# Pycaret model training files
+mlops_ml_models/catboost_info
