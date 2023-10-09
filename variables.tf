@@ -87,10 +87,6 @@ variable "s3_mlops_bucket" {
 }
 
 
-variable "model_name" {
-  description = "Name of the regression model to be used"
-  type        = string
-}
 
 variable "model_target" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."

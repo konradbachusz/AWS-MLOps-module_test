@@ -23,7 +23,6 @@ module "iam" {
 
 module "s3" {
   source          = "./modules/s3"
-  model_name      = var.model_name
   tags            = var.tags
   mlops_s3_bucket = var.mlops_s3_bucket
 }

@@ -36,9 +36,6 @@ variable "s3_obj_key" {
 variable "s3_bucket" {
 }
 
-variable "model_name" {
-}
-
 variable "model_target" {
 }
 
