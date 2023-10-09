@@ -11,3 +11,28 @@ resource "aws_s3_bucket" "config_bucket_id" {
   tags          = var.tags
   force_destroy = true
 }
+
+resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
+  bucket        = var.mlops_s3_bucket
+  force_destroy = true
+  tags          = var.tags
+}
+
+
+
+locals {
+  file_path = "${path.module}/../../../mlops_ml_models"
+  files_to_upload = concat(
+    tolist(fileset(local.file_path, "*.ipynb")),
+    tolist(fileset(local.file_path, "*.py"))
+  )
+}
+
+resource "aws_s3_bucket_object" "s3_files" {
+  for_each = toset(local.files_to_upload)
+  bucket   = aws_s3_bucket.s3_mlops_feature_engineering.id
+  key      = each.value
+  source   = "${local.file_path}/${each.value}"
+  etag     = filemd5("${local.file_path}/${each.value}")
+  tags     = var.tags
+}

@@ -7,6 +7,11 @@ module "sagemaker" {
   endpoint_instance_type          = var.endpoint_instance_type
   vpc_id                          = var.vpc_id
   subnet_ids                      = var.subnet_ids
+  model_target                    = var.model_target
+  model_features                  = var.model_features
+  s3_bucket                       = var.s3_bucket
+  s3_mlops_bucket                 = var.s3_mlops_bucket
+  s3_obj_key                      = var.s3_obj_key
 }
 
 module "iam" {
@@ -17,9 +22,10 @@ module "iam" {
 }
 
 module "s3" {
-  source     = "./modules/s3"
-  model_name = var.model_name
-  tags       = var.tags
+  source          = "./modules/s3"
+  model_name      = var.model_name
+  tags            = var.tags
+  mlops_s3_bucket = var.mlops_s3_bucket
 }
 
 module "retraining_job" {
