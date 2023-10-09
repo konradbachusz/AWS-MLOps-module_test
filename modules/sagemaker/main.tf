@@ -53,7 +53,7 @@ resource "aws_sagemaker_domain" "example" {
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   name                  = "feature-engineering-notebook-instance"
   instance_type         = "ml.t3.medium"
-  role_arn              = aws_iam_role.sagemaker_role.arn
+  role_arn              = var.sagemaker_execution_role_arn
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.sagemaker_lifecycle_configuration.name
   tags                  = var.tags
 }
