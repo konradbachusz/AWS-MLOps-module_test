@@ -98,8 +98,3 @@ variable "model_features" {
   type        = string
 }
 
-
-variable "mlops_s3_bucket" {
-  description = "S3 Bucket to store ipynb files and python files"
-  type        = string
-}
