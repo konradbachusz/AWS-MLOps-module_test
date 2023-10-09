@@ -1,4 +1,5 @@
 resource "aws_iam_role" "sagemaker_role" {
+  name               = "mlops_sagemaker_role"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -20,8 +21,10 @@ EOF
   tags               = var.tags
 }
 
+
 resource "aws_iam_policy" "sagemaker_policy" {
-  name   = "sagemaker-role"
+  name = "mlops-sagemaker-policy"
+
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -46,7 +49,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "arn:aws:logs:*"
             ]
         },
-	{
+	      {
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
@@ -57,12 +60,31 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "Resource": [
                 "arn:aws:s3:::*"
             ]
-        }
+        }, 
+        {
+          "Sid": "AllowPassRole",
+          "Effect": "Allow",
+          "Action": "iam:PassRole",
+          "Resource": "arn:aws:iam::${var.account_id}:role/mlops_sagemaker_role"
+        }, 
+        {
+          "Sid": "AllowDescribeLogStreams",
+          "Effect": "Allow",
+          "Action": "logs:DescribeLogStreams",
+          "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
+        },
+        {
+          "Sid": "AllowGetLogEvents",
+          "Effect": "Allow",
+          "Action": "logs:GetLogEvents",
+          "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
+        }          
     ]
 }
 EOF
   tags   = var.tags
 }
+
 
 resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name

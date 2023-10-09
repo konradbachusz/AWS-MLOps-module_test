@@ -58,3 +58,15 @@ variable "retrain_model_bool" {
   type        = bool
   default     = false
 }
+
+
+variable "region" {
+  description = "AWS deployment region"
+  type        = string
+}
+
+
+variable "account_id" {
+  description = "AWS Account ID"
+  type        = string
+}

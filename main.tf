@@ -10,8 +10,10 @@ module "sagemaker" {
 }
 
 module "iam" {
-  source = "./modules/iam"
-  tags   = var.tags
+  source     = "./modules/iam"
+  tags       = var.tags
+  region     = var.region
+  account_id = var.account_id
 }
 
 module "s3" {
