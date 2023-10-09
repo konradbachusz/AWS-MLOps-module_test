@@ -81,7 +81,7 @@ variable "account_id" {
   type        = string
 }
 
-variable "s3_mlops_bucket" {
+variable "mlops_s3_bucket" {
   description = "S3 Bucket to store ipynb files and python files"
   type        = string
 }

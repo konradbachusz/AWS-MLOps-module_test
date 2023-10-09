@@ -17,7 +17,7 @@ module "sagemaker" {
   model_target                    = var.model_target
   model_features                  = var.model_features
   s3_bucket                       = var.s3_bucket
-  s3_mlops_bucket                 = var.s3_mlops_bucket
+  mlops_s3_bucket                 = var.mlops_s3_bucket
   s3_obj_key                      = var.s3_obj_key
   depends_on                      = [module.s3]
 }

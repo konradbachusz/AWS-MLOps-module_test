@@ -69,7 +69,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        echo "model_features=${var.model_features}" >> /home/ec2-user/SageMaker/.env
 
        # Location of the scripts
-       aws s3 sync s3://${var.s3_mlops_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps
+       aws s3 sync s3://${var.mlops_s3_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps
        chmod -R 777 /home/ec2-user/SageMaker/
      EOL
   )

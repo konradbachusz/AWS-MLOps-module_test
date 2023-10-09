@@ -42,5 +42,5 @@ variable "model_target" {
 variable "model_features" {
 }
 
-variable "s3_mlops_bucket" {
+variable "mlops_s3_bucket" {
 }
