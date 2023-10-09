@@ -19,7 +19,7 @@ module "sagemaker" {
   s3_bucket                       = var.s3_bucket
   s3_mlops_bucket                 = var.s3_mlops_bucket
   s3_obj_key                      = var.s3_obj_key
-  depends_on                      = [modules.s3]
+  depends_on                      = [module.s3]
 }
 
 
