@@ -73,5 +73,4 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        chmod -R 777 /home/ec2-user/SageMaker/
      EOL
   )
-  depends_on = [aws_s3_bucket.s3_mlops_feature_engineering]
 }
