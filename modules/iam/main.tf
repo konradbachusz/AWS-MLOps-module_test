@@ -21,7 +21,7 @@ EOF
 }
 
 resource "aws_iam_policy" "sagemaker_policy" {
-  name   = "sagemaker-role"
+  name   = "${var.model_name}_sagemaker-role"
   policy = <<EOF
 {
     "Version": "2012-10-17",
