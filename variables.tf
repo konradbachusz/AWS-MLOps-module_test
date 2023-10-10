@@ -93,8 +93,3 @@ variable "model_target" {
   type        = string
 }
 
-variable "model_features" {
-  description = "The independent variables (or 'features') used to train the regression model. These should be column names in the dataset."
-  type        = string
-}
-

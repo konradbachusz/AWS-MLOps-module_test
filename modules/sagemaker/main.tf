@@ -74,8 +74,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        # Location of the csv file 
        echo "key=${var.s3_obj_key}" > /home/ec2-user/SageMaker/.env
        echo "bucket=${var.s3_bucket}" >> /home/ec2-user/SageMaker/.env
-       echo "model_target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
-       echo "model_features=${var.model_features}" >> /home/ec2-user/SageMaker/.env
+       echo "target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
 
        # Location of the scripts
        aws s3 sync s3://${var.mlops_s3_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps

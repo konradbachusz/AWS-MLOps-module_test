@@ -22,6 +22,5 @@ variable "s3_bucket" {}
 
 variable "model_target" {}
 
-variable "model_features" {}
 
 variable "mlops_s3_bucket" {}
