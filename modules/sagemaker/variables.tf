@@ -2,45 +2,26 @@
 # Sagemaker
 ##########################################
 
-variable "model_name" {
+variable "model_name" {}
 
-}
+variable "sagemaker_image_repository_name" {}
 
-variable "sagemaker_image_repository_name" {
+variable "sagemaker_execution_role_arn" {}
 
-}
+variable "tags" {}
 
-variable "sagemaker_execution_role_arn" {
+variable "endpoint_instance_type" {}
 
-}
+variable "vpc_id" {}
 
-variable "tags" {
+variable "subnet_ids" {}
 
-}
+variable "s3_obj_key" {}
 
-variable "endpoint_instance_type" {
+variable "s3_bucket" {}
 
-}
+variable "model_target" {}
 
-variable "vpc_id" {
+variable "model_features" {}
 
-}
-
-variable "subnet_ids" {
-
-}
-
-variable "s3_obj_key" {
-}
-
-variable "s3_bucket" {
-}
-
-variable "model_target" {
-}
-
-variable "model_features" {
-}
-
-variable "mlops_s3_bucket" {
-}
+variable "mlops_s3_bucket" {}

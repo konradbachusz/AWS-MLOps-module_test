@@ -3,9 +3,7 @@ variable "tags" {
 }
 
 
-variable "region" {
-}
+variable "region" {}
 
 
-variable "account_id" {
-}
+variable "account_id" {}
