@@ -1,7 +1,7 @@
 ####Glue retraining Job IAM role##########
 
 resource "aws_iam_role" "iam_for_glue_retraining_job_role" {
-  name = "${var.model_name}_retraining_job_glue_iam"
+  name = "${var.model_name}-retraining_job_glue_iam"
 
   assume_role_policy = <<EOF
 {

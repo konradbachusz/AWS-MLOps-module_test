@@ -10,8 +10,9 @@ module "sagemaker" {
 }
 
 module "iam" {
-  source = "./modules/iam"
-  tags   = var.tags
+  source     = "./modules/iam"
+  tags       = var.tags
+  model_name = var.model_name
 }
 
 module "s3" {
