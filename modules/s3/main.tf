@@ -23,6 +23,7 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
   bucket = [aws_s3_bucket.s3_mlops_feature_engineering.id, aws_s3_bucket.model_bucket.id]
   block_public_acls = true
+  ignore_public_acls = true
 }
 
 locals {
