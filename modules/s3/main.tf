@@ -30,7 +30,6 @@ resource "aws_s3_bucket" "model_buckets" {
 }
 
 
-
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
   count = length(aws_s3_bucket.model_buckets)
 
@@ -43,10 +42,14 @@ resource "aws_s3_bucket_public_access_block" "s3_access_block" {
 
 
 
+resource "aws_s3_bucket" "model_test_bucket" {
+  bucket = var.mlops_s3_bucket
+  force_destroy = true
+}
+
 
 resource "aws_s3_bucket_object" "s3_files" {
   for_each = toset(local.files_to_upload)
-  # count  = aws_s3_bucket.model_buckets[2].id == null ? 0 : 2
   bucket = aws_s3_bucket.model_buckets[2].id 
   key      = each.value
   source   = "${local.file_path}/${each.value}"
