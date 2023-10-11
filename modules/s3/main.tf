@@ -42,11 +42,6 @@ resource "aws_s3_bucket_public_access_block" "s3_access_block" {
 
 
 
-resource "aws_s3_bucket" "model_test_bucket" {
-  bucket = var.mlops_s3_bucket
-  force_destroy = true
-}
-
 
 resource "aws_s3_bucket_object" "s3_files" {
   for_each = toset(local.files_to_upload)
