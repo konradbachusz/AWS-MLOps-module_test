@@ -8,6 +8,7 @@ resource "aws_s3_bucket" "model_bucket" {
 resource "aws_s3_bucket_public_access_block" "first_s3_access_block" {
   bucket = aws_s3_bucket.model_bucket.id
   block_public_acls = true
+  ignore_public_acls = true
 }
 
 #Creating an S3 bucket to hold the any helper scripts
@@ -27,6 +28,7 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 resource "aws_s3_bucket_public_access_block" "second_s3_access_block" {
   bucket = [aws_s3_bucket.s3_mlops_feature_engineering.id, aws_s3_bucket.model_bucket.id]
   block_public_acls = true
+  ignore_public_acls = true
 }
 
 locals {
