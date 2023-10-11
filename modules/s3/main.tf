@@ -1,4 +1,5 @@
 #Creating an S3 bucket to heep the trained model
+
 resource "aws_s3_bucket" "model_bucket" {
   bucket        = "${var.model_name}-model"
   force_destroy = true
@@ -26,7 +27,7 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 
 
 resource "aws_s3_bucket_public_access_block" "second_s3_access_block" {
-  bucket = [aws_s3_bucket.s3_mlops_feature_engineering.id, aws_s3_bucket.model_bucket.id]
+  bucket = aws_s3_bucket.s3_mlops_feature_engineering.id
   block_public_acls = true
   ignore_public_acls = true
 }
