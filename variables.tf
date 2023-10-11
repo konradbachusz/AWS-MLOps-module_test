@@ -92,4 +92,3 @@ variable "model_target" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
   type        = string
 }
-

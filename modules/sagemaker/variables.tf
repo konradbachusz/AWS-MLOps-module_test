@@ -22,4 +22,4 @@ variable "s3_bucket" {}
 
 variable "model_target" {}
 
-variable "mlops_s3_bucket_id" {}
+variable "s3_bucket_id" {}

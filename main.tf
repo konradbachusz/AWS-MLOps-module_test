@@ -17,7 +17,7 @@ module "sagemaker" {
   subnet_ids                      = var.subnet_ids
   model_target                    = var.model_target
   s3_bucket                       = var.s3_bucket
-  mlops_s3_bucket_id              = module.s3.mlops_s3_bucket_id
+  s3_bucket_id                    = module.s3.s3_bucket_id
   s3_obj_key                      = var.s3_obj_key
   depends_on                      = [module.s3]
 }
