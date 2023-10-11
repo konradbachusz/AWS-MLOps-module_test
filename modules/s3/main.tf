@@ -13,6 +13,14 @@ locals {
 resource "aws_s3_bucket" "model_buckets" {
   count  = length(local.bucket_names)
   bucket = local.bucket_names[count.index]
+  server_side_encryption_configuration {
+     rule {
+       apply_server_side_encryption_by_default {
+         kms_master_key_id = aws_kms_key.example.arn
+         sse_algorithm     = "aws:kms"
+       }
+     }
+   }
 }
 
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
