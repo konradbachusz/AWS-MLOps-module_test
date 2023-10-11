@@ -28,6 +28,8 @@ resource "aws_s3_bucket" "model_buckets" {
    }
 }
 
+
+
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
   count = length(aws_s3_bucket.model_buckets)
 
