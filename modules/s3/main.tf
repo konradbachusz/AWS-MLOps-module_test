@@ -5,10 +5,6 @@ resource "aws_s3_bucket" "model_bucket" {
   tags          = var.tags
 }
 
-resource "aws_s3_bucket_public_access_block" "s3_access_block" {
-  bucket = aws_s3_bucket.model_bucket.id
-  block_public_acls = true
-}
 
 #Creating an S3 bucket to hold the any helper scripts
 resource "aws_s3_bucket" "config_bucket_id" {
@@ -25,7 +21,7 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 
 
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
-  bucket = aws_s3_bucket.s3_mlops_feature_engineering.id
+  bucket = [aws_s3_bucket.s3_mlops_feature_engineering.id, aws_s3_bucket.model_bucket.id]
   block_public_acls = true
 }
 
