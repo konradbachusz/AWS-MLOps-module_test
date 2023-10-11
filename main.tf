@@ -5,15 +5,16 @@ module "s3" {
   mlops_s3_bucket = var.mlops_s3_bucket
 }
 
+
 module "sagemaker" {
   source                          = "./modules/sagemaker"
-  # model_name                      = var.model_name
-  # sagemaker_image_repository_name = var.sagemaker_image_repository_name
+  model_name                      = var.model_name
+  sagemaker_image_repository_name = var.sagemaker_image_repository_name
   tags                            = var.tags
   sagemaker_execution_role_arn    = module.iam.sagemaker_role_arn
-  # endpoint_instance_type          = var.endpoint_instance_type
-  # vpc_id                          = var.vpc_id
-  # subnet_ids                      = var.subnet_ids
+  endpoint_instance_type          = var.endpoint_instance_type
+  vpc_id                          = var.vpc_id
+  subnet_ids                      = var.subnet_ids
   model_target                    = var.model_target
   s3_bucket                       = var.s3_bucket
   mlops_s3_bucket                 = module.s3.mlops_s3_bucket
@@ -27,6 +28,7 @@ module "iam" {
   tags       = var.tags
   region     = var.region
   account_id = var.account_id
+  model_name = var.model_name
 }
 
 

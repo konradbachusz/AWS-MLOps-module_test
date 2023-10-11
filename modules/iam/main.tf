@@ -1,5 +1,5 @@
 resource "aws_iam_role" "sagemaker_role" {
-  name               = "mlops_sagemaker_role"
+  name               = "${var.model_name}-sagemaker-role"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -23,8 +23,7 @@ EOF
 
 
 resource "aws_iam_policy" "sagemaker_policy" {
-  name = "mlops-sagemaker-policy"
-
+  name   = "${var.model_name}-sagemaker-policy"
   policy = <<EOF
 {
     "Version": "2012-10-17",

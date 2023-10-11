@@ -1,16 +1,16 @@
-##########################################
+#########################################
 # Sagemaker
-##########################################
+#########################################
 
-# variable "model_name" {}
+variable "model_name" {}
 
-# variable "sagemaker_image_repository_name" {}
+variable "sagemaker_image_repository_name" {}
 
-# variable "endpoint_instance_type" {}
+variable "endpoint_instance_type" {}
 
-# variable "vpc_id" {}
+variable "vpc_id" {}
 
-# variable "subnet_ids" {}
+variable "subnet_ids" {}
 
 variable "sagemaker_execution_role_arn" {}
 
