@@ -46,11 +46,11 @@ jobs:
         with:
           tflint_version: latest
           
-      # - name: Run TFLint
-      #   working-directory: .
-      #   run: |
-      #     tflint --init
-      #     tflint -f compact --recursive --disable-rule=terraform_typed_variables 
+      - name: Run TFLint
+        working-directory: .
+        run: |
+          tflint --init
+          tflint -f compact --recursive --disable-rule=terraform_typed_variables 
 
   tests:
     runs-on: ubuntu-latest
