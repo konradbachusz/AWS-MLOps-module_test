@@ -11,7 +11,7 @@ locals {
 
 
 resource "aws_s3_bucket" "model_buckets" {
-  count  = length(local.bucket_names[count.index])
+  count  = length(local.bucket_names)
   bucket = local.bucket_names[count.index]
 }
 
