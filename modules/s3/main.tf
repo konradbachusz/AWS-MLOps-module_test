@@ -11,8 +11,8 @@ locals {
 
 
 resource "aws_s3_bucket" "model_buckets" {
-  count  = length(local.file_path[count.index])
-  bucket = local.file_path[count.index]
+  count  = length(local.bucket_names[count.index])
+  bucket = local.bucket_names[count.index]
 }
 
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
