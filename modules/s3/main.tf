@@ -19,8 +19,9 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 }
 
 
-resource "aws_s3_bucket_public_access_block" "s3_mlops_feature_engineering_public_access_block" {
+resource "aws_s3_bucket_public_access_block" "s3_access_block" {
   bucket = aws_s3_bucket.s3_mlops_feature_engineering.id
+  block_public_acls = true
 }
 
 locals {
