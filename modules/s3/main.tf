@@ -10,13 +10,19 @@ locals {
 }
 
 
+resource "aws_kms_key" "s3_kms_key" {
+  description             = "KMS key 1"
+  deletion_window_in_days = 10
+}
+
+
 resource "aws_s3_bucket" "model_buckets" {
   count  = length(local.bucket_names)
   bucket = local.bucket_names[count.index]
   server_side_encryption_configuration {
      rule {
        apply_server_side_encryption_by_default {
-         kms_master_key_id = aws_kms_key.example.arn
+         kms_master_key_id = aws_kms_key.s3_kms_key.arn
          sse_algorithm     = "aws:kms"
        }
      }
