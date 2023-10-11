@@ -19,6 +19,9 @@ resource "aws_s3_bucket" "s3_mlops_feature_engineering" {
 }
 
 
+resource "aws_s3_bucket_public_access_block" "s3_mlops_feature_engineering_public_access_block" {
+  bucket = aws_s3_bucket.s3_mlops_feature_engineering.id
+}
 
 locals {
   file_path = "${path.module}/../../mlops_ml_models"
