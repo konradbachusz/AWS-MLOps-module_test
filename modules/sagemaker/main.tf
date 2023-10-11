@@ -56,9 +56,6 @@ resource "aws_sagemaker_domain" "example" {
 
 
 
-
-
-
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   name                  = "feature-engineering-notebook-instance"
   instance_type         = "ml.t3.medium"
@@ -81,4 +78,5 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        chmod -R 777 /home/ec2-user/SageMaker/
      EOL
   )
+  depends_on = [aws_sagemaker_notebook_instance.notebook_instance]
 }
