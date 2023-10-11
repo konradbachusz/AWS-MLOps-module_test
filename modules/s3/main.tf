@@ -18,6 +18,7 @@ resource "aws_kms_key" "s3_kms_key" {
 resource "aws_s3_bucket" "model_buckets" {
   count  = length(local.bucket_names)
   bucket = local.bucket_names[count.index]
+  force_destroy = true
   server_side_encryption_configuration {
      rule {
        apply_server_side_encryption_by_default {
