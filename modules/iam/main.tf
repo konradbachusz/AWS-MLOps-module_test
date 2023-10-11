@@ -77,7 +77,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Effect": "Allow",
           "Action": "logs:GetLogEvents",
           "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
-        }
+        },
         {
           "Sid": "AllowAccessToKey"
           "Effect": "Allow",
