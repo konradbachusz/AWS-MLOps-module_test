@@ -79,7 +79,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
         },
         {
-          "Sid": "AllowAccessToKey"
+          "Sid": "AllowAccessToKey",
           "Effect": "Allow",
           "Action": "kms:Decrypt",
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
