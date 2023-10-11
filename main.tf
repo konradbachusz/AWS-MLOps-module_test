@@ -1,3 +1,11 @@
+module "s3" {
+  source          = "./modules/s3"
+  model_name      = var.model_name
+  tags            = var.tags
+  mlops_s3_bucket = var.mlops_s3_bucket
+}
+
+
 module "sagemaker" {
   source                          = "./modules/sagemaker"
   model_name                      = var.model_name
@@ -7,19 +15,22 @@ module "sagemaker" {
   endpoint_instance_type          = var.endpoint_instance_type
   vpc_id                          = var.vpc_id
   subnet_ids                      = var.subnet_ids
+  model_target                    = var.model_target
+  s3_bucket                       = var.s3_bucket
+  mlops_s3_bucket                 = module.s3.mlops_s3_bucket
+  s3_obj_key                      = var.s3_obj_key
+  depends_on                      = [module.s3]
 }
+
 
 module "iam" {
   source     = "./modules/iam"
   tags       = var.tags
+  region     = var.region
+  account_id = var.account_id
   model_name = var.model_name
 }
 
-module "s3" {
-  source     = "./modules/s3"
-  model_name = var.model_name
-  tags       = var.tags
-}
 
 module "retraining_job" {
   count                   = var.retrain_model_bool ? 1 : 0

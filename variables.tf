@@ -58,3 +58,38 @@ variable "retrain_model_bool" {
   type        = bool
   default     = false
 }
+
+
+variable "s3_obj_key" {
+  description = "S3 Object key"
+  type        = string
+}
+
+variable "s3_bucket" {
+  description = "S3 Bucket"
+  type        = string
+}
+
+variable "region" {
+  description = "AWS deployment region"
+  type        = string
+}
+
+
+variable "account_id" {
+  description = "AWS Account ID"
+  type        = string
+}
+
+variable "mlops_s3_bucket" {
+  description = "S3 Bucket to store ipynb files and python files"
+  type        = string
+}
+
+
+
+variable "model_target" {
+  description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
+  type        = string
+}
+

@@ -9,4 +9,3 @@ This repo is a basic template for MLOps resources on AWS. Please apply appropria
 # TODO
 Add more details and examples
 
-
