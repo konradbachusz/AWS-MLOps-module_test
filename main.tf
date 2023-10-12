@@ -17,7 +17,7 @@ module "sagemaker" {
   subnet_ids                      = var.subnet_ids
   model_target                    = var.model_target
   s3_bucket_id                    = module.s3.s3_bucket_id
-  data_location_s3                   = var.data_location_s3
+  data_location_s3                = var.data_location_s3
   depends_on                      = [module.s3]
 }
 
@@ -43,6 +43,6 @@ module "retraining_job" {
 
 
 module "ecr" {
-  source = "./modules/ecr"
+  source           = "./modules/ecr"
   pycaret_ecr_name = var.pycaret_ecr_name
 }

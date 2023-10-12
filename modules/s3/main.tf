@@ -16,27 +16,27 @@ resource "aws_kms_key" "s3_kms_key" {
 
 
 resource "aws_s3_bucket" "model_buckets" {
-  count  = length(local.bucket_names)
-  bucket = local.bucket_names[count.index]
+  count         = length(local.bucket_names)
+  bucket        = local.bucket_names[count.index]
   force_destroy = true
   server_side_encryption_configuration {
-     rule {
-       apply_server_side_encryption_by_default {
-         kms_master_key_id = aws_kms_key.s3_kms_key.arn
-         sse_algorithm     = "aws:kms"
-       }
-     }
-   }
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.s3_kms_key.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
 }
 
 
 resource "aws_s3_bucket_public_access_block" "s3_access_block" {
   count = length(aws_s3_bucket.model_buckets)
 
-  bucket = aws_s3_bucket.model_buckets[count.index].id
-  block_public_acls = true
-  block_public_policy = true 
-  ignore_public_acls = true
+  bucket                  = aws_s3_bucket.model_buckets[count.index].id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
   restrict_public_buckets = true
 }
 
@@ -45,7 +45,7 @@ resource "aws_s3_bucket_public_access_block" "s3_access_block" {
 
 resource "aws_s3_bucket_object" "s3_files" {
   for_each = toset(local.files_to_upload)
-  bucket = aws_s3_bucket.model_buckets[2].id 
+  bucket   = aws_s3_bucket.model_buckets[2].id
   key      = each.value
   source   = "${local.file_path}/${each.value}"
   etag     = filemd5("${local.file_path}/${each.value}")
