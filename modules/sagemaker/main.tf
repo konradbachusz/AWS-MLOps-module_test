@@ -75,7 +75,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        chmod -R 777 /home/ec2-user/SageMaker/
 
        # Location of the csv file 
-       echo "data_location_s3=${var.data_location_s3}" >> /home/ec2-user/SageMaker/.env
+       echo "data_location_s3=${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
        echo "target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
 
      EOL

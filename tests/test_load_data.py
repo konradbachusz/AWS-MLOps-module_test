@@ -13,7 +13,8 @@ def mock_df() -> pd.DataFrame:
     load_data.py file returns a the same dataframe as what we have here.
 
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: dataframe created from the script. Should be the same as
+        in the resources.
     """
     return pd.DataFrame({
         'col1': [1, 2, 3],
