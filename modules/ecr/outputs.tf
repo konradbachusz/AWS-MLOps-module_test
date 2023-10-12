@@ -1,3 +1,3 @@
-output "s3_bucket_id" {
-  value = aws_s3_bucket.mlops_pycaret_repo.id
+output "ecr_name" {
+  value = aws_ecr_repository.mlops_pycaret_repo.id
 }
