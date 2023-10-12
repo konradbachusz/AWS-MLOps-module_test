@@ -60,13 +60,9 @@ variable "retrain_model_bool" {
 }
 
 
-variable "s3_obj_key" {
-  description = "S3 Object key"
-  type        = string
-}
 
-variable "s3_bucket" {
-  description = "S3 Bucket"
+variable "data_location_s3" {
+  description = "location of the data in s3 bucket"
   type        = string
 }
 
@@ -92,4 +88,3 @@ variable "model_target" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
   type        = string
 }
-

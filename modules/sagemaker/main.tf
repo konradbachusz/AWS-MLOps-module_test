@@ -56,9 +56,6 @@ resource "aws_sagemaker_domain" "example" {
 
 
 
-
-
-
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   name                  = "feature-engineering-notebook-instance"
   instance_type         = "ml.t3.medium"
@@ -71,14 +68,16 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
   name = "mlops-sagemaker-lifecycle-config"
   on_start = base64encode(<<EOL
        #!/bin/bash
+       # Location of the scripts
+       aws s3 sync s3://${var.s3_bucket_id}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*.env"
+
+       # Make the ipython notebooks editable after copy
+       chmod -R 777 /home/ec2-user/SageMaker/
+
        # Location of the csv file 
-       echo "key=${var.s3_obj_key}" > /home/ec2-user/SageMaker/.env
-       echo "bucket=${var.s3_bucket}" >> /home/ec2-user/SageMaker/.env
+       echo "data_location_s3=${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
        echo "target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
 
-       # Location of the scripts
-       aws s3 sync s3://${var.mlops_s3_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps
-       chmod -R 777 /home/ec2-user/SageMaker/
      EOL
   )
 }
