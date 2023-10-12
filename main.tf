@@ -16,9 +16,8 @@ module "sagemaker" {
   vpc_id                          = var.vpc_id
   subnet_ids                      = var.subnet_ids
   model_target                    = var.model_target
-  s3_bucket                       = var.s3_bucket
   s3_bucket_id                    = module.s3.s3_bucket_id
-  s3_obj_key                      = var.s3_obj_key
+  data_location_s3                   = var.data_location_s3
   depends_on                      = [module.s3]
 }
 

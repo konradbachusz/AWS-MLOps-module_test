@@ -60,13 +60,9 @@ variable "retrain_model_bool" {
 }
 
 
-variable "s3_obj_key" {
-  description = "S3 Object key"
-  type        = string
-}
 
-variable "s3_bucket" {
-  description = "S3 Bucket"
+variable "data_location_s3" {
+  description = "location of the data in s3 bucket"
   type        = string
 }
 
