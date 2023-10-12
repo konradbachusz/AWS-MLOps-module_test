@@ -1,0 +1,1 @@
+variable "pycaret_ecr_name" {}

@@ -41,3 +41,8 @@ module "retraining_job" {
   retraining_schedule     = var.retraining_schedule
 }
 
+
+module "ecr" {
+  source = "./modules/ecr"
+  pycaret_ecr_name = var.pycaret_ecr_name
+}
