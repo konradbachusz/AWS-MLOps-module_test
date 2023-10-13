@@ -1,4 +1,4 @@
 output "ecr_name" {
     description = "The ECR name"
-  value = try(aws_ecr_repository.mlops_pycaret_repo.id, "")
+  value = try(aws_ecr_repository.mlops_pycaret_repo.repository_url, "")
 }
