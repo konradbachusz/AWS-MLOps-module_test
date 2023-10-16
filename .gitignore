@@ -203,5 +203,5 @@ mlops_ml_models/**/*_info/
 .DS_Store
 
 # model generated files 
-mlops_ml_models/model_directory/
+mlops_ml_models/**/*.pkl
 mlops_ml_models/**/*.tar.gz
