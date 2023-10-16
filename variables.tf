@@ -94,3 +94,9 @@ variable "pycaret_ecr_name" {
   description = "ECR name"
   type        = string
 }
+
+
+variable "algorithm_choice" {
+  description = "the type of machine learning analysis you will be performing"
+  type        = string
+}
