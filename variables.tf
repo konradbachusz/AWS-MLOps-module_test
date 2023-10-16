@@ -101,6 +101,6 @@ variable "algorithm_choice" {
   type        = string
   validation {
     condition     = contains(["classification", "regression", "clustering", "anomaly", "time_series"], var.algorithm_choice)
-    error_message = "Allowed values for input_parameter are \"classification\", \"regression\", \"clustering\",  \"anomaly\", or \"time_series\"."
+    error_message = "Allowed values for algorithm_choice are \"classification\", \"regression\", \"clustering\",  \"anomaly\", or \"time_series\"."
   }
 }
