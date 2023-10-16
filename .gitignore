@@ -201,3 +201,7 @@ mlops_ml_models/**/*_info/
 
 # Mac files
 .DS_Store
+
+# model generated files 
+mlops_ml_models/model_directory/
+mlops_ml_models/**/*.tar.gz
