@@ -64,7 +64,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Sid": "AllowPassRole",
           "Effect": "Allow",
           "Action": "iam:PassRole",
-          "Resource": "arn:aws:iam::${var.account_id}:role/mlops_sagemaker_role"
+          "Resource": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
         }, 
         {
           "Sid": "AllowDescribeLogStreams",
