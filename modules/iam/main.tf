@@ -86,7 +86,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "kms:GenerateDataKey"
           ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
-        }, 
+        }          
     ]
 }
 EOF
