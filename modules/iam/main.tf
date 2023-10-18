@@ -98,10 +98,10 @@ resource "aws_iam_policy" "sagemaker_policy" {
         },
         {
           "Sid": "SagemakerCreateModel",
-          "Effect": "Allow"
-          "Action": "sagemaker:CreateModel"
+          "Effect": "Allow",
+          "Action": "sagemaker:CreateModel",
           "Resource":"*"
-        }          
+        },          
     ]
 }
 EOF
