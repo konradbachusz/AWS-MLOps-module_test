@@ -84,7 +84,6 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Action": [
             "kms:Decrypt", 
             "kms:GenerateDataKey", 
-            "iam:PassRole"
           ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
         }          
