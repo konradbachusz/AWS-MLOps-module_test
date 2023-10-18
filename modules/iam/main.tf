@@ -86,7 +86,13 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "kms:GenerateDataKey", 
           ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
-        }          
+        }, 
+        {
+          "Sid": "AllowPassRole",
+          "Effect": "Allow",
+          "Action": "iam:PassRole",
+          "Resource": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
+        }      
     ]
 }
 EOF
