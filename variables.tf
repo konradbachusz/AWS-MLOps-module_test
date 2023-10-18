@@ -99,4 +99,8 @@ variable "pycaret_ecr_name" {
 variable "algorithm_choice" {
   description = "the type of machine learning analysis you will be performing"
   type        = string
+  validation {
+    condition     = contains(["classification", "regression", "clustering", "anomaly", "time_series"], var.algorithm_choice)
+    error_message = "Allowed values for algorithm_choice are \"classification\", \"regression\", \"clustering\",  \"anomaly\", or \"time_series\"."
+  }
 }
