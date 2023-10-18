@@ -95,6 +95,12 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "ecr:BatchCheckLayerAvailability"
           ],
           "Resource": "arn:aws:ecr:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
+        },
+        {
+          "Sid": "SagemakerCreateModel",
+          Effect   = "Allow"
+          Action   = "sagemaker:CreateModel"
+          Resource = "*"
         }          
     ]
 }
