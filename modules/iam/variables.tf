@@ -8,3 +8,5 @@ variable "region" {}
 
 variable "account_id" {}
 variable "model_name" {}
+
+variable "pycaret_ecr_name" {}

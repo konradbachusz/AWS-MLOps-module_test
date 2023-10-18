@@ -86,6 +86,15 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "kms:GenerateDataKey"
           ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
+        },
+        {
+          "Sid": "AllowECRPull",
+          "Effect": "Allow",
+          "Action": [
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:BatchCheckLayerAvailability"
+          ],
+          "Resource": "arn:aws:ecr:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
         }          
     ]
 }
