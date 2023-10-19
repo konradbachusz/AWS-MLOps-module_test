@@ -97,15 +97,6 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Resource": "arn:aws:ecr:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
         },  
         {
-          "Sid": "AllowECRPullForIAM",
-          "Effect": "Allow",
-          "Action": [
-            "ecr:GetDownloadUrlForLayer",
-            "ecr:BatchCheckLayerAvailability"
-          ],
-          "Resource": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
-        },  
-        {
             "Sid": "SagemakerCreateModel",
             "Effect": "Allow",
             "Action": "sagemaker:CreateModel",
@@ -121,4 +112,29 @@ EOF
 resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
   policy_arn = aws_iam_policy.sagemaker_policy.arn
+}
+
+
+
+resource "aws_ecr_repository_policy" "ecr_policy" {
+  repository = "${var.ecr_repo_name}"
+
+  policy = <<EOF
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowSageMakerPull",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
+      },
+      "Action": [
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchCheckLayerAvailability"
+      ]
+    }
+  ]
+}
+EOF
 }

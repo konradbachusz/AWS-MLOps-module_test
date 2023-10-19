@@ -10,3 +10,5 @@ variable "account_id" {}
 variable "model_name" {}
 
 variable "pycaret_ecr_name" {}
+
+variable "ecr_repo_name" {}

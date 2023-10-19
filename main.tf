@@ -30,6 +30,7 @@ module "iam" {
   account_id       = var.account_id
   model_name       = var.model_name
   pycaret_ecr_name = var.pycaret_ecr_name
+  ecr_repo_name    = module.ecr.ecr_name
 }
 
 
