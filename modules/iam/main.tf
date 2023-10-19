@@ -97,6 +97,15 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Resource": "arn:aws:ecr:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
         },  
         {
+          "Sid": "AllowECRPullForIAM",
+          "Effect": "Allow",
+          "Action": [
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:BatchCheckLayerAvailability"
+          ],
+          "Resource": "arn:aws:iam:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
+        },  
+        {
             "Sid": "SagemakerCreateModel",
             "Effect": "Allow",
             "Action": "sagemaker:CreateModel",
