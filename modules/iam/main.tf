@@ -103,7 +103,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "ecr:GetDownloadUrlForLayer",
             "ecr:BatchCheckLayerAvailability"
           ],
-          "Resource": "arn:aws:iam:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
+          "Resource": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
         },  
         {
             "Sid": "SagemakerCreateModel",
