@@ -117,7 +117,7 @@ resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
 
 
 resource "aws_ecr_repository_policy" "ecr_policy" {
-  repository = "${var.ecr_repo_name}"
+  repository = "mlops-pycaret-repo"
 
   policy = <<EOF
 {
