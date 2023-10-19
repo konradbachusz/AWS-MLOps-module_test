@@ -78,7 +78,9 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        echo "data_location_s3=${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
        echo "target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
        echo "algorithm_choice=${var.algorithm_choice}" >> /home/ec2-user/SageMaker/.env
-
+       pip install python-dotenv
+       pip install --ignore-installed pycaret[full]
+       pip install s3fs
      EOL
   )
 }
