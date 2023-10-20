@@ -39,14 +39,17 @@ variable "endpoint_instance_type" {
   default     = ""
 }
 
-### S3 ####
-variable "data_source_bucket_name" {
-  description = "Path to an S3 bucket with data used for training and testing"
+##########################################
+# S3
+##########################################
+variable "data_location_s3" {
+  description = "Location of the data in s3 bucket"
   type        = string
 }
 
-#### Networking ####
-
+##########################################
+# Networking
+##########################################
 variable "vpc_id" {
   description = "The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication."
   type        = string
@@ -57,7 +60,9 @@ variable "subnet_ids" {
   type        = list(any)
 }
 
-### Glue ####
+##########################################
+# Glue
+##########################################
 variable "retraining_schedule" {
   description = "Cron expression of the model retraing frequency"
   type        = string
@@ -67,11 +72,6 @@ variable "retrain_model_bool" {
   description = "Boolean to indicate if the retraining pipeline shoud be added"
   type        = bool
   default     = false
-}
-
-variable "data_location_s3" {
-  description = "location of the data in s3 bucket"
-  type        = string
 }
 
 ##########################################

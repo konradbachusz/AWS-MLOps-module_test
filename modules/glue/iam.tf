@@ -38,7 +38,7 @@ resource "aws_iam_policy" "retraining_glue_policy" {
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${var.data_source_bucket_name}/*", 
+                "arn:aws:s3:::${var.data_location_s3}/*", 
                 "arn:aws:s3:::${var.config_bucket_id}/*"
             ]
         }

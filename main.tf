@@ -36,7 +36,7 @@ module "retraining_job" {
   model_name              = var.model_name
   tags                    = var.tags
   config_bucket_id        = module.s3.config_bucket_id
-  data_source_bucket_name = var.data_source_bucket_name
+  data_location_s3 = var.data_location_s3
   retraining_schedule     = var.retraining_schedule
 }
 
