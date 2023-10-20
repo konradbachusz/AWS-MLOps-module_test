@@ -18,11 +18,11 @@ resource "aws_glue_job" "retraining_glue_job" {
   }
 
   default_arguments = {
-    "--job-language"            = "python"
-    "--glue_version"            = "3.0"
-    "--enable-metrics"          = "true"
-    "--data_location_s3" = var.data_location_s3
-    "--job-bookmark-option"     = "job-bookmark-enable"
+    "--job-language"        = "python"
+    "--glue_version"        = "3.0"
+    "--enable-metrics"      = "true"
+    "--data_location_s3"    = var.data_location_s3
+    "--job-bookmark-option" = "job-bookmark-enable"
   }
   tags = var.tags
 }

@@ -14,7 +14,7 @@ module "sagemaker" {
   endpoint_instance_type          = var.endpoint_instance_type
   vpc_id                          = var.vpc_id
   subnet_ids                      = var.subnet_ids
-  model_target_variable                    = var.model_target_variable
+  model_target_variable           = var.model_target_variable
   s3_bucket_id                    = module.s3.s3_bucket_id
   data_location_s3                = var.data_location_s3
   depends_on                      = [module.s3]
@@ -31,12 +31,12 @@ module "iam" {
 
 
 module "retraining_job" {
-  count                   = var.retrain_model_bool ? 1 : 0
-  source                  = "./modules/glue"
-  model_name              = var.model_name
-  tags                    = var.tags
-  config_bucket_id        = module.s3.config_bucket_id
-  data_location_s3 = var.data_location_s3
-  retraining_schedule     = var.retraining_schedule
+  count               = var.retrain_model_bool ? 1 : 0
+  source              = "./modules/glue"
+  model_name          = var.model_name
+  tags                = var.tags
+  config_bucket_id    = module.s3.config_bucket_id
+  data_location_s3    = var.data_location_s3
+  retraining_schedule = var.retraining_schedule
 }
 
