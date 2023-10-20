@@ -91,7 +91,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Sid": "AllowECRPull",
           "Effect": "Allow",
           "Action": "*",
-          "Resource": "arn:aws:ecr:${var.region}:${var.account_id}:repository/*"
+          "Resource": "arn:aws:ecr:::*"
         },  
         {
             "Sid": "SagemakerCreateModel",
