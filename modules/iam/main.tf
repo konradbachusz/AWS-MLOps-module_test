@@ -68,7 +68,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Condition": {
             "StringEquals": {
               "iam:PassedToService": [
-                "sagemaker.amazonaws.com",
+                "sagemaker.amazonaws.com"
               ]
             }
           }
