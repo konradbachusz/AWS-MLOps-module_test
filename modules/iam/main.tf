@@ -61,11 +61,18 @@ resource "aws_iam_policy" "sagemaker_policy" {
             ]
         }, 
         {
-          "Sid": "AllowPassRole",
-          "Effect": "Allow",
+          "Sid": "AllowPassRole"
           "Action": "iam:PassRole",
-          "Resource": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
-        }, 
+          "Effect": "Allow",
+          "Resource": "*",
+                "Condition": {
+                    "StringEquals": {
+                        "iam:PassedToService": [
+                            "sagemaker.amazonaws.com",
+                        ]
+                    }
+                }
+        },
         {
           "Sid": "AllowDescribeLogStreams",
           "Effect": "Allow",
