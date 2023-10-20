@@ -90,10 +90,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
         {
           "Sid": "AllowECRPull",
           "Effect": "Allow",
-          "Action": [
-            "ecr:GetDownloadUrlForLayer",
-            "ecr:BatchCheckLayerAvailability"
-          ],
+          "Action": *,
           "Resource": "arn:aws:ecr:${var.region}:${var.account_id}:repository/${var.pycaret_ecr_name}"
         },  
         {
@@ -129,10 +126,7 @@ resource "aws_ecr_repository_policy" "ecr_policy" {
       "Principal": {
         "AWS": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
       },
-      "Action": [
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchCheckLayerAvailability"
-      ]
+      "Action": *
     }
   ]
 }
