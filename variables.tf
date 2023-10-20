@@ -7,6 +7,16 @@ variable "tags" {
   default     = {}
 }
 
+variable "region" {
+  description = "AWS deployment region"
+  type        = string
+}
+
+variable "account_id" {
+  description = "AWS Account ID"
+  type        = string
+}
+
 ##########################################
 # Sagemaker
 ##########################################
@@ -59,25 +69,16 @@ variable "retrain_model_bool" {
   default     = false
 }
 
-
-
 variable "data_location_s3" {
   description = "location of the data in s3 bucket"
   type        = string
 }
 
-variable "region" {
-  description = "AWS deployment region"
-  type        = string
-}
+##########################################
+# Model arguments
+##########################################
 
-
-variable "account_id" {
-  description = "AWS Account ID"
-  type        = string
-}
-
-variable "model_target" {
+variable "model_target_variable" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
   type        = string
 }
