@@ -1,8 +1,7 @@
 module "s3" {
-  source          = "./modules/s3"
-  model_name      = var.model_name
-  tags            = var.tags
-  mlops_s3_bucket = var.mlops_s3_bucket
+  source     = "./modules/s3"
+  model_name = var.model_name
+  tags       = var.tags
 }
 
 
@@ -17,7 +16,7 @@ module "sagemaker" {
   subnet_ids                      = var.subnet_ids
   model_target                    = var.model_target
   s3_bucket_id                    = module.s3.s3_bucket_id
-  data_location_s3                   = var.data_location_s3
+  data_location_s3                = var.data_location_s3
   depends_on                      = [module.s3]
 }
 

@@ -77,13 +77,6 @@ variable "account_id" {
   type        = string
 }
 
-variable "mlops_s3_bucket" {
-  description = "S3 Bucket to store ipynb files and python files"
-  type        = string
-}
-
-
-
 variable "model_target" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
   type        = string
