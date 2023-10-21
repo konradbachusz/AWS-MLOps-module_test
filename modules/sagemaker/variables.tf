@@ -18,6 +18,6 @@ variable "tags" {}
 
 variable "data_location_s3" {}
 
-variable "model_target" {}
+variable "model_target_variable" {}
 
 variable "s3_bucket_id" {}

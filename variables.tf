@@ -7,6 +7,16 @@ variable "tags" {
   default     = {}
 }
 
+variable "region" {
+  description = "AWS deployment region"
+  type        = string
+}
+
+variable "account_id" {
+  description = "AWS Account ID"
+  type        = string
+}
+
 ##########################################
 # Sagemaker
 ##########################################
@@ -29,14 +39,17 @@ variable "endpoint_instance_type" {
   default     = ""
 }
 
-### S3 ####
-variable "data_source_bucket_name" {
-  description = "Path to an S3 bucket with data used for training and testing"
+##########################################
+# S3
+##########################################
+variable "data_location_s3" {
+  description = "Location of the data in s3 bucket"
   type        = string
 }
 
-#### Networking ####
-
+##########################################
+# Networking
+##########################################
 variable "vpc_id" {
   description = "The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication."
   type        = string
@@ -47,7 +60,9 @@ variable "subnet_ids" {
   type        = list(any)
 }
 
-### Glue ####
+##########################################
+# Glue
+##########################################
 variable "retraining_schedule" {
   description = "Cron expression of the model retraing frequency"
   type        = string
@@ -59,32 +74,11 @@ variable "retrain_model_bool" {
   default     = false
 }
 
+##########################################
+# Model arguments
+##########################################
 
-
-variable "data_location_s3" {
-  description = "location of the data in s3 bucket"
-  type        = string
-}
-
-variable "region" {
-  description = "AWS deployment region"
-  type        = string
-}
-
-
-variable "account_id" {
-  description = "AWS Account ID"
-  type        = string
-}
-
-variable "mlops_s3_bucket" {
-  description = "S3 Bucket to store ipynb files and python files"
-  type        = string
-}
-
-
-
-variable "model_target" {
+variable "model_target_variable" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
   type        = string
 }
