@@ -22,102 +22,69 @@ EOF
 }
 
 
-# resource "aws_iam_policy" "sagemaker_policy" {
-#   name   = "${var.model_name}-sagemaker-policy"
-#   policy = <<EOF
-# {
-#     "Version": "2012-10-17",
-#     "Statement": [
-# 	{
-#             "Effect": "Allow",
-#             "Action": "sagemaker:*",
-#             "Resource": "*"
-#         },
-#         {
-#             "Effect": "Allow",
-#             "Action": "logs:CreateLogGroup",
-#             "Resource": "arn:aws:logs:*"
-#         },
-#         {
-#             "Effect": "Allow",
-#             "Action": [
-#                 "logs:CreateLogStream",
-#                 "logs:PutLogEvents"
-#             ],
-#             "Resource": [
-#                 "arn:aws:logs:*"
-#             ]
-#         },
-# 	      {
-#             "Effect": "Allow",
-#             "Action": [
-#                 "s3:GetObject",
-#                 "s3:PutObject",
-#                 "s3:DeleteObject",
-#                 "s3:ListBucket"
-#             ],
-#             "Resource": [
-#                 "arn:aws:s3:::*"
-#             ]
-#         }, 
-#         {
-#           "Sid": "AllowPassRole",
-#           "Action": "iam:PassRole",
-#           "Effect": "Allow",
-#           "Resource": "*",
-#           "Condition": {
-#             "StringEquals": {
-#               "iam:PassedToService": [
-#                 "sagemaker.amazonaws.com"
-#               ]
-#             }
-#           }
-#         },
-#         {
-#           "Sid": "AllowDescribeLogStreams",
-#           "Effect": "Allow",
-#           "Action": "logs:DescribeLogStreams",
-#           "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
-#         },
-#         {
-#           "Sid": "AllowGetLogEvents",
-#           "Effect": "Allow",
-#           "Action": "logs:GetLogEvents",
-#           "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
-#         },
-#         {
-#           "Sid": "AllowAccessToKey",
-#           "Effect": "Allow",
-#           "Action": [
-#             "kms:Decrypt", 
-#             "kms:GenerateDataKey"
-#           ],
-#           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
-#         },
-#         {
-#           "Sid": "AllowECRPull",
-#           "Effect": "Allow",
-#           "Action": "*",
-#           "Resource": "arn:aws:ecr:::*"
-#         },  
-#         {
-#             "Sid": "SagemakerCreateModel",
-#             "Effect": "Allow",
-#             "Action": "sagemaker:CreateModel",
-#             "Resource": "*"
-#         }   
-#     ]
-# }
-# EOF
-#   tags   = var.tags
-# }
-
-resource "aws_iam_policy" "kms" {
-  name   = "${var.model_name}-kms-policy"
+resource "aws_iam_policy" "sagemaker_policy" {
+  name   = "${var.model_name}-sagemaker-policy"
   policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
+	{
+            "Effect": "Allow",
+            "Action": "sagemaker:*",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:*"
+            ]
+        },
+	      {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ]
+        }, 
+        {
+          "Sid": "AllowPassRole",
+          "Action": "iam:PassRole",
+          "Effect": "Allow",
+          "Resource": "*",
+          "Condition": {
+            "StringEquals": {
+              "iam:PassedToService": [
+                "sagemaker.amazonaws.com"
+              ]
+            }
+          }
+        },
+        {
+          "Sid": "AllowDescribeLogStreams",
+          "Effect": "Allow",
+          "Action": "logs:DescribeLogStreams",
+          "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
+        },
+        {
+          "Sid": "AllowGetLogEvents",
+          "Effect": "Allow",
+          "Action": "logs:GetLogEvents",
+          "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
+        },
         {
           "Sid": "AllowAccessToKey",
           "Effect": "Allow",
@@ -134,37 +101,12 @@ EOF
 }
 
 
-# resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = aws_iam_policy.sagemaker_policy.arn
-# }
-
-resource "aws_iam_role_policy_attachment" "kms" {
+resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
-  policy_arn = aws_iam_policy.kms.arn
+  policy_arn = aws_iam_policy.sagemaker_policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
 }
-
-# resource "aws_ecr_repository_policy" "ecr_policy" {
-#   repository = "mlops-pycaret-repo"
-
-#   policy = <<EOF
-# {
-#   "Version": "2008-10-17",
-#   "Statement": [
-#     {
-#       "Sid": "AllowSageMakerPull",
-#       "Effect": "Allow",
-#       "Principal": {
-#         "AWS": "arn:aws:iam::${var.account_id}:role/${var.model_name}-sagemaker-role"
-#       },
-#       "Action": "*"
-#     }
-#   ]
-# }
-# EOF
-# }
