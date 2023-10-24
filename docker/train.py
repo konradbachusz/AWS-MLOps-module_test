@@ -2,12 +2,11 @@
 import boto3
 import os
 from sagemaker import get_execution_role
+
 # from dotenv import load_dotenv
 from pycaret.regression import *
 from pycaret.regression import save_model
-# import sys
-# sys.path.append(".")
-from load_data import load_data
+from load_data import read_data
 
 
 my_region = boto3.session.Session().region_name
@@ -22,9 +21,7 @@ target = "Bakerloo10"
 data_location = "s3://{}".format(data_location_s3)
 
 
-
-
-data = load_data(data_location)
+data = read_data(data_location)
 df = data.copy()
 print(df.head())
 

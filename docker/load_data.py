@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def load_data(data_location: str) -> pd.DataFrame:
+def read_data(data_location: str) -> pd.DataFrame:
     """This script takes in the location of your data (csv file),
     loads that as a dataframe and then returns the dataframe.
     Note:
