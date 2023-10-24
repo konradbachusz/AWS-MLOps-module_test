@@ -7,7 +7,7 @@ from pycaret.regression import *
 from pycaret.regression import save_model
 import sys
 sys.path.append(".")
-from mlops_ml_models.load_data import load_data
+from load_data import load_data
 
 
 my_region = boto3.session.Session().region_name
