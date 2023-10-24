@@ -12,7 +12,7 @@ RUN pip install python-dotenv && \
     pip3 install sagemaker-training
 
 # Copies the training code inside the container
-COPY docker/*.py /opt/ml/code/
+COPY *.py /opt/ml/code/
 
 # Defines train.py as script entrypoint
 ENV SAGEMAKER_PROGRAM train.py
