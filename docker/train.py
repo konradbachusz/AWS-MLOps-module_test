@@ -4,7 +4,6 @@ import boto3
 from sagemaker import get_execution_role
 # from dotenv import load_dotenv
 from pycaret.regression import *
-import pandas as pd
 from pycaret.regression import save_model
 import sys
 sys.path.append(".")
