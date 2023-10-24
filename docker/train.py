@@ -34,4 +34,12 @@ test_data = df_shuffled[train_size:]
 s = setup(data=train_data, target=target, session_id=123)
 best = compare_models()
 final_best_model = finalize_model(best)
-save_model(final_best_model, "final_best_model")
+
+
+model_save_dir = f"{os.environ.get('SM_MODEL_DIR')}/1"
+
+# Model prediction
+predict_model(final_best_model, data=test_data)
+
+# Save model
+save_model(final_best_model, model_save_dir)
