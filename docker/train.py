@@ -1,5 +1,3 @@
-# import libraries
-import boto3
 import os
 from pycaret.regression import *
 from pycaret.regression import save_model
