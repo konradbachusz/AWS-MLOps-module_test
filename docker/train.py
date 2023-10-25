@@ -7,6 +7,7 @@ from sagemaker import get_execution_role
 from pycaret.regression import *
 from pycaret.regression import save_model
 import pandas as pd
+from sagemaker import Session
 
 
 def read_data(data_location: str) -> pd.DataFrame:
@@ -33,8 +34,11 @@ def read_data(data_location: str) -> pd.DataFrame:
 
 
 my_region = boto3.session.Session().region_name
+print(f"my region {my_region}")
+sagemaker_session = Session(region_name=my_region)
 
 role = get_execution_role()
+print("role:", role)
 # load_dotenv(".env")
 # data_location_s3 = os.getenv("data_location_s3")
 # target = os.getenv("target")
