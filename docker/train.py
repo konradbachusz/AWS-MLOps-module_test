@@ -35,7 +35,7 @@ def read_data(data_location: str) -> pd.DataFrame:
 
 my_region = boto3.session.Session().region_name
 print(f"my region {my_region}")
-sagemaker_client = boto3.client('sagemaker', region_name=my_region)
+sagemaker_client = boto3.client('sagemaker', region_name="eu-west-2")
 
 role = get_execution_role()
 print("role:", role)
