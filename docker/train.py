@@ -1,7 +1,7 @@
 # import libraries
 import boto3
 import os
-from sagemaker import get_execution_role
+# from sagemaker import get_execution_role
 
 # from dotenv import load_dotenv
 from pycaret.regression import *
