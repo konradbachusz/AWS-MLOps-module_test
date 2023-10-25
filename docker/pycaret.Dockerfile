@@ -9,10 +9,11 @@ RUN apt-get update && \
 # Install Python packages
 RUN pip install python-dotenv && \
     pip install s3fs && \
-    pip3 install sagemaker-training
+    pip3 install sagemaker-training \
+    pip install sagemaker
 
 # Copies the training code inside the container
-COPY *.py /opt/ml/code/
+COPY docker/*.py /opt/ml/code/
 
 # Defines train.py as script entrypoint
 ENV SAGEMAKER_PROGRAM train.py
