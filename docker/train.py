@@ -1,13 +1,9 @@
 # import libraries
 import boto3
 import os
-# from sagemaker import get_execution_role
-
-# from dotenv import load_dotenv
 from pycaret.regression import *
 from pycaret.regression import save_model
 import pandas as pd
-from sagemaker import Session
 
 
 def read_data(data_location: str) -> pd.DataFrame:
@@ -33,16 +29,6 @@ def read_data(data_location: str) -> pd.DataFrame:
         print(f"Error loading data: {e}")
 
 
-# my_region = boto3.session.Session().region_name
-# print(f"my region {my_region}")
-# sagemaker_client = boto3.client('sagemaker', region_name="eu-west-2")
-
-# role = get_execution_role()
-# print("role:", role)
-# load_dotenv(".env")
-# data_location_s3 = os.getenv("data_location_s3")
-# target = os.getenv("target")
-
 data_location_s3 = "streaming-data-platform-ml-data/bakerloo.csv"
 target = "Bakerloo10"
 data_location = "s3://{}".format(data_location_s3)
@@ -65,9 +51,6 @@ final_best_model = finalize_model(best)
 
 
 model_save_dir = f"{os.environ.get('SM_MODEL_DIR')}/1"
-
-# Model prediction
 predict_model(final_best_model, data=test_data)
 
-# Save model
 save_model(final_best_model, model_save_dir)
