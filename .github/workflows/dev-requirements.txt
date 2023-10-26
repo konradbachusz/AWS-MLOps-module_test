@@ -7,3 +7,4 @@ requests==2.31.0
 sagemaker==2.191.0
 python-dotenv==1.0.0
 pycaret==3.1.0
+tensorflow==2.14.0
