@@ -29,7 +29,7 @@ FROM tensorflow/tensorflow:latest-gpu-jupyter
 RUN pip3 install sagemaker-training
 
 # Copies the training code inside the container
-COPY docker/*.py /opt/ml/code/tester.py
+COPY docker/*.py /opt/ml/code/
 
 # Defines train.py as script entrypoint
 ENV SAGEMAKER_PROGRAM tester.py
