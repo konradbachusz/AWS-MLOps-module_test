@@ -1,54 +1,24 @@
+import tensorflow as tf
 import os
-from pycaret.regression import *
-from pycaret.regression import save_model
-import pandas as pd
 
+mnist = tf.keras.datasets.mnist
 
-def read_data(data_location: str) -> pd.DataFrame:
-    """This script takes in the location of your data (csv file),
-    loads that as a dataframe and then returns the dataframe.
-    Note:
-        There is a section to remove all unnamed columns, you may want
-        to remove that if you think it will affect your data.
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+x_train, x_test = x_train / 255.0, x_test / 255.0
 
-    Args:
-        data_location (str): This is the location of your data, usually S3
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(10, activation='softmax')
+])
 
-    Returns:
-        pd.DataFrame: This returns a dataframe of your data.
-    """
-    try:
-        df = pd.read_csv(data_location, low_memory=False)
-        # Dropped unnamed columns. You should comment this portion out before
-        # using the script if you dont have unamed columns
-        df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
-        return df
-    except Exception as e:
-        print(f"Error loading data: {e}")
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
 
-
-data_location_s3 = "streaming-data-platform-ml-data/bakerloo.csv"
-target = "Bakerloo10"
-data_location = "s3://{}".format(data_location_s3)
-
-
-data = read_data(data_location)
-df = data.copy()
-print(df.head())
-
-# Randomly shuffle the DataFrame
-df_shuffled = df.sample(frac=1).reset_index(drop=True)
-# Sort by day and then pick the first 80% as your test data.
-train_size = int(0.8 * len(df))
-train_data = df_shuffled[:train_size]
-test_data = df_shuffled[train_size:]
-
-s = setup(data=train_data, target=target, session_id=123)
-best = compare_models()
-final_best_model = finalize_model(best)
-
-
+model.fit(x_train, y_train, epochs=1)
 model_save_dir = f"{os.environ.get('SM_MODEL_DIR')}/1"
-predict_model(final_best_model, data=test_data)
 
-save_model(final_best_model, model_save_dir)
+model.evaluate(x_test, y_test)
+tf.saved_model.save(model, model_save_dir)
