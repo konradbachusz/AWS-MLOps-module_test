@@ -1,4 +1,7 @@
-# output "aws_sagemaker_endpoint_name" {
-#   description = "Sagemaker aws_sagemaker_endpoint"
-#   value       = aws_sagemaker_endpoint.model_endpoint.name
-# }
+output "model" {
+  value = aws_sagemaker_model.my_model
+}
+
+output "model_endpoint" {
+  value = aws_sagemaker_endpoint.model_endpoint
+}
