@@ -1,9 +1,9 @@
 # AWS-MLOps-module
 
-## [1.0.8] -29/09/23
+## [1.0.8] - 27/10/23
 * Provided a module usage example in README, removed currently unnecesary code, added model and endpoint outputs
 
-## [1.0.7] -29/09/23
+## [1.0.7] - 29/09/23
 * Removed Lambda resorces, added domain and Glue resources
 
 ## [1.0.6] - 18-08-2023
