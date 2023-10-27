@@ -1,5 +1,3 @@
-
-
 resource "aws_sagemaker_model" "my_model" {
   name               = var.model_name
   execution_role_arn = var.sagemaker_execution_role_arn
