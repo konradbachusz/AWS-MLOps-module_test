@@ -15,7 +15,7 @@ app = Flask(__name__)
 # your model artifacts.
 # Sagemaker will automatically download, decompress and store the model's
 # weights in the /opt/ml/model folder.
-MODEL_PATH = "/opt/program/final_best_model"
+MODEL_PATH = "/opt/ml/model/final_best_model"
 
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
