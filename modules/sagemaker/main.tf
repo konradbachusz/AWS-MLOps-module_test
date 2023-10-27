@@ -11,12 +11,6 @@ resource "aws_sagemaker_model" "my_model" {
   tags = var.tags
 }
 
-#TODO fix
-# data "aws_sagemaker_prebuilt_ecr_image" "image" {
-#   repository_name = var.sagemaker_image_repository_name
-# }
-
-
 resource "aws_sagemaker_endpoint_configuration" "endpoint_configuration" {
   name = "${var.model_name}-endpoint-config"
 
@@ -46,15 +40,6 @@ resource "aws_sagemaker_domain" "example" {
     execution_role = var.sagemaker_execution_role_arn
   }
 }
-
-
-
-
-# TODO Add API Gateway 
-
-
-
-
 
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   name                  = "feature-engineering-notebook-instance"
