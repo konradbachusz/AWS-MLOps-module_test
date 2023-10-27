@@ -2,7 +2,7 @@
 
 # Import the necessary libraries
 import json
-from pycaret.regression import load_model
+from pycaret.regression import *
 import flask
 from flask import Flask, request
 import pandas as pd
@@ -15,7 +15,7 @@ app = Flask(__name__)
 # your model artifacts.
 # Sagemaker will automatically download, decompress and store the model's
 # weights in the /opt/ml/model folder.
-MODEL_PATH = "final_best_model"
+MODEL_PATH = "/opt/program/final_best_model"
 
 # Load the model from the specified path
 model = load_model(MODEL_PATH)

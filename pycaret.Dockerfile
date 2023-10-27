@@ -1,44 +1,17 @@
-FROM ubuntu:latest
+FROM pycaret/full
+
+USER root
 
 LABEL maintainer Amazon AI <sage-learner@amazon.com>
 
-
-# Set non-interactive mode for apt-get
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Update and install packages
-RUN apt-get -q update && \
+RUN apt-get clean && \
+    apt-get -q update && \
     apt-get -q install -y --no-install-recommends --fix-missing \
-    wget \
-    python3 \
-    python3-pip \
-    python3-setuptools \
-    nginx \
-    ca-certificates && \
+    wget build-essential gcc nginx ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-# RUN ln -s /usr/bin/python3 /usr/bin/python
-# RUN ln -s /usr/bin/pip3 /usr/bin/pip
-
-# Here we get all python packages.
-# There's substantial overlap between scipy and numpy that we eliminate by
-# linking them together. Likewise, pip leaves the install caches populated which uses
-# a significant amount of space. These optimizations save a fair amount of space in the
-# image, which reduces start up time.
-
-RUN apt-get update && apt-get install -y build-essential
-
-RUN pip install --upgrade pip setuptools wheel
-
-RUN pip install psutil
-
-
-
-COPY ./requirements.txt /opt/program/requirements.txt
-RUN ls /opt/program/
-RUN pip install -r /opt/program/requirements.txt
-
-
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Set some environment variables. PYTHONUNBUFFERED keeps Python from buffering our standard
 # output stream, which means that logs can be delivered to the user quickly. PYTHONDONTWRITEBYTECODE
