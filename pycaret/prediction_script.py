@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 # Import the necessary libraries
-import json
 from pycaret.regression import *
 import flask
-from flask import Flask, request
+from flask import Flask
 import pandas as pd
+import io
 
 # Instantiate Flask app
 app = Flask(__name__)
@@ -30,17 +30,28 @@ def ping():
 # Define an endpoint for making predictions
 @app.route("/invocations", methods=["POST"])
 def predict():
-    # Get data from the POST request
-    data = request.get_data().decode("utf-8")
+    data = None
 
-    # Convert the data into a Pandas DataFrame
-    df = pd.read_json(data, orient="split")
-
+    # Convert from CSV to pandas
+    if flask.request.content_type == "text/csv":
+        data = flask.request.data.decode("utf-8")
+        s = io.StringIO(data)
+        data = pd.read_csv(s, header=None)
+    else:
+        return flask.Response(
+            response="This predictor only supports CSV data", status=415,
+            mimetype="text/plain"
+        )
+    print("Invoked with {} records".format(data.shape[0]))
     # Make predictions using the loaded model
-    prediction = model.predict(df)
+    predictions = model.predict(data)
+    # Convert from numpy back to CSV
+    out = io.StringIO()
+    pd.DataFrame({"results": predictions}).to_csv(out, header=False,
+                                                  index=False)
+    result = out.getvalue()
 
-    # Return the prediction results as JSON
-    return json.dumps(prediction.tolist())
+    return flask.Response(response=result, status=200, mimetype="text/csv")
 
 
 if __name__ == "__main__":
