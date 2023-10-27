@@ -38,20 +38,21 @@ ENV PATH="/opt/program:${PATH}"
 # Set the working directory in the Docker image to /opt/program
 WORKDIR /opt/program
 
-RUN pip install --upgrade pip\
-    pip install pycaret[full] \
+RUN pip install --upgrade pip && \
+    pip install pycaret[full] && \
     pip install python-dotenv && \
     pip install s3fs && \
-    pip3 install sagemaker-training \
-    pip install sagemaker \ 
-    pip install gunicorn
+    pip install sagemaker-training && \
+    pip install sagemaker && \
+    pip install gunicorn && \
+    pip install Flask
 
 
 # Copy the source code of the application
 COPY docker/* /opt/program
 
-# ENTRYPOINT ["gunicorn", "-b", ":8080", "prediction_script:app"]
+ENTRYPOINT ["gunicorn", "-b", ":8080", "prediction_script:app"]
 
-ENTRYPOINT [ "python" ]
+# ENTRYPOINT [ "python" ]
 
-CMD ["prediction_script.py"]
+# CMD ["prediction_script.py"]
