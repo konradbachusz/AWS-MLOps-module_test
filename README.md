@@ -9,7 +9,7 @@ This repo is a basic template for MLOps resources on AWS. Please apply appropria
 
  ```
  module "mlops" {
-  source                          = "github.com/konradbachusz/AWS-MLOps-module"
+  source                          = "github.com/konradbachusz/AWS-MLOps-module?ref=<module_version>"
   model_name                      = "test-model"
   sagemaker_image_repository_name = "sagemaker-xgboost"
   vpc_id                          = var.my_vpc
