@@ -5,9 +5,24 @@ This repo contains a terraform module with corresponding AWS resources that enab
 This repo is a basic template for MLOps resources on AWS. Please apply appropriate security enhancements for your project in production.
 
 
-# TODO
-Add more details and examples
+## Example Usage
 
+ ```
+ module "mlops" {
+  source                          = "github.com/konradbachusz/AWS-MLOps-module?ref=<module_version>"
+  model_name                      = "test-model"
+  sagemaker_image_repository_name = "sagemaker-xgboost"
+  vpc_id                          = var.my_vpc
+  subnet_ids                      = var.my_subnets
+  endpoint_instance_type          = "ml.t2.medium"
+  retrain_model_bool              = true
+  retraining_schedule             = "cron(0 8 1 * ? *)"
+  data_location_s3                = "test_bucket"
+  account_id                      = var.account_id
+  model_target_variable           = "test_target_column"
+  region                          = var.region
+} 
+```
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -55,5 +70,8 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_model"></a> [model](#output\_model) | Outputs the machine learning model resource |
+| <a name="output_model_endpoint"></a> [model\_endpoint](#output\_model\_endpoint) | Outputs the machine learning model endpoint resource |
 <!-- END_TF_DOCS -->
