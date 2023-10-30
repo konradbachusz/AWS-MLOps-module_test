@@ -21,7 +21,7 @@ jobs:
         run: |
           cd ..
           ls
-          pylint AWS-MLOps-module --ignore pycaret_image_files/wsgi.py --errors-only 
+          pylint AWS-MLOps-module --ignore */wsgi.py --errors-only 
 
       - name: Run Flake8
         run: | 
