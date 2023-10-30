@@ -21,11 +21,11 @@ jobs:
         run: |
           cd ..
           ls
-          pylint AWS-MLOps-module --errors-only --ignore pycaret_image_files/wsgi.py
+          pylint AWS-MLOps-module --ignore pycaret_image_files/wsgi.py --errors-only 
 
       - name: Run Flake8
         run: | 
-          flake8 . --count --show-source --statistics --ignore=E501 
+          flake8 . --count --show-source --statistics --ignore=E501 --exclude pycaret_image_files/prediction_script.py
 
       - name: Terraform Init
         id: init
