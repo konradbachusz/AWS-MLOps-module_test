@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Flake8
         run: | 
-          flake8 . --count --show-source --statistics --ignore=E501 --exclude pycaret_image_files/wsgi.py
+          flake8 . --count --show-source --statistics --ignore=E501 --exclude AWS-MLOps-module/pycaret_image_files/wsgi.py
 
       - name: Terraform Init
         id: init
