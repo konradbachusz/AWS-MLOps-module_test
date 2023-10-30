@@ -64,31 +64,51 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   tags                  = var.tags
 }
 
+# resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_lifecycle_configuration" {
+#   name = "mlops-sagemaker-lifecycle-config"
+#   on_start = base64encode(<<EOL
+#        #!/bin/bash
+#        set -e  # Exit if any command fails
+       
+#        # Sync scripts from S3
+#        aws s3 sync s3://${var.s3_bucket_id}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*.env"
+
+#        # Update permissions
+#        chmod -R 777 /home/ec2-user/SageMaker/
+
+#        # Populate environment variables
+#        echo "data_location_s3=${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
+#        echo "target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
+#        echo "algorithm_choice=${var.algorithm_choice}" >> /home/ec2-user/SageMaker/.env
+
+#        sudo -u ec2-user -i <<'INNER_EOF'
+#       ENVIRONMENT=python3
+#       source /home/ec2-user/anaconda3/bin/activate "$$ENVIRONMENT"
+#       pip install --ignore-installed pycaret[full]
+#       pip install python-dotenv
+#       pip install s3fs
+#       source /home/ec2-user/anaconda3/bin/deactivate
+#       INNER_EOF
+#   EOL
+#   )
+# }
+
+
 resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_lifecycle_configuration" {
   name = "mlops-sagemaker-lifecycle-config"
   on_start = base64encode(<<EOL
        #!/bin/bash
-       set -e  # Exit if any command fails
-       
-       # Sync scripts from S3
+       # Location of the scripts
        aws s3 sync s3://${var.s3_bucket_id}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*.env"
 
-       # Update permissions
+       # Make the ipython notebooks editable after copy
        chmod -R 777 /home/ec2-user/SageMaker/
 
-       # Populate environment variables
+       # Location of the csv file 
        echo "data_location_s3=${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
        echo "target=${var.model_target}" >> /home/ec2-user/SageMaker/.env
        echo "algorithm_choice=${var.algorithm_choice}" >> /home/ec2-user/SageMaker/.env
 
-       sudo -u ec2-user -i <<'INNER_EOF'
-      ENVIRONMENT=python3
-      source /home/ec2-user/anaconda3/bin/activate "$$ENVIRONMENT"
-      pip install --ignore-installed pycaret[full]
-      pip install python-dotenv
-      pip install s3fs
-      source /home/ec2-user/anaconda3/bin/deactivate
-      INNER_EOF
-  EOL
+     EOL
   )
 }
