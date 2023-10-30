@@ -19,7 +19,6 @@ jobs:
 
       - name: Run Pylint
         run: |
-          cd ..
           ls
           pylint AWS-MLOps-module --ignore */wsgi.py --errors-only 
 
