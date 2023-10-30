@@ -20,7 +20,7 @@ jobs:
       - name: Run Pylint
         run: |
           ls
-          pylint . --ignore */wsgi.py --errors-only 
+          pylint . --errors-only 
 
       - name: Run Flake8
         run: | 
