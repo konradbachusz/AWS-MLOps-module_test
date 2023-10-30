@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Flake8
         run: | 
-          flake8 . --count --show-source --statistics --ignore=E501 --exclude pycaret_image_files/prediction_script.py
+          flake8 . --count --show-source --statistics --ignore=E501
 
       - name: Terraform Init
         id: init
