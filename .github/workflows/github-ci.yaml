@@ -20,7 +20,7 @@ jobs:
       - name: Run Pylint
         run: |
           ls
-          pylint AWS-MLOps-module --ignore */wsgi.py --errors-only 
+          pylint . --ignore */wsgi.py --errors-only 
 
       - name: Run Flake8
         run: | 
