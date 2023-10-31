@@ -7,13 +7,8 @@ module "s3" {
 
 module "sagemaker" {
   source                          = "./modules/sagemaker"
-  model_name                      = var.model_name
-  sagemaker_image_repository_name = var.sagemaker_image_repository_name
   tags                            = var.tags
   sagemaker_execution_role_arn    = module.iam.sagemaker_role_arn
-  endpoint_instance_type          = var.endpoint_instance_type
-  vpc_id                          = var.vpc_id
-  subnet_ids                      = var.subnet_ids
   model_target_variable           = var.model_target_variable
   algorithm_choice                = var.algorithm_choice
   s3_bucket_id                    = module.s3.s3_bucket_id
@@ -28,8 +23,6 @@ module "iam" {
   region           = var.region
   account_id       = var.account_id
   model_name       = var.model_name
-  pycaret_ecr_name = var.pycaret_ecr_name
-  ecr_repo_name    = module.ecr.ecr_name
 }
 
 
