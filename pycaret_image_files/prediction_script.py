@@ -7,6 +7,10 @@ import flask
 from flask import Flask, request
 import pandas as pd
 
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
 # Instantiate Flask app
 app = Flask(__name__)
 
@@ -40,6 +44,7 @@ def predict():
 
     # Make predictions using the loaded model
     prediction = model.predict(df)
+    logging.debug(f"Prediction: {prediction}")
     print(prediction)
 
     # Return the prediction results as JSON
