@@ -84,7 +84,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        sudo -u ec2-user -i <<'INNER_EOF'
       ENVIRONMENT=python3
       source /home/ec2-user/anaconda3/bin/activate "$$ENVIRONMENT"
-      pip install --ignore-installed pycaret[full]
+      pip install --ignore-installed pycaret
       pip install python-dotenv
       pip install s3fs
       source /home/ec2-user/anaconda3/bin/deactivate
