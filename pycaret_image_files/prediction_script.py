@@ -32,12 +32,15 @@ def ping():
 def predict():
     # Get data from the POST request
     data = request.get_data().decode("utf-8")
+    print(data)
 
     # Convert the data into a Pandas DataFrame
     df = pd.read_json(data, orient="split")
+    print(df)
 
     # Make predictions using the loaded model
     prediction = model.predict(df)
+    print(prediction)
 
     # Return the prediction results as JSON
     return json.dumps(prediction.tolist())
