@@ -8,5 +8,3 @@ variable "model_name" {
 }
 
 
-variable "mlops_s3_bucket" {}
-
