@@ -89,7 +89,7 @@ tsdownsample==0.1.2
 typing_extensions==4.8.0
 urllib3==2.0.7
 wcwidth==0.2.9
-Werkzeug==3.0.1
+Werkzeug==2.2.2
 widgetsnbextension==4.0.9
 wrapt==1.15.0
 wurlitzer==3.0.3
