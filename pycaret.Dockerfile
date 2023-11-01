@@ -1,4 +1,4 @@
-FROM pycaret
+FROM pycaret/full:latest
 
 USER root
 
