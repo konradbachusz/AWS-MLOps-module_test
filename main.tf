@@ -11,7 +11,7 @@ module "sagemaker" {
   sagemaker_execution_role_arn    = module.iam.sagemaker_role_arn
   model_target_variable           = var.model_target_variable
   algorithm_choice                = var.algorithm_choice
-  s3_bucket_id                    = module.s3.s3_bucket_id
+  s3_bucket_id                    = module.s3.config_bucket_id
   data_location_s3                = var.data_location_s3
   depends_on                      = [module.s3]
 }
