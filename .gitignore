@@ -211,4 +211,4 @@ mlops_ml_models/**/*.tar.gz
 .idea/
 
 # test files
-mlops_ml_models/ethan-test.ipynb
+# mlops_ml_models/ethan-test.ipynb
