@@ -24,3 +24,4 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
      EOL
   )
 }
+# TODO: Add model_name + ecr_repo_name + endpoint name into lifecycle config
