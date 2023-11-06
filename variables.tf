@@ -74,3 +74,8 @@ variable "algorithm_choice" {
     error_message = "Allowed values for algorithm_choice are \"classification\", \"regression\", \"clustering\",  \"anomaly\", or \"time_series\"."
   }
 }
+
+variable "endpoint_name" {
+  description = "name of the endpoint for prediction"
+  type        = string
+}

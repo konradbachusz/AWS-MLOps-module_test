@@ -21,6 +21,9 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        echo "data_location_s3=${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
        echo "target=${var.model_target_variable}" >> /home/ec2-user/SageMaker/.env
        echo "algorithm_choice=${var.algorithm_choice}" >> /home/ec2-user/SageMaker/.env
+       echo "endpoint_name=${var.endpoint_name}" >> /home/ec2-user/SageMaker/.env
+       echo "model_name=${var.model_name}" >> /home/ec2-user/SageMaker/.env
      EOL
   )
 }
+# TODO: Add model_name + ecr_repo_name + endpoint name into lifecycle config

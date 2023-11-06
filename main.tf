@@ -14,6 +14,8 @@ module "sagemaker" {
   config_bucket_id             = module.s3.config_bucket_id
   data_location_s3             = var.data_location_s3
   depends_on                   = [module.s3]
+  endpoint_name                = var.endpoint_name
+  model_name                   = var.model_name
 }
 
 

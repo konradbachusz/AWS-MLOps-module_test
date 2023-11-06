@@ -13,3 +13,7 @@ variable "model_target_variable" {}
 variable "config_bucket_id" {}
 
 variable "algorithm_choice" {}
+
+variable "endpoint_name" {}
+
+variable "model_name" {}
