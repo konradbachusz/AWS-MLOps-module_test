@@ -16,6 +16,8 @@ module "sagemaker" {
   depends_on                   = [module.s3]
   endpoint_name                = var.endpoint_name
   model_name                   = var.model_name
+  pycaret_ecr_name             = var.pycaret_ecr_name
+  sagemaker_instance_type      = var.sagemaker_instance_type
 }
 
 

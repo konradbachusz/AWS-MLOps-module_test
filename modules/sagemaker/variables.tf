@@ -17,3 +17,7 @@ variable "algorithm_choice" {}
 variable "endpoint_name" {}
 
 variable "model_name" {}
+
+variable "pycaret_ecr_name" {}
+
+variable "sagemaker_instance_type" {}
