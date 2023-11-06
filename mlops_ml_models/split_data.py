@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def split_data(df: pd.DataFrame, shuffle: bool) -> pd.DataFrame:
     """This script split the data into test_data and train_data, 
     with optinal shuffle function
