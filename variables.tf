@@ -61,13 +61,13 @@ variable "model_target_variable" {
 
 
 variable "pycaret_ecr_name" {
-  description = "ECR name"
+  description = "Name of ECR repository that will be storing pycaret's container image for launching model"
   type        = string
 }
 
 
 variable "algorithm_choice" {
-  description = "the type of machine learning analysis you will be performing"
+  description = "Machine learning problem type"
   type        = string
   validation {
     condition     = contains(["classification", "regression", "clustering", "anomaly", "time_series"], var.algorithm_choice)

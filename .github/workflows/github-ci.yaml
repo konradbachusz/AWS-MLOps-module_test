@@ -19,7 +19,6 @@ jobs:
 
       - name: Run Pylint
         run: |
-          ls
           pylint . --errors-only 
 
       - name: Run Flake8

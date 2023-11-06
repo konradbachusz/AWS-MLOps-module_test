@@ -209,6 +209,3 @@ mlops_ml_models/**/*.tar.gz
 # IntelliJ
 .idea
 .idea/
-
-# test files
-# mlops_ml_models/ethan-test.ipynb
