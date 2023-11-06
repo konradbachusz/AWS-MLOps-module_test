@@ -2,17 +2,17 @@ import pandas as pd
 
 
 def split_data(df: pd.DataFrame, shuffle: bool) -> pd.DataFrame:
-    """This script split the data into test_data and train_data, 
+    """This script split the data into test_data and train_data,
     with optinal shuffle function
 
     Note:
         Remember that this function returns 2 values, therefore using,
-        make sure you declare 2 variables using this function 
+        make sure you declare 2 variables using this function
         ex.(train_data, test_data = split_data(df, shuffle=True))
 
     Args:
         df (pd.DataFrame): dataframe that you want to split
-        shuffle (boolean): If true, function will shuffle the dataframe, 
+        shuffle (boolean): If true, function will shuffle the dataframe,
         else the order of data will remain the same
 
     Returns:
