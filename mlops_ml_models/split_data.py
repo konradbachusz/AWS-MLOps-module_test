@@ -1,17 +1,22 @@
 import pandas as pd
 
 def split_data(df: pd.DataFrame, shuffle: bool) -> pd.DataFrame:
-    """This script takes in the location of your data (csv file),
-    loads that as a dataframe and then returns the dataframe.
+    """This script split the data into test_data and train_data, 
+    with optinal shuffle function
+
     Note:
-        There is a section to remove all unnamed columns, you may want
-        to remove that if you think it will affect your data.
+        Remember that this function returns 2 values, therefore using,
+        make sure you declare 2 variables using this function 
+        ex.(train_data, test_data = split_data(df, shuffle=True))
 
     Args:
-        data_location (str): This is the location of your data, usually S3
+        df (pd.DataFrame): dataframe that you want to split
+        shuffle (boolean): If true, function will shuffle the dataframe, 
+        else the order of data will remain the same
 
     Returns:
-        pd.DataFrame: This returns a dataframe of your data.
+        pd.DataFrame: train_data
+        pf.DataFrame: test_data
     """
     try:
         if shuffle:
