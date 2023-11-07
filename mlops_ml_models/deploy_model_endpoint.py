@@ -5,6 +5,17 @@ def deploy_model(
     model_name: str, pycaret_ecr_name: str, instance_type: str, endpoint_name,
     role: str
 ) -> None:
+
+    """This script deploys the sagemaker endpoint using the tar.gz file
+    saved in s3.
+
+    Args:
+        model_name (str): The name of the tar.gz file in s3
+        pycaret_ecr_name (str): The name of the ECR image
+        instance_type (str): The sagemaker instance type you want to deploy
+        endpoint_name (_type_): What you will like to call the endpoint.
+        role (str): Your execution role
+    """
     model_file = f"s3://{model_name}-model/final_best_model.tar.gz"
     model = Model(
         image_uri=(
