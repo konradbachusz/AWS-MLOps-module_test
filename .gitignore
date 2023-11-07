@@ -207,5 +207,4 @@ mlops_ml_models/**/*.pkl
 mlops_ml_models/**/*.tar.gz
 
 # IntelliJ
-.idea
-.idea/*
+.idea/
