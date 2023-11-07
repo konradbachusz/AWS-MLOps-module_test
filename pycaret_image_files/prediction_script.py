@@ -22,6 +22,7 @@ MODEL_NAME = os.getenv('MODEL_NAME')
 # Sagemaker will automatically download, decompress and store the model's
 # weights in the /opt/ml/model folder.
 MODEL_PATH = f"/opt/ml/model/{MODEL_NAME}"
+logging.info(MODEL_PATH)
 
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
@@ -38,16 +39,14 @@ def ping():
 def predict():
     # Get data from the POST request
     data = request.get_data().decode("utf-8")
-    print(data)
 
     # Convert the data into a Pandas DataFrame
     df = pd.read_json(data, orient="split")
-    print(df)
+    logging.info(df)
 
     # Make predictions using the loaded model
     prediction = model.predict(df)
     logging.debug(f"Prediction: {prediction}")
-    print(prediction)
 
     # Return the prediction results as JSON
     return json.dumps(prediction.tolist())
