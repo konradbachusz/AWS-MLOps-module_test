@@ -25,10 +25,8 @@ def deploy_model(
         model_data=model_file,  # Location of your serialized model
         role=role,
     )
-
-    predictor = model.deploy(
+    model.deploy(
         initial_instance_count=1,
         instance_type=instance_type,
         endpoint_name=endpoint_name,
     )
-    print(predictor)
