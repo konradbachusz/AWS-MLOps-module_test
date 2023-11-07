@@ -79,3 +79,8 @@ variable "endpoint_name" {
   description = "name of the endpoint for prediction"
   type        = string
 }
+
+variable "sagemaker_instance_type" {
+  description = "the sagemaker instance type that is being created"
+  type        = string
+}
