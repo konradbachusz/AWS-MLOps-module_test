@@ -21,3 +21,5 @@ variable "model_name" {}
 variable "pycaret_ecr_name" {}
 
 variable "sagemaker_instance_type" {}
+
+variable "s3_model_name" {}
