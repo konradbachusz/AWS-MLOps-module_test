@@ -84,8 +84,3 @@ variable "sagemaker_instance_type" {
   description = "the sagemaker instance type that is being created"
   type        = string
 }
-
-variable "s3_model_name" {
-  description = "what you will like to save your model as in s3"
-  type        = string
-}

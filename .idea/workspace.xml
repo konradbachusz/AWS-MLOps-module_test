@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02f4484d-1840-4f17-9a39-a06ffb766075" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/modules/sagemaker/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/modules/sagemaker/main.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/main.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
       <workItem from="1698145668183" duration="38000" />
       <workItem from="1698145718409" duration="13000" />
       <workItem from="1698145757558" duration="642000" />
-      <workItem from="1699346481742" duration="3150000" />
+      <workItem from="1699346481742" duration="3913000" />
     </task>
     <servers />
   </component>
