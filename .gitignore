@@ -205,10 +205,3 @@ mlops_ml_models/**/*_info/
 # model generated files 
 mlops_ml_models/**/*.pkl
 mlops_ml_models/**/*.tar.gz
-
-# IntelliJ
-.idea
-.idea/
-
-# test files
-# mlops_ml_models/ethan-test.ipynb
