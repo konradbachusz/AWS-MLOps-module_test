@@ -5,5 +5,10 @@ output "sagemaker_model_name" {
 
 output "ecr_name" {
   description = "the name of the ecr repo"
-  value = module.ecr.ecr_name
+  value       = module.ecr.ecr_name
+}
+
+output "sagemaker_endpoint_name" {
+  description = "the sagemaker endpoint and configuration name"
+  value       = module.sagemaker.sagemaker_endpoint_name
 }

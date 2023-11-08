@@ -1,4 +1,7 @@
 output "model_name" {
-  description = "The name of the model"
-  value       = var.model_name
+  value = var.model_name
+}
+
+output "sagemaker_endpoint_name" {
+  value = var.endpoint_name
 }
