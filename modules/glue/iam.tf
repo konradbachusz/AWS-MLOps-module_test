@@ -41,6 +41,15 @@ resource "aws_iam_policy" "retraining_glue_policy" {
                 "arn:aws:s3:::${var.data_location_s3}/*", 
                 "arn:aws:s3:::${var.config_bucket_id}/*"
             ]
+        },
+        {
+          "Sid": "AllowAccessToKey",
+          "Effect": "Allow",
+          "Action": [
+            "kms:Decrypt", 
+            "kms:GenerateDataKey"
+          ],
+          "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
         }
     ]
 }
