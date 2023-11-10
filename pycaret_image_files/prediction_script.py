@@ -27,17 +27,6 @@ logging.info(MODEL_PATH)
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
 
-class CustomModel(type(model)):
-    def predict(self, X):
-        # Call predict_proba instead of predict
-        return super().predict_proba(X)
-
-print(model)
-
-model = CustomModel()
-
-print(model)
-
 @app.route("/ping", methods=["GET"])
 def ping():
     return flask.Response(response="\n", status=200,
