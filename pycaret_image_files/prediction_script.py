@@ -51,6 +51,23 @@ def predict():
     # Return the prediction results as JSON
     return json.dumps(prediction.tolist())
 
+# Define an endpoint for making predictions
+@app.route("/invocations/proba", methods=["POST"])
+def predict():
+    # Get data from the POST request
+    data = request.get_data().decode("utf-8")
+
+    # Convert the data into a Pandas DataFrame
+    df = pd.read_json(data, orient="split")
+    logging.info(df)
+
+    # Make predictions using the loaded model
+    prediction = model.predict_proba(df)
+    logging.debug(f"Prediction: {prediction}")
+
+    # Return the prediction results as JSON
+    return json.dumps(prediction.tolist())
+
 
 if __name__ == "__main__":
     app.run()
