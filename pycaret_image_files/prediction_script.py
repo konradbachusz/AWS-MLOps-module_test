@@ -27,11 +27,15 @@ logging.info(MODEL_PATH)
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
 
-def custom_predict(X):
-    probabilities = model.predict_proba(X)
-    return probabilities
+class CustomModel(type(model)):
+    def __init__(self):
+        super().__init__()
 
-model.predict = custom_predict
+    def predict(self, X):
+        probabilities = super().predict_proba(X)
+        return probabilities
+
+model = CustomModel()#<---------------------------- Extra thing added
 
 @app.route("/ping", methods=["GET"])
 def ping():
