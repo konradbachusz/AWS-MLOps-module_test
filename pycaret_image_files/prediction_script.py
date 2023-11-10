@@ -27,6 +27,12 @@ logging.info(MODEL_PATH)
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
 
+def custom_predict(X):
+    probabilities = model.predict_proba(X)
+    return probabilities
+
+model.predict = custom_predict
+
 @app.route("/ping", methods=["GET"])
 def ping():
     return flask.Response(response="\n", status=200,
