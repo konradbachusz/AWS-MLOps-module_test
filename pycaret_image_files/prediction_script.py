@@ -53,7 +53,7 @@ def predict():
 
 # Define an endpoint for making predictions
 @app.route("/invocations/proba", methods=["POST"])
-def predict():
+def predict_proba():
     # Get data from the POST request
     data = request.get_data().decode("utf-8")
 
