@@ -3,7 +3,6 @@
 # Import the necessary libraries
 import json
 from pycaret.regression import load_model
-from custom_model import CustomModel
 import flask
 from flask import Flask, request
 import pandas as pd
