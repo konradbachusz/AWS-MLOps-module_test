@@ -1,5 +1,5 @@
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
-  name                  = "feature-engineering-notebook-instance"
+  name                  = "kong-feature-engineering-notebook-instance"
   instance_type         = "ml.t3.medium"
   role_arn              = var.sagemaker_execution_role_arn
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.sagemaker_lifecycle_configuration.name
