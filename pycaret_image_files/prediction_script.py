@@ -47,7 +47,7 @@ def predict():
 
 
     # Make predictions using the loaded model
-    if (MODEL_TYPE = "classification"):
+    if (MODEL_TYPE == "classification"):
         prediction = model.predict_proba(df)
     else:
         prediction = model.predict(df)
