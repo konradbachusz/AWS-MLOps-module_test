@@ -24,6 +24,7 @@ MODEL_TYPE = os.getenv('MODEL_TYPE')
 # weights in the /opt/ml/model folder.
 MODEL_PATH = f"/opt/ml/model/{MODEL_NAME}"
 logging.info(MODEL_PATH)
+logging.info(MODEL_TYPE)
 
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
@@ -46,7 +47,7 @@ def predict():
     logging.info(df)
 
     print(MODEL_TYPE)
-    
+
     # Make predictions using the loaded model
     if (MODEL_TYPE == "classification"):
         prediction = model.predict_proba(df)
