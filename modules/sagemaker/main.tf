@@ -25,6 +25,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        echo "model_name=${var.model_name}" >> /home/ec2-user/SageMaker/.env
        echo "pycaret_ecr_name" = ${var.pycaret_ecr_name} >> /home/ec2-user/SageMaker/.env
        echo "instance_type" = ${var.sagemaker_instance_type} >> /home/ec2-user/SageMaker/.env
+       echo "region_name" = ${var.region_name} >> /home/ec2-user/SageMaker/.env
      EOL
   )
 }
