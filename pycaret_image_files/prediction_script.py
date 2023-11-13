@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 
 MODEL_NAME = os.getenv('MODEL_NAME')
+MODEL_TYPE = os.getenv('MODEL_TYPE')
 
 # Define the model path
 # When you configure the model, you will need to specify the S3 location of
@@ -27,15 +28,6 @@ logging.info(MODEL_PATH)
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
 
-class CustomModel(type(model)):
-    def __init__(self):
-        super().__init__()
-
-    def predict(self, X):
-        probabilities = super().predict_proba(X)
-        return probabilities
-
-model = CustomModel()#<---------------------------- Extra thing added
 
 @app.route("/ping", methods=["GET"])
 def ping():
@@ -53,8 +45,12 @@ def predict():
     df = pd.read_json(data, orient="split")
     logging.info(df)
 
+
     # Make predictions using the loaded model
-    prediction = model.predict(df)
+    if (MODEL_TYPE = "classification"):
+        prediction = model.predict_proba(df)
+    else:
+        prediction = model.predict(df)
     logging.debug(f"Prediction: {prediction}")
 
     # Return the prediction results as JSON
