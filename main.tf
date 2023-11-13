@@ -18,6 +18,7 @@ module "sagemaker" {
   model_name                   = var.model_name
   pycaret_ecr_name             = var.pycaret_ecr_name
   sagemaker_instance_type      = var.sagemaker_instance_type
+  region_name                  = var.region
 }
 
 
