@@ -5,7 +5,7 @@ def delete_sagemaker_endpoint(endpoint_name: str, region_name: str) -> None:
     """
     Deletes the specified SageMaker endpoint and its configuration after user confirmation.
 
-    This function first asks the user to confirm the deletion. If the user confirms, 
+    This function first asks the user to confirm the deletion. If the user confirms,
     it proceeds to delete the SageMaker endpoint and its associated configuration.
 
     Args:
