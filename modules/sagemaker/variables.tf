@@ -22,6 +22,4 @@ variable "pycaret_ecr_name" {}
 
 variable "sagemaker_instance_type" {}
 
-variable "region_name" {
-
-}
+variable "region_name" {}
