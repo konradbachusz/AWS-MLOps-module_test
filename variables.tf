@@ -84,3 +84,8 @@ variable "sagemaker_instance_type" {
   description = "the sagemaker instance type that is being created"
   type        = string
 }
+
+variable "model_instance_count" {
+  description = "The initial number of instances to run the model"
+  type        = number
+}
