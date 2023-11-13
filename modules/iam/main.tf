@@ -31,7 +31,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
 	{
             "Effect": "Allow",
             "Action": "sagemaker:*",
-            "Resource": "*"
+            "Resource": "arn:aws:sagemaker:${var.region}:${var.account_id}:*"
         },
         {
             "Effect": "Allow",
@@ -57,14 +57,19 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::*"
+                "arn:aws:s3:::streaming-data-platform-ml-data",
+                "arn:aws:s3:::streaming-data-platform-ml-data/*",
+                "arn:aws:s3:::${var.model_name}",
+                "arn:aws:s3:::${var.model_name}/*",
+                "arn:aws:s3:::${var.model_name}-config",
+                "arn:aws:s3:::${var.model_name}-config/*"
             ]
         }, 
         {
           "Sid": "AllowPassRole",
           "Action": "iam:PassRole",
           "Effect": "Allow",
-          "Resource": "*",
+          "Resource": "arn:aws:iam::${var.account_id}:role/*",
           "Condition": {
             "StringEquals": {
               "iam:PassedToService": [
