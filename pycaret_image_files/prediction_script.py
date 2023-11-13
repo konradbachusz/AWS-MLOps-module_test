@@ -45,7 +45,8 @@ def predict():
     df = pd.read_json(data, orient="split")
     logging.info(df)
 
-
+    print(MODEL_TYPE)
+    
     # Make predictions using the loaded model
     if (MODEL_TYPE == "classification"):
         prediction = model.predict_proba(df)
