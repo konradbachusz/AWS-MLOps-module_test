@@ -1,6 +1,6 @@
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   name                  = "feature-engineering-notebook-instance"
-  instance_type         = "ml.t3.medium"
+  instance_type         = var.sagemaker_instance_type
   role_arn              = var.sagemaker_execution_role_arn
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.sagemaker_lifecycle_configuration.name
   tags                  = var.tags
@@ -29,4 +29,3 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
      EOL
   )
 }
-# TODO: Add model_name + ecr_repo_name + endpoint name into lifecycle config
