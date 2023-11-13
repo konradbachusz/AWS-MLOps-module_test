@@ -1,6 +1,7 @@
 import boto3
 
-def delete_sagemaker_endpoint(endpoint_name, region_name):
+
+def delete_sagemaker_endpoint(endpoint_name: str, region_name: str) -> None:
     """
     Deletes the specified SageMaker endpoint and its configuration after user confirmation.
 
@@ -27,4 +28,3 @@ def delete_sagemaker_endpoint(endpoint_name, region_name):
         print(f"Endpoint '{endpoint_name}' and its configuration have been deleted.")
     else:
         print("Endpoint deletion cancelled.")
-
