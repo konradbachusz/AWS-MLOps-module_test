@@ -59,8 +59,8 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "Resource": [
                 "arn:aws:s3:::streaming-data-platform-ml-data",
                 "arn:aws:s3:::streaming-data-platform-ml-data/*",
-                "arn:aws:s3:::${var.model_name}",
-                "arn:aws:s3:::${var.model_name}/*",
+                "arn:aws:s3:::${var.model_name}-model",
+                "arn:aws:s3:::${var.model_name}-model/*",
                 "arn:aws:s3:::${var.model_name}-config-bucket",
                 "arn:aws:s3:::${var.model_name}-config-bucket/*"
             ]
