@@ -1,15 +1,18 @@
 import importlib
 
 
-def finalize_and_save_model(algorithm_choice: str, bestModel: str, model_name: str):
+def finalize_and_save_model(algorithm_choice: str, bestModel: str,
+                            model_name: str):
     """
     Finalizes the best model obtained from PyCaret and saves it locally.
 
-    This function finalizes the model by training it on the entire dataset and then saves it to a file.
-    It utilizes dynamic import to load the specific PyCaret submodule based on the algorithm choice.
+    This function finalizes the model by training it on the entire dataset and
+    then saves it to a file. It utilizes dynamic import to load the specific
+    PyCaret submodule based on the algorithm choice.
 
     Args:
-        algorithm_choice (str): The choice of algorithm from PyCaret to be used (e.g., 'regression', 'classification').
+        algorithm_choice (str): The choice of algorithm from PyCaret to be
+        used (e.g., 'regression', 'classification').
         bestModel: The best model obtained from the PyCaret training process.
         model_name (str): The name under which the model will be saved.
 
