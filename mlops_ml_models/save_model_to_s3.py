@@ -5,7 +5,7 @@ import boto3
 def save_model_to_s3(
     trained_model_name: str, bucket_name: str
 ) -> None:
-    """This saves the pkl model is s3 bucket
+    """This saves the tar.gz model in an s3 bucket
 
     Args:
         trained_model_name (str): name of the file you are trying to save in s3
