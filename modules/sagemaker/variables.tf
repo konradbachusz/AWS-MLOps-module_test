@@ -18,11 +18,7 @@ variable "endpoint_name" {}
 
 variable "model_name" {}
 
-variable "pycaret_ecr_name" {}
-
 variable "sagemaker_instance_type" {}
-
-variable "region_name" {}
 
 variable "model_instance_count" {}
 
