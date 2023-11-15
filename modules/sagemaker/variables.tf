@@ -25,3 +25,5 @@ variable "sagemaker_instance_type" {}
 variable "region_name" {}
 
 variable "model_instance_count" {}
+
+variable "ecr_repo_uri" {}
