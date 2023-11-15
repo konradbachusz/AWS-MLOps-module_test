@@ -1,7 +1,7 @@
 import boto3
 
 
-def delete_sagemaker_endpoint(endpoint_name: str, region_name: str) -> None:
+def delete_sagemaker_endpoint(endpoint_name: str) -> None:
     """
     Deletes the specified SageMaker endpoint and its configuration after user
     confirmation.
@@ -17,7 +17,9 @@ def delete_sagemaker_endpoint(endpoint_name: str, region_name: str) -> None:
         located.
     """
     # Create SageMaker client
-    sagemaker_client = boto3.client("sagemaker", region_name=region_name)
+    my_session = boto3.session.Session()
+    my_region = my_session.region_name
+    sagemaker_client = boto3.client("sagemaker", region_name=my_region)
 
     # Ask for user confirmation
     confirmation = input(
