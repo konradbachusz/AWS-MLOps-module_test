@@ -15,11 +15,10 @@ module "sagemaker" {
   data_location_s3             = var.data_location_s3
   endpoint_name                = var.endpoint_name
   model_name                   = var.model_name
-  pycaret_ecr_name             = var.pycaret_ecr_name
   sagemaker_instance_type      = var.sagemaker_instance_type
-  region_name                  = var.region
   model_instance_count         = var.model_instance_count
   ecr_repo_uri                 = module.ecr.ecr_repo_uri
+  
 }
 
 
