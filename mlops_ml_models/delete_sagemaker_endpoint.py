@@ -24,7 +24,7 @@ def delete_sagemaker_endpoint(endpoint_name: str) -> None:
     # Ask for user confirmation
     confirmation = input(
         f"Are you sure you want to delete the endpoint '{endpoint_name}'? Type 'Yes' to confirm: "
-    )
+        )
 
     if confirmation.lower() == "yes":
         # Delete endpoint
