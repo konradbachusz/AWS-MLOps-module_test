@@ -31,7 +31,9 @@ def delete_sagemaker_endpoint(endpoint_name: str) -> None:
         sagemaker_client.delete_endpoint(EndpointName=endpoint_name)
 
         # Delete endpoint configuration
-        sagemaker_client.delete_endpoint_config(EndpointConfigName=endpoint_name)
+        sagemaker_client.delete_endpoint_config(
+            EndpointConfigName=endpoint_name
+            )
 
         print(f"Endpoint '{endpoint_name}' and its configuration have been deleted.")
     else:
