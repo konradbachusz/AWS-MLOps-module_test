@@ -37,7 +37,6 @@ def delete_sagemaker_endpoint(endpoint_name: str) -> None:
         )
 
         print(f"Endpoint '{endpoint_name}' and its configuration have "
-              "been deleted."
-        )    
+              "been deleted.")
     else:
         print("Endpoint deletion cancelled.")
