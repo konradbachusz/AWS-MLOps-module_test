@@ -57,3 +57,8 @@ resource "aws_iam_role_policy_attachment" "retraining_glue_policy_attachment" {
   role       = aws_iam_role.iam_for_glue_retraining_job_role.name
   policy_arn = aws_iam_policy.retraining_glue_policy.arn
 }
+
+resource "aws_iam_role_policy_attachment" "AWSGlueConsoleFullAccess" {
+  role       = aws_iam_role.iam_for_glue_retraining_job_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
+}
