@@ -39,6 +39,8 @@ module "retraining_job" {
   config_bucket_id    = module.s3.config_bucket_id
   data_location_s3    = var.data_location_s3
   retraining_schedule = var.retraining_schedule
+  region     = var.region
+  account_id = var.account_id
 }
 
 
