@@ -89,3 +89,8 @@ variable "model_instance_count" {
   description = "The initial number of instances to run the model"
   type        = number
 }
+
+variable "tuning_metric" {
+  description = "The metric user want to focus when tuning hyperparameter"
+  type = "string"
+}

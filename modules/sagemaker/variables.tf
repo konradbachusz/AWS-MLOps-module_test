@@ -23,3 +23,5 @@ variable "sagemaker_instance_type" {}
 variable "model_instance_count" {}
 
 variable "ecr_repo_uri" {}
+
+variable "tuning_metric" {}
