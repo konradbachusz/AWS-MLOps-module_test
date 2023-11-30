@@ -15,5 +15,5 @@ output "sagemaker_endpoint_name" {
 
 output "sagemaker_algorithm_choice" {
   description = "the sagemaker algorithm choice"
-  value = module.sagemaker.sagemaker_algorithm_choice
+  value       = module.sagemaker.sagemaker_algorithm_choice
 }

@@ -92,5 +92,5 @@ variable "model_instance_count" {
 
 variable "tuning_metric" {
   description = "The metric user want to focus when tuning hyperparameter"
-  type = string
+  type        = string
 }
