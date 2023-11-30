@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 
 MODEL_NAME = os.getenv('MODEL_NAME')
+MODEL_TYPE = os.getenv('MODEL_TYPE')
 
 # Define the model path
 # When you configure the model, you will need to specify the S3 location of
@@ -23,6 +24,7 @@ MODEL_NAME = os.getenv('MODEL_NAME')
 # weights in the /opt/ml/model folder.
 MODEL_PATH = f"/opt/ml/model/{MODEL_NAME}"
 logging.info(MODEL_PATH)
+logging.info(MODEL_TYPE)
 
 # Load the model from the specified path
 model = load_model(MODEL_PATH)
@@ -45,7 +47,10 @@ def predict():
     logging.info(df)
 
     # Make predictions using the loaded model
-    prediction = model.predict(df)
+    if (MODEL_TYPE == "classification"):
+        prediction = model.predict_proba(df)
+    else:
+        prediction = model.predict(df)
     logging.debug(f"Prediction: {prediction}")
 
     # Return the prediction results as JSON
