@@ -1,7 +1,7 @@
-output "model" {
-  value = aws_sagemaker_model.my_model
+output "model_name" {
+  value = var.model_name
 }
 
-output "model_endpoint" {
-  value = aws_sagemaker_endpoint.model_endpoint
+output "sagemaker_endpoint_name" {
+  value = var.endpoint_name
 }

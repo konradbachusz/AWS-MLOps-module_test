@@ -1,9 +1,14 @@
-output "model" {
-  value       = module.sagemaker.model
-  description = "Outputs the machine learning model resource"
+output "sagemaker_model_name" {
+  description = "The name of the model"
+  value       = module.sagemaker.model_name
 }
 
-output "model_endpoint" {
-  value       = module.sagemaker.model_endpoint
-  description = "Outputs the machine learning model endpoint resource"
+output "ecr_name" {
+  description = "The name of the ecr repo"
+  value       = module.ecr.ecr_name
+}
+
+output "sagemaker_endpoint_name" {
+  description = "Model endpoint name"
+  value       = module.sagemaker.sagemaker_endpoint_name
 }

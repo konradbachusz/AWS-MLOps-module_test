@@ -27,18 +27,6 @@ variable "model_name" {
   default     = ""
 }
 
-variable "sagemaker_image_repository_name" {
-  description = "Name of the repository, which is generally the algorithm or library. Values include blazingtext, factorization-machines, forecasting-deepar, image-classification, ipinsights, kmeans, knn, lda, linear-learner, mxnet-inference-eia, mxnet-inference, mxnet-training, ntm, object-detection, object2vec, pca, pytorch-inference-eia, pytorch-inference, pytorch-training, randomcutforest, sagemaker-scikit-learn, sagemaker-sparkml-serving, sagemaker-xgboost, semantic-segmentation, seq2seq, tensorflow-inference-eia, tensorflow-inference, tensorflow-training, huggingface-tensorflow-training, huggingface-tensorflow-inference, huggingface-pytorch-training, and huggingface-pytorch-inference."
-  type        = string
-  default     = ""
-}
-
-variable "endpoint_instance_type" {
-  description = "Type of EC2 instance used for model endpoint"
-  type        = string
-  default     = ""
-}
-
 ##########################################
 # S3
 ##########################################
@@ -47,18 +35,6 @@ variable "data_location_s3" {
   type        = string
 }
 
-##########################################
-# Networking
-##########################################
-variable "vpc_id" {
-  description = "The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication."
-  type        = string
-}
-
-variable "subnet_ids" {
-  description = "The VPC subnets that Studio uses for communication."
-  type        = list(any)
-}
 
 ##########################################
 # Glue
@@ -81,4 +57,35 @@ variable "retrain_model_bool" {
 variable "model_target_variable" {
   description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
   type        = string
+}
+
+
+variable "pycaret_ecr_name" {
+  description = "Name of ECR repository that will be storing pycaret's container image for launching model"
+  type        = string
+}
+
+
+variable "algorithm_choice" {
+  description = "Machine learning problem type"
+  type        = string
+  validation {
+    condition     = contains(["classification", "regression", "clustering", "anomaly", "time_series"], var.algorithm_choice)
+    error_message = "Allowed values for algorithm_choice are \"classification\", \"regression\", \"clustering\",  \"anomaly\", or \"time_series\"."
+  }
+}
+
+variable "endpoint_name" {
+  description = "name of the endpoint for prediction"
+  type        = string
+}
+
+variable "sagemaker_instance_type" {
+  description = "the sagemaker instance type that is being created"
+  type        = string
+}
+
+variable "model_instance_count" {
+  description = "The initial number of instances to run the model"
+  type        = number
 }

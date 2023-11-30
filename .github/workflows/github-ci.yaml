@@ -19,8 +19,7 @@ jobs:
 
       - name: Run Pylint
         run: |
-          cd ..
-          pylint AWS-MLOps-module --errors-only
+          pylint . --errors-only 
 
       - name: Run Flake8
         run: | 

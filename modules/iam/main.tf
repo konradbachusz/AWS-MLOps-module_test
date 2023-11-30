@@ -31,7 +31,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
 	{
             "Effect": "Allow",
             "Action": "sagemaker:*",
-            "Resource": "*"
+            "Resource": "arn:aws:sagemaker:${var.region}:${var.account_id}:*"
         },
         {
             "Effect": "Allow",
@@ -57,15 +57,27 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::*"
+                "arn:aws:s3:::streaming-data-platform-ml-data",
+                "arn:aws:s3:::streaming-data-platform-ml-data/*",
+                "arn:aws:s3:::${var.model_name}-model",
+                "arn:aws:s3:::${var.model_name}-model/*",
+                "arn:aws:s3:::${var.model_name}-config-bucket",
+                "arn:aws:s3:::${var.model_name}-config-bucket/*"
             ]
         }, 
         {
           "Sid": "AllowPassRole",
-          "Effect": "Allow",
           "Action": "iam:PassRole",
-          "Resource": "arn:aws:iam::${var.account_id}:role/mlops_sagemaker_role"
-        }, 
+          "Effect": "Allow",
+          "Resource": "arn:aws:iam::${var.account_id}:role/*",
+          "Condition": {
+            "StringEquals": {
+              "iam:PassedToService": [
+                "sagemaker.amazonaws.com"
+              ]
+            }
+          }
+        },
         {
           "Sid": "AllowDescribeLogStreams",
           "Effect": "Allow",
@@ -81,9 +93,12 @@ resource "aws_iam_policy" "sagemaker_policy" {
         {
           "Sid": "AllowAccessToKey",
           "Effect": "Allow",
-          "Action": "kms:Decrypt",
+          "Action": [
+            "kms:Decrypt", 
+            "kms:GenerateDataKey"
+          ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
-        }          
+        }
     ]
 }
 EOF
@@ -91,7 +106,12 @@ EOF
 }
 
 
-resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
   policy_arn = aws_iam_policy.sagemaker_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
+  role       = aws_iam_role.sagemaker_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
 }
