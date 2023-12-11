@@ -6,6 +6,6 @@ output "sagemaker_role_arn" {
 
 output "query_training_status_arn" {
   description = "Query Status Role ARN"
-  value = aws_iam_role.query_training_role.arn
+  value = aws_iam_role.query_training_status_role.arn
   
 }
