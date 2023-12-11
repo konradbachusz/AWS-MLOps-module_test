@@ -166,6 +166,12 @@ EOF
 
 
 resource "aws_iam_role_policy_attachment" "query_training_status-policy_attachment" {
+  for_each = toset([
+    aws_iam_policy.query_training_status_policy.arn, 
+    "arn:aws:iam::aws:policy/AmazonSageMakerReadOnly", 
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  ])
+
   role       = aws_iam_role.query_training_status_role.name
-  policy_arn = aws_iam_policy.query_training_status_policy.arn
+  policy_arn = each.value
 }
