@@ -98,6 +98,12 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "kms:GenerateDataKey"
           ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
+        },
+        {
+          "Sid": "AllowLambdaAccess",
+          "Effect": "Allow",
+          "Action": "lambda:*",
+          "Resource": "*"
         }
     ]
 }
@@ -114,4 +120,9 @@ resource "aws_iam_role_policy_attachment" "policy_attachment" {
 resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "sagemaker_stepfunction_policy_attachment" {
+  role       = aws_iam_role.sagemaker_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
 }
