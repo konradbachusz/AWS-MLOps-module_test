@@ -157,7 +157,7 @@ resource "aws_iam_policy" "query_training_status_policy" {
           "Effect": "Allow",
           "Action": "lambda:*",
           "Resource": "*"
-        },
+        }
     ]
 }
 EOF
