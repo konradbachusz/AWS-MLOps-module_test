@@ -98,12 +98,6 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "kms:GenerateDataKey"
           ],
           "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
-        },
-        {
-          "Sid": "AllowLambdaAccess",
-          "Effect": "Allow",
-          "Action": "lambda:*",
-          "Resource": "*"
         }
     ]
 }
@@ -125,4 +119,53 @@ resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
 resource "aws_iam_role_policy_attachment" "sagemaker_stepfunction_policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
   policy_arn = "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
+}
+
+
+
+resource "aws_iam_role" "query_training_status_role" {
+  name               = "${var.model_name}-query_training_status-role"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "lambda.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+  tags               = var.tags
+}
+
+
+
+resource "aws_iam_policy" "query_training_status_policy" {
+  name   = "${var.model_name}-query_training_status-policy"
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "lambda:*",
+          "Resource": "*"
+        },
+    ]
+}
+EOF
+  tags   = var.tags
+}
+
+
+resource "aws_iam_role_policy_attachment" "query_training_status-policy_attachment" {
+  role       = aws_iam_role.query_training_status_role.name
+  policy_arn = aws_iam_policy.query_training_status_policy.arn
 }
