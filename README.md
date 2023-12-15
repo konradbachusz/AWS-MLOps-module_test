@@ -3,6 +3,8 @@ This repo contains a terraform module with corresponding AWS resources that enab
 
 >  **Warning**: This repo is a basic template for MLOps resources on AWS. Please apply appropriate security enhancements for your project in production.
 
+## High-Level Solution Architecture
+![image](https://github.com/konradbachusz/AWS-MLOps-module/assets/104912687/12c4f1a0-573b-44a0-98f2-1256be64d19a)
 
 
 ## Example Usage
