@@ -58,7 +58,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | AWS Account ID | `string` | n/a | yes |
-| <a name="input_algorithm_choice"></a> [algorithm\_choice](#input\_algorithm\_choice) | Machine learning problem type | `string` | n/a | yes |
+| <a name="input_algorithm_choice"></a> [algorithm\_choice](#input\_algorithm\_choice) | Machine learning problem type e.g classification, regression, clustering, anomaly, time\_series | `string` | n/a | yes |
 | <a name="input_data_location_s3"></a> [data\_location\_s3](#input\_data\_location\_s3) | Location of the data in s3 bucket | `string` | n/a | yes |
 | <a name="input_endpoint_name"></a> [endpoint\_name](#input\_endpoint\_name) | name of the endpoint for prediction | `string` | n/a | yes |
 | <a name="input_model_instance_count"></a> [model\_instance\_count](#input\_model\_instance\_count) | The initial number of instances to run the model | `number` | n/a | yes |

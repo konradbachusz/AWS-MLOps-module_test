@@ -67,7 +67,7 @@ variable "pycaret_ecr_name" {
 
 
 variable "algorithm_choice" {
-  description = "Machine learning problem type"
+  description = "Machine learning problem type e.g classification, regression, clustering, anomaly, time_series"
   type        = string
   validation {
     condition     = contains(["classification", "regression", "clustering", "anomaly", "time_series"], var.algorithm_choice)
