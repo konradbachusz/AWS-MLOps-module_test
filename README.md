@@ -1,26 +1,29 @@
 # AWS-MLOps-module
 This repo contains a terraform module with corresponding AWS resources that enable training, deploying and re-training AWS-hosted machine learning models with corresponding cloud infrastructure.
 
-## Warning
-This repo is a basic template for MLOps resources on AWS. Please apply appropriate security enhancements for your project in production.
+>  **Warning**: This repo is a basic template for MLOps resources on AWS. Please apply appropriate security enhancements for your project in production.
+
+## High-Level Solution Architecture
+![image](https://github.com/konradbachusz/AWS-MLOps-module/assets/104912687/12c4f1a0-573b-44a0-98f2-1256be64d19a)
 
 
 ## Example Usage
 
  ```
- module "mlops" {
-  source                          = "github.com/konradbachusz/AWS-MLOps-module?ref=<module_version>"
-  model_name                      = "test-model"
-  sagemaker_image_repository_name = "sagemaker-xgboost"
-  vpc_id                          = var.my_vpc
-  subnet_ids                      = var.my_subnets
-  endpoint_instance_type          = "ml.t2.medium"
-  retrain_model_bool              = true
-  retraining_schedule             = "cron(0 8 1 * ? *)"
-  data_location_s3                = "test_bucket"
-  account_id                      = var.account_id
-  model_target_variable           = "test_target_column"
-  region                          = var.region
+module "MLOps" {
+  source  = "github.com/konradbachusz/AWS-MLOps-module
+  data_location_s3        = "your_bucket/your_data.csv"
+  model_target_variable   = "y"
+  model_name              = "your-ml-model"
+  account_id              = var.account_id
+  region                  = var.region
+  retrain_model_bool      = true
+  retraining_schedule     = "cron(0 8 1 * ? *)"
+  pycaret_ecr_name        = "your-ecr-name"
+  algorithm_choice        = "classification"
+  endpoint_name           = "classification-model-endpoint"
+  sagemaker_instance_type = "ml.m4.xlarge"
+  model_instance_count    = 1
 } 
 ```
 
@@ -42,6 +45,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_ecr"></a> [ecr](#module\_ecr) | ./modules/ecr | n/a |
 | <a name="module_iam"></a> [iam](#module\_iam) | ./modules/iam | n/a |
 | <a name="module_retraining_job"></a> [retraining\_job](#module\_retraining\_job) | ./modules/glue | n/a |
 | <a name="module_s3"></a> [s3](#module\_s3) | ./modules/s3 | n/a |
@@ -56,22 +60,26 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | AWS Account ID | `string` | n/a | yes |
+| <a name="input_algorithm_choice"></a> [algorithm\_choice](#input\_algorithm\_choice) | Machine learning problem type e.g classification, regression, clustering, anomaly, time\_series | `string` | n/a | yes |
 | <a name="input_data_location_s3"></a> [data\_location\_s3](#input\_data\_location\_s3) | Location of the data in s3 bucket | `string` | n/a | yes |
-| <a name="input_endpoint_instance_type"></a> [endpoint\_instance\_type](#input\_endpoint\_instance\_type) | Type of EC2 instance used for model endpoint | `string` | `""` | no |
+| <a name="input_endpoint_name"></a> [endpoint\_name](#input\_endpoint\_name) | name of the endpoint for prediction | `string` | n/a | yes |
+| <a name="input_model_instance_count"></a> [model\_instance\_count](#input\_model\_instance\_count) | The initial number of instances to run the model | `number` | n/a | yes |
 | <a name="input_model_name"></a> [model\_name](#input\_model\_name) | Name of the Sagemaker model | `string` | `""` | no |
 | <a name="input_model_target_variable"></a> [model\_target\_variable](#input\_model\_target\_variable) | The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset. | `string` | n/a | yes |
+| <a name="input_pycaret_ecr_name"></a> [pycaret\_ecr\_name](#input\_pycaret\_ecr\_name) | Name of ECR repository that will be storing pycaret's container image for launching model | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS deployment region | `string` | n/a | yes |
 | <a name="input_retrain_model_bool"></a> [retrain\_model\_bool](#input\_retrain\_model\_bool) | Boolean to indicate if the retraining pipeline shoud be added | `bool` | `false` | no |
 | <a name="input_retraining_schedule"></a> [retraining\_schedule](#input\_retraining\_schedule) | Cron expression of the model retraing frequency | `string` | n/a | yes |
-| <a name="input_sagemaker_image_repository_name"></a> [sagemaker\_image\_repository\_name](#input\_sagemaker\_image\_repository\_name) | Name of the repository, which is generally the algorithm or library. Values include blazingtext, factorization-machines, forecasting-deepar, image-classification, ipinsights, kmeans, knn, lda, linear-learner, mxnet-inference-eia, mxnet-inference, mxnet-training, ntm, object-detection, object2vec, pca, pytorch-inference-eia, pytorch-inference, pytorch-training, randomcutforest, sagemaker-scikit-learn, sagemaker-sparkml-serving, sagemaker-xgboost, semantic-segmentation, seq2seq, tensorflow-inference-eia, tensorflow-inference, tensorflow-training, huggingface-tensorflow-training, huggingface-tensorflow-inference, huggingface-pytorch-training, and huggingface-pytorch-inference. | `string` | `""` | no |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The VPC subnets that Studio uses for communication. | `list(any)` | n/a | yes |
+| <a name="input_sagemaker_instance_type"></a> [sagemaker\_instance\_type](#input\_sagemaker\_instance\_type) | the sagemaker instance type that is being created | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to your resources | `map` | `{}` | no |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication. | `string` | n/a | yes |
+| <a name="input_tuning_metric"></a> [tuning\_metric](#input\_tuning\_metric) | The metric user want to focus when tuning hyperparameter | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_model"></a> [model](#output\_model) | Outputs the machine learning model resource |
-| <a name="output_model_endpoint"></a> [model\_endpoint](#output\_model\_endpoint) | Outputs the machine learning model endpoint resource |
+| <a name="output_ecr_name"></a> [ecr\_name](#output\_ecr\_name) | The name of the ecr repo |
+| <a name="output_sagemaker_algorithm_choice"></a> [sagemaker\_algorithm\_choice](#output\_sagemaker\_algorithm\_choice) | the sagemaker algorithm choice |
+| <a name="output_sagemaker_endpoint_name"></a> [sagemaker\_endpoint\_name](#output\_sagemaker\_endpoint\_name) | Model endpoint name |
+| <a name="output_sagemaker_model_name"></a> [sagemaker\_model\_name](#output\_sagemaker\_model\_name) | The name of the model |
 <!-- END_TF_DOCS -->
