@@ -82,4 +82,6 @@ No resources.
 | <a name="output_sagemaker_algorithm_choice"></a> [sagemaker\_algorithm\_choice](#output\_sagemaker\_algorithm\_choice) | the sagemaker algorithm choice |
 | <a name="output_sagemaker_endpoint_name"></a> [sagemaker\_endpoint\_name](#output\_sagemaker\_endpoint\_name) | Model endpoint name |
 | <a name="output_sagemaker_model_name"></a> [sagemaker\_model\_name](#output\_sagemaker\_model\_name) | The name of the model |
+
+## Destroying Resources
 <!-- END_TF_DOCS -->
