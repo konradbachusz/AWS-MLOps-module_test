@@ -1,11 +1,4 @@
-output "model_name" {
-  value = var.model_name
-}
-
-output "sagemaker_endpoint_name" {
-  value = var.endpoint_name
-}
-
-output "sagemaker_algorithm_choice" {
-  value = var.algorithm_choice
+output "notebook_instance" {
+  description = "Sagemaker notebook instance Terraform object"
+  value       = aws_sagemaker_notebook_instance.notebook_instance
 }

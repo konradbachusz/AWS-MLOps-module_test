@@ -1,4 +1,4 @@
-output "sagemaker_role_arn" {
-  description = "Sagemaker role ARN"
-  value       = aws_iam_role.sagemaker_role.arn
+output "sagemaker_role" {
+  description = "Sagemaker IAM role Terraform object"
+  value       = aws_iam_role.sagemaker_role
 }

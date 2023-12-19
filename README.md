@@ -78,8 +78,12 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_ecr_name"></a> [ecr\_name](#output\_ecr\_name) | The name of the ecr repo |
-| <a name="output_sagemaker_algorithm_choice"></a> [sagemaker\_algorithm\_choice](#output\_sagemaker\_algorithm\_choice) | the sagemaker algorithm choice |
-| <a name="output_sagemaker_endpoint_name"></a> [sagemaker\_endpoint\_name](#output\_sagemaker\_endpoint\_name) | Model endpoint name |
-| <a name="output_sagemaker_model_name"></a> [sagemaker\_model\_name](#output\_sagemaker\_model\_name) | The name of the model |
+| <a name="output_config_bucket"></a> [config\_bucket](#output\_config\_bucket) | Config S3 Bucket Terraform object |
+| <a name="output_ecr_encryption_key"></a> [ecr\_encryption\_key](#output\_ecr\_encryption\_key) | The ECR repository encryption KMS key Terraform object. |
+| <a name="output_ecr_repository"></a> [ecr\_repository](#output\_ecr\_repository) | The ECR repository Terraform object. |
+| <a name="output_glue_retraining_job"></a> [glue\_retraining\_job](#output\_glue\_retraining\_job) | The Glue retraining job Terraform object. |
+| <a name="output_glue_retraining_role"></a> [glue\_retraining\_role](#output\_glue\_retraining\_role) | The Glue retraining job IAM role Terraform object. |
+| <a name="output_model_bucket"></a> [model\_bucket](#output\_model\_bucket) | Model S3 Bucket Terraform object |
+| <a name="output_notebook_instance"></a> [notebook\_instance](#output\_notebook\_instance) | Sagemaker notebook instance Terraform object |
+| <a name="output_s3_encryption_key"></a> [s3\_encryption\_key](#output\_s3\_encryption\_key) | S3 encryption KMS key Terraform Object |
 <!-- END_TF_DOCS -->
