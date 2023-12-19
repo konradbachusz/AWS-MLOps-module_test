@@ -1,6 +1,6 @@
 module "s3" {
   source     = "./modules/s3"
-  model_name = var.model_name
+  model_name = local.model_name
   tags       = var.tags
 }
 
@@ -14,8 +14,8 @@ module "sagemaker" {
   tuning_metric                = var.tuning_metric
   config_bucket_id             = module.s3.config_bucket.id
   data_location_s3             = var.data_location_s3
-  endpoint_name                = var.endpoint_name
-  model_name                   = var.model_name
+  endpoint_name                = local.endpoint_name
+  model_name                   = local.model_name
   sagemaker_instance_type      = var.sagemaker_instance_type
   model_instance_count         = var.model_instance_count
   ecr_repo_uri                 = "${module.ecr.repository.repository_url}:latest"
@@ -25,26 +25,22 @@ module "sagemaker" {
 module "iam" {
   source     = "./modules/iam"
   tags       = var.tags
-  region     = var.region
-  account_id = var.account_id
-  model_name = var.model_name
+  model_name = local.model_name
 }
 
 
 module "retraining_job" {
   count               = var.retrain_model_bool ? 1 : 0
   source              = "./modules/glue"
-  model_name          = var.model_name
+  model_name          = local.model_name
   tags                = var.tags
   config_bucket_id    = module.s3.config_bucket.id
   data_location_s3    = var.data_location_s3
   retraining_schedule = var.retraining_schedule
-  region              = var.region
-  account_id          = var.account_id
 }
 
 
 module "ecr" {
   source           = "./modules/ecr"
-  pycaret_ecr_name = var.pycaret_ecr_name
+  pycaret_ecr_name = local.pycaret_ecr_name
 }

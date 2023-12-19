@@ -38,7 +38,7 @@ resource "aws_iam_policy" "retraining_glue_policy" {
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${var.data_location_s3}/*", 
+                "arn:aws:s3:::${var.data_s3_bucket}/*", 
                 "arn:aws:s3:::${var.config_bucket_id}/*"
             ]
         },
@@ -49,7 +49,7 @@ resource "aws_iam_policy" "retraining_glue_policy" {
             "kms:Decrypt", 
             "kms:GenerateDataKey"
           ],
-          "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
+          "Resource": "arn:aws:kms:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:key/*"
         }
     ]
 }

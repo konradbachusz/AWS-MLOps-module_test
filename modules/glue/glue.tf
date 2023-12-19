@@ -21,7 +21,7 @@ resource "aws_glue_job" "retraining_glue_job" {
     "--job-language"        = "python"
     "--glue_version"        = "3.0"
     "--enable-metrics"      = "true"
-    "--data_location_s3"    = var.data_location_s3
+    "--data_location_s3"    = "${var.data_s3_bucket}${var.data_location_s3}"
     "--job-bookmark-option" = "job-bookmark-enable"
   }
   tags = var.tags

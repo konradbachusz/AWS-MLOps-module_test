@@ -31,7 +31,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
 	{
             "Effect": "Allow",
             "Action": "sagemaker:*",
-            "Resource": "arn:aws:sagemaker:${var.region}:${var.account_id}:*"
+            "Resource": "arn:aws:sagemaker:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
         },
         {
             "Effect": "Allow",
@@ -57,8 +57,8 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::streaming-data-platform-ml-data",
-                "arn:aws:s3:::streaming-data-platform-ml-data/*",
+                "arn:aws:s3:::${var.data_s3_bucket}",
+                "arn:aws:s3:::${var.data_s3_bucket}/*",
                 "arn:aws:s3:::${var.model_name}-model",
                 "arn:aws:s3:::${var.model_name}-model/*",
                 "arn:aws:s3:::${var.model_name}-config-bucket",
@@ -69,7 +69,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Sid": "AllowPassRole",
           "Action": "iam:PassRole",
           "Effect": "Allow",
-          "Resource": "arn:aws:iam::${var.account_id}:role/*",
+          "Resource": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/*",
           "Condition": {
             "StringEquals": {
               "iam:PassedToService": [
@@ -82,13 +82,13 @@ resource "aws_iam_policy" "sagemaker_policy" {
           "Sid": "AllowDescribeLogStreams",
           "Effect": "Allow",
           "Action": "logs:DescribeLogStreams",
-          "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
+          "Resource": "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
         },
         {
           "Sid": "AllowGetLogEvents",
           "Effect": "Allow",
           "Action": "logs:GetLogEvents",
-          "Resource": "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
+          "Resource": "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/sagemaker/TrainingJobs:log-stream:*"
         },
         {
           "Sid": "AllowAccessToKey",
@@ -97,7 +97,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
             "kms:Decrypt", 
             "kms:GenerateDataKey"
           ],
-          "Resource": "arn:aws:kms:${var.region}:${var.account_id}:key/*"
+          "Resource": "arn:aws:kms:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:key/*"
         }
     ]
 }
