@@ -37,7 +37,13 @@ output "s3_encryption_key" {
 }
 
 # Sagemaker
-output "notebook_instance" {
+output "sagemaker_notebook_instance" {
   description = "Sagemaker notebook instance Terraform object"
   value       = module.sagemaker.notebook_instance
 }
+
+output "sagemaker_endpoint_name" {
+  description = "Sagemaker model endpoint name"
+  value       = local.endpoint_name
+}
+
