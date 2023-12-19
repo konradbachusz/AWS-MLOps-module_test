@@ -9,8 +9,7 @@ resource "aws_iam_role" "sagemaker_role" {
       "Effect": "Allow",
       "Principal": {
         "Service": [
-          "sagemaker.amazonaws.com",
-          "lambda.amazonaws.com"
+          "sagemaker.amazonaws.com"
         ]
       },
       "Action": "sts:AssumeRole"
