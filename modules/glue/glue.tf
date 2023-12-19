@@ -1,6 +1,6 @@
 #Upload retraining_job.py to s3
 resource "aws_s3_object" "retraining_job_script" {
-  bucket = var.config_bucket_id
+  bucket = var.config_s3_bucket
   key    = "glue_scripts/retraining_job.py"
   source = "${path.module}/glue_jobs/retraining_job.py"
   etag   = filemd5("${path.module}/glue_jobs/retraining_job.py")
@@ -14,7 +14,7 @@ resource "aws_glue_job" "retraining_glue_job" {
   role_arn = aws_iam_role.iam_for_glue_retraining_job_role.arn
 
   command {
-    script_location = "s3://${var.config_bucket_id}/glue_scripts/retraining_job.py"
+    script_location = "s3://${var.config_s3_bucket}/glue_scripts/retraining_job.py"
   }
 
   default_arguments = {

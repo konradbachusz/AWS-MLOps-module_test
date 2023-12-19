@@ -65,6 +65,7 @@ module "MLOps" {
 | <a name="input_algorithm_choice"></a> [algorithm\_choice](#input\_algorithm\_choice) | Machine learning problem type e.g classification, regression, clustering, anomaly, time\_series | `string` | n/a | yes |
 | <a name="input_data_location_s3"></a> [data\_location\_s3](#input\_data\_location\_s3) | The path to a file in the data S3 bucket within which training data is located. Should be in the format /<path>/<filename>. If the file is in the root of the bucket, this should be set to /<filename> only. | `string` | n/a | yes |
 | <a name="input_data_s3_bucket"></a> [data\_s3\_bucket](#input\_data\_s3\_bucket) | The name of an S3 bucket within which training data is located. | `string` | n/a | yes |
+| <a name="input_data_s3_bucket_encryption_key_arn"></a> [data\_s3\_bucket\_encryption\_key\_arn](#input\_data\_s3\_bucket\_encryption\_key\_arn) | The ARN of the KMS key using which training data is encrypted in S3, if such a key exists. | `string` | `""` | no |
 | <a name="input_endpoint_name"></a> [endpoint\_name](#input\_endpoint\_name) | Name of the Sagemaker endpoint for prediction | `string` | `""` | no |
 | <a name="input_model_instance_count"></a> [model\_instance\_count](#input\_model\_instance\_count) | The initial number of instances to run the Sagemaker model | `number` | `1` | no |
 | <a name="input_model_name"></a> [model\_name](#input\_model\_name) | Name of the Sagemaker model | `string` | `""` | no |

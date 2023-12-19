@@ -49,6 +49,12 @@ variable "data_s3_bucket" {
   type        = string
 }
 
+variable "data_s3_bucket_encryption_key_arn" {
+  description = "The ARN of the KMS key using which training data is encrypted in S3, if such a key exists."
+  type        = string
+  default     = ""
+}
+
 variable "data_location_s3" {
   description = "The path to a file in the data S3 bucket within which training data is located. Should be in the format /<path>/<filename>. If the file is in the root of the bucket, this should be set to /<filename> only."
   type        = string
