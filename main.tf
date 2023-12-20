@@ -32,7 +32,7 @@ module "iam" {
   data_s3_bucket        = var.data_s3_bucket
   data_bucket_key_arn   = var.data_s3_bucket_encryption_key_arn
   model_s3_bucket       = module.s3.model_bucket.id
-  model_bucket_key_arn  = module.s3.model_bucket.encryption_key.arn
+  model_bucket_key_arn  = module.s3.encryption_key.arn
 }
 
 
