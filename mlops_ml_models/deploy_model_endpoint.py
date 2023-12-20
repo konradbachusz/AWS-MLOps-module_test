@@ -2,7 +2,7 @@ from sagemaker.model import Model
 
 
 def deploy_model(
-    model_name: str, instance_type: str, endpoint_name,
+    model_name: str, model_type: str, instance_type: str, endpoint_name,
     role: str, model_instance_count: int, image_uri: str
 ) -> None:
 
@@ -21,6 +21,10 @@ def deploy_model(
         image_uri=(image_uri),  # The ECR image you pushed
         model_data=model_file,  # Location of your serialized model
         role=role,
+        env={
+            "MODEL_NAME": model_name,
+            "MODEL_TYPE": model_type
+        }
     )
     model.deploy(
         initial_instance_count=model_instance_count,

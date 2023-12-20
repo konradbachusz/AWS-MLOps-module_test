@@ -40,8 +40,7 @@ data "aws_iam_policy_document" "retraining_glue" {
     sid = "S3ObjectAccess"
     actions = [
       "s3:GetObject",
-      "s3:PutObject",
-      "s3:DeleteObject",
+      "s3:PutObject"
     ]
 
     resources = [for bucket in local.s3_buckets : "arn:aws:s3:::${bucket}/*"]
