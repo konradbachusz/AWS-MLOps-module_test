@@ -30,7 +30,7 @@ variable "endpoint_name" {
 
 variable "sagemaker_instance_type" {
   description = "The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type"
-  default     = "ml.m4.xlarge"
+  default     = "ml.t2.medium"
   type        = string
 }
 

@@ -74,7 +74,7 @@ module "MLOps" {
 | <a name="input_resource_naming_prefix"></a> [resource\_naming\_prefix](#input\_resource\_naming\_prefix) | Naming prefix to be applied to all resources created by this module unless explicitly overriden. | `string` | n/a | yes |
 | <a name="input_retrain_model_bool"></a> [retrain\_model\_bool](#input\_retrain\_model\_bool) | Boolean to indicate if the retraining pipeline shoud be added | `bool` | `false` | no |
 | <a name="input_retraining_schedule"></a> [retraining\_schedule](#input\_retraining\_schedule) | Cron expression for the model retraining frequency in the AWS format. See https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html for details | `string` | `""` | no |
-| <a name="input_sagemaker_instance_type"></a> [sagemaker\_instance\_type](#input\_sagemaker\_instance\_type) | The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type | `string` | `"ml.m4.xlarge"` | no |
+| <a name="input_sagemaker_instance_type"></a> [sagemaker\_instance\_type](#input\_sagemaker\_instance\_type) | The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type | `string` | `"ml.t2.medium"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to your resources | `map` | `{}` | no |
 | <a name="input_tuning_metric"></a> [tuning\_metric](#input\_tuning\_metric) | The metric user want to focus when tuning hyperparameter | `string` | n/a | yes |
 
@@ -88,6 +88,7 @@ module "MLOps" {
 | <a name="output_glue_retraining_job"></a> [glue\_retraining\_job](#output\_glue\_retraining\_job) | The Glue retraining job Terraform object. |
 | <a name="output_glue_retraining_role"></a> [glue\_retraining\_role](#output\_glue\_retraining\_role) | The Glue retraining job IAM role Terraform object. |
 | <a name="output_model_bucket"></a> [model\_bucket](#output\_model\_bucket) | Model S3 Bucket Terraform object |
-| <a name="output_notebook_instance"></a> [notebook\_instance](#output\_notebook\_instance) | Sagemaker notebook instance Terraform object |
 | <a name="output_s3_encryption_key"></a> [s3\_encryption\_key](#output\_s3\_encryption\_key) | S3 encryption KMS key Terraform Object |
+| <a name="output_sagemaker_endpoint_name"></a> [sagemaker\_endpoint\_name](#output\_sagemaker\_endpoint\_name) | Sagemaker model endpoint name |
+| <a name="output_sagemaker_notebook_instance"></a> [sagemaker\_notebook\_instance](#output\_sagemaker\_notebook\_instance) | Sagemaker notebook instance Terraform object |
 <!-- END_TF_DOCS -->
