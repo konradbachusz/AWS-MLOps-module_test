@@ -1,6 +1,30 @@
-variable "retraining_schedule" {}
+##########################################
+# Naming and Tagging
+##########################################
 
-# Training data bucket
+variable "resource_naming_prefix" {
+  description = "Naming prefix to be attached to every resource created by this module."
+  type        = string
+}
+variable "tags" {
+  description = "Tags applied to your resources"
+  default     = {}
+}
+
+##########################################
+# Glue
+##########################################
+
+variable "retraining_schedule" {
+  description = "Cron expression for the model retraining frequency in the AWS format. See https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html for details"
+  type        = string
+}
+
+##########################################
+# S3
+##########################################
+
+# Data bucket
 variable "data_s3_bucket" {
   description = "The name of an S3 bucket within which training data is located."
   type        = string
@@ -21,12 +45,5 @@ variable "config_s3_bucket" {
 }
 variable "config_bucket_key_arn" {
   description = "The ARN of the KMS key using which glue scripts are encrypted in S3."
-  type        = string
-}
-
-# Naming and Tagging
-variable "tags" {}
-variable "resource_naming_prefix" {
-  description = "Naming prefix to be attached to every resource created by this module."
   type        = string
 }

@@ -14,12 +14,14 @@ locals {
 resource "aws_kms_key" "model_buckets" {
   description         = "${var.resource_naming_prefix}-s3-encryption-key"
   enable_key_rotation = true
+  tags                = var.tags
 }
 
 resource "aws_s3_bucket" "model_buckets" {
   count         = length(local.bucket_names)
   bucket        = local.bucket_names[count.index]
   force_destroy = true
+  tags          = var.tags
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "model_buckets" {

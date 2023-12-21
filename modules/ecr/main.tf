@@ -1,6 +1,7 @@
 resource "aws_kms_key" "ecr_encryption" {
   description         = "${aws_ecr_repository.pycaret.name}-encryption-key"
   enable_key_rotation = true
+  tags                = var.tags
 }
 
 resource "aws_ecr_repository" "pycaret" {
@@ -14,4 +15,5 @@ resource "aws_ecr_repository" "pycaret" {
     encryption_type = "KMS"
     kms_key         = aws_kms_key.ecr_encryption
   }
+  tags = var.tags
 }

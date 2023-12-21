@@ -1,7 +1,7 @@
 resource "aws_sagemaker_notebook_instance" "notebook" {
   name                  = "${var.model_name}-notebook-instance"
   instance_type         = var.sagemaker_instance_type
-  role_arn              = var.sagemaker_execution_role_arn
+  role_arn              = aws_iam_role.sagemaker.arn
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
   tags                  = var.tags
 }
