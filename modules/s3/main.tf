@@ -25,8 +25,8 @@ resource "aws_s3_bucket" "model_buckets" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "model_buckets" {
-  for_each = toset(local.bucket_names)
-  bucket   = each.value
+  count  = length(aws_s3_bucket.model_buckets)
+  bucket = aws_s3_bucket.model_buckets[count.index].id
 
   rule {
     apply_server_side_encryption_by_default {
