@@ -12,7 +12,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
   on_start = base64encode(<<EOL
        #!/bin/bash
        # Location of the scripts
-       aws s3 sync s3://${var.config_s3_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*.env"
+       aws s3 sync s3://${var.config_s3_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*" --include "*.py" --include "*.ipynb"
 
        # Make the ipython notebooks editable after copy
        chmod -R 777 /home/ec2-user/SageMaker/
