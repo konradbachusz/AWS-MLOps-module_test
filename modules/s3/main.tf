@@ -8,7 +8,7 @@ locals {
     tolist(fileset(local.file_path, "*.ipynb")),
     tolist(fileset(local.file_path, "*.py"))
   )
-  bucket_names = tolist(["${var.resource_naming_prefix}-model-${random_string.s3_suffix}", "${var.resource_naming_prefix}-config-${random_string.s3_suffix}"])
+  bucket_names = tolist(["${var.resource_naming_prefix}-model-${random_string.s3_suffix.result}", "${var.resource_naming_prefix}-config-${random_string.s3_suffix.result}"])
 }
 
 resource "aws_kms_key" "model_buckets" {

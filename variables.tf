@@ -49,7 +49,7 @@ variable "data_s3_bucket_encryption_key_arn" {
   type        = string
   default     = ""
   validation {
-    condition     = substr(var.data_s3_bucket_encryption_key_arn, 0, 7) == "arn:aws:"
+    condition     = (substr(var.data_s3_bucket_encryption_key_arn, 0, 7) == "arn:aws:") || (var.data_s3_bucket_encryption_key_arn == "")
     error_message = "The data_s3_bucket_encryption_key_arn value must be a valid ARN, starting with \"arn:aws:\"."
   }
 }
@@ -71,7 +71,7 @@ variable "retraining_schedule" {
   type        = string
   default     = ""
   validation {
-    condition     = contains(["cron(", "rate("], substr(var.retraining_schedule, 0, 4))
+    condition     = contains(["cron(", "rate("], substr(var.retraining_schedule, 0, 4)) || (var.retraining_schedule == "")
     error_message = "The retraining_schedule value must begin with \"cron(\" or \"rate(\"."
   }
 }

@@ -47,3 +47,8 @@ output "sagemaker_endpoint_name" {
   value       = local.endpoint_name
 }
 
+output "sagemaker_model_name" {
+  description = "Sagemaker model name"
+  value       = local.model_name
+}
+
