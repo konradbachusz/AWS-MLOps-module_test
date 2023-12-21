@@ -8,7 +8,7 @@ locals {
     tolist(fileset(local.file_path, "*.ipynb")),
     tolist(fileset(local.file_path, "*.py"))
   )
-  bucket_names = tolist(["${var.resource_naming_prefix}-model", "${var.resource_naming_prefix}-config-bucket"])
+  bucket_names = tolist(["${var.resource_naming_prefix}-model-${random_string.s3_suffix}", "${var.resource_naming_prefix}-config-${random_string.s3_suffix}"])
 }
 
 resource "aws_kms_key" "model_buckets" {
@@ -53,4 +53,10 @@ resource "aws_s3_object" "config_files" {
   source   = "${local.file_path}/${each.value}"
   etag     = filemd5("${local.file_path}/${each.value}")
   tags     = var.tags
+}
+
+# Random suffix to be appended to bucket names to ensure global uniqueness
+resource "random_string" "s3_suffix" {
+  length  = 4
+  special = false
 }

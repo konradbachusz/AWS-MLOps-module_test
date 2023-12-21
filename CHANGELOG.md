@@ -8,6 +8,7 @@
 * `region` and `account_id` variables have been removed - no longer required.
 * All outputs have now been refactored to be more useful.
 * When creating a Docker container from the image in this module, `MODEL_NAME` and `MODEL_TYPE` must now be passed in as environment variables.
+* `random` provider is now required to generate suffix for globally unique bucket names
 * Permissions have been locked down:
   * Lambdas can no longer assume the created Sagemaker IAM role by default.
   * Glue IAM role and Sagemaker IAM role no longer have access to all KMS keys in the account. They are only given access to required S3 bucket encryption keys.
