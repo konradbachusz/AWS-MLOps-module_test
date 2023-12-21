@@ -58,7 +58,7 @@ variable "data_location_s3" {
   type        = string
   validation {
     condition     = substr(var.data_location_s3, 0, 1) == "/"
-    error_message = "The data_location_s3 value must begin with /"
+    error_message = "The data_location_s3 value must begin with /."
   }
 }
 
@@ -72,7 +72,7 @@ variable "retraining_schedule" {
   default     = ""
   validation {
     condition     = contains(["cron(", "rate("], substr(var.retraining_schedule, 0, 4))
-    error_message = "The retraining_schedule value must begin with \"cron(\" or \"rate(\""
+    error_message = "The retraining_schedule value must begin with \"cron(\" or \"rate(\"."
   }
 }
 variable "retrain_model_bool" {
