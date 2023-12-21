@@ -12,7 +12,9 @@ This repo contains a terraform module with corresponding AWS resources that enab
  ```
 module "MLOps" {
   source  = "github.com/konradbachusz/AWS-MLOps-module
-  data_location_s3        = "your_bucket/your_data.csv"
+  resource_naming_prefix  = "your-app"
+  data_s3_bucket          = "your-bucket-name"
+  data_location_s3        = "/your_s3_folder/your_data.csv"
   model_target_variable   = "y"
   model_name              = "your-ml-model"
   retrain_model_bool      = true
@@ -22,6 +24,9 @@ module "MLOps" {
   endpoint_name           = "classification-model-endpoint"
   sagemaker_instance_type = "ml.m4.xlarge"
   model_instance_count    = 1
+  tags                    = {
+                              my-tag-key = "my-tag-value"
+                            }
 } 
 ```
 
@@ -37,9 +42,7 @@ module "MLOps" {
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0 |
+No providers.
 
 ## Modules
 
@@ -53,10 +56,7 @@ module "MLOps" {
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+No resources.
 
 ## Inputs
 
