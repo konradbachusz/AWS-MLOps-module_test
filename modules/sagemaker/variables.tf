@@ -22,10 +22,6 @@ variable "tags" {
 #########################################
 
 # Training
-variable "model_target_variable" {
-  description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
-  type        = string
-}
 variable "algorithm_choice" {
   description = "Machine learning problem type e.g classification, regression, clustering, anomaly, time_series"
   type        = string
@@ -42,6 +38,10 @@ variable "sagemaker_instance_type" {
 }
 
 # Model
+variable "model_target_variable" {
+  description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
+  type        = string
+}
 variable "model_instance_count" {
   description = "The initial number of instances to run the Sagemaker model"
   type        = number

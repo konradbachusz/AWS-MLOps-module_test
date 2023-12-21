@@ -16,12 +16,12 @@ variable "tags" {
 ##########################################
 
 variable "model_name" {
-  description = "Name of the Sagemaker model"
+  description = "Name of the Sagemaker model. If not specified, a default name will be generated using naming prefix."
   type        = string
   default     = ""
 }
 variable "endpoint_name" {
-  description = "Name of the Sagemaker endpoint for prediction"
+  description = "Name of the Sagemaker endpoint for prediction. If not specified, a default name will be generated using naming prefix."
   type        = string
   default     = ""
 }
@@ -48,10 +48,18 @@ variable "data_s3_bucket_encryption_key_arn" {
   description = "The ARN of the KMS key using which training data is encrypted in S3, if such a key exists."
   type        = string
   default     = ""
+  validation {
+    condition     = substr(var.data_s3_bucket_encryption_key_arn, 0, 7) == "arn:aws:"
+    error_message = "The data_s3_bucket_encryption_key_arn value must be a valid ARN, starting with \"arn:aws:\"."
+  }
 }
 variable "data_location_s3" {
   description = "The path to a file in the data S3 bucket within which training data is located. Should be in the format /<path>/<filename>. If the file is in the root of the bucket, this should be set to /<filename> only."
   type        = string
+  validation {
+    condition     = substr(var.data_location_s3, 0, 1) == "/"
+    error_message = "The data_location_s3 value must begin with /"
+  }
 }
 
 ##########################################
@@ -62,6 +70,10 @@ variable "retraining_schedule" {
   description = "Cron expression for the model retraining frequency in the AWS format. See https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html for details"
   type        = string
   default     = ""
+  validation {
+    condition     = contains(["cron(", "rate("], substr(var.data_location_s3, 0, 4))
+    error_message = "The retraining_schedule value must begin with \"cron(\" or \"rate(\""
+  }
 }
 variable "retrain_model_bool" {
   description = "Boolean to indicate if the retraining pipeline shoud be added"
