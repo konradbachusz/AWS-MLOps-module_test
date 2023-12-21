@@ -10,5 +10,5 @@ output "model_bucket" {
 
 output "encryption_key" {
   description = "S3 encryption KMS key Terraform Object"
-  value       = aws_kms_key.s3_kms_key
+  value       = aws_kms_key.model_buckets
 }

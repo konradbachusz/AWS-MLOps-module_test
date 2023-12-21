@@ -4,7 +4,7 @@ locals {
 }
 
 resource "aws_iam_role" "sagemaker" {
-  name               = aws_sagemaker_notebook_instance.notebook.name
+  name               = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -75,7 +75,7 @@ data "aws_iam_policy_document" "sagemaker" {
 }
 
 resource "aws_iam_policy" "sagemaker" {
-  name   = "${aws_sagemaker_notebook_instance.notebook.name}-policy"
+  name   = "${aws_iam_role.sagemaker.name}-policy"
   policy = data.aws_iam_policy_document.sagemaker.json
   tags   = var.tags
 }

@@ -5,7 +5,7 @@ locals {
 }
 
 resource "aws_iam_role" "glue_retraining_job" {
-  name = aws_glue_job.retraining.name
+  name = "${var.resource_naming_prefix}-retraining-glue-job"
 
   assume_role_policy = <<EOF
 {

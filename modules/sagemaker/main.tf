@@ -1,5 +1,5 @@
 resource "aws_sagemaker_notebook_instance" "notebook" {
-  name                  = "${var.model_name}-notebook-instance"
+  name                  = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
   instance_type         = var.sagemaker_instance_type
   role_arn              = aws_iam_role.sagemaker.arn
   lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
@@ -8,7 +8,7 @@ resource "aws_sagemaker_notebook_instance" "notebook" {
 
 
 resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
-  name = aws_sagemaker_notebook_instance.notebook.name
+  name = "${var.model_name}-notebook-instance"
   on_start = base64encode(<<EOL
        #!/bin/bash
        # Location of the scripts

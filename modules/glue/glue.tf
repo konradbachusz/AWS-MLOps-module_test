@@ -10,7 +10,7 @@ resource "aws_s3_object" "retraining_job_script" {
 #####Retraining Glue job#####
 
 resource "aws_glue_job" "retraining" {
-  name     = "${var.resource_naming_prefix}-retraining-glue-job"
+  name     = aws_iam_role.glue_retraining_job.name
   role_arn = aws_iam_role.glue_retraining_job.arn
 
   command {
