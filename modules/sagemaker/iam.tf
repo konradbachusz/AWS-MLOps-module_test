@@ -3,8 +3,8 @@ locals {
   kms_key_arns = compact([var.config_bucket_key_arn, var.data_bucket_key_arn, var.model_bucket_key_arn])
 }
 
-resource "aws_iam_role" "sagemaker_role" {
-  name               = "${var.model_name}-sagemaker-role"
+resource "aws_iam_role" "sagemaker" {
+  name               = aws_sagemaker_notebook_instance.notebook.name
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -74,19 +74,19 @@ data "aws_iam_policy_document" "sagemaker" {
   }
 }
 
-resource "aws_iam_policy" "sagemaker_policy" {
-  name   = "${var.model_name}-sagemaker-policy"
+resource "aws_iam_policy" "sagemaker" {
+  name   = "${aws_sagemaker_notebook_instance.notebook.name}-policy"
   policy = data.aws_iam_policy_document.sagemaker.json
   tags   = var.tags
 }
 
 
-resource "aws_iam_role_policy_attachment" "policy_attachment" {
-  role       = aws_iam_role.sagemaker_role.name
-  policy_arn = aws_iam_policy.sagemaker_policy.arn
+resource "aws_iam_role_policy_attachment" "sagemaker_custom" {
+  role       = aws_iam_role.sagemaker.name
+  policy_arn = aws_iam_policy.sagemaker.arn
 }
 
-resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
-  role       = aws_iam_role.sagemaker_role.name
+resource "aws_iam_role_policy_attachment" "AmazonSageMakerFullAccess" {
+  role       = aws_iam_role.sagemaker.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
 }

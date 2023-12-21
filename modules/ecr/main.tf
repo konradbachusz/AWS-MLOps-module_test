@@ -1,8 +1,9 @@
-resource "aws_kms_key" "ecr_kms" {
+resource "aws_kms_key" "ecr_encryption" {
+  description         = "${aws_ecr_repository.pycaret.name}-encryption-key"
   enable_key_rotation = true
 }
 
-resource "aws_ecr_repository" "mlops_pycaret_repo" {
+resource "aws_ecr_repository" "pycaret" {
   name                 = var.pycaret_ecr_name
   force_delete         = true
   image_tag_mutability = "MUTABLE"
@@ -11,6 +12,6 @@ resource "aws_ecr_repository" "mlops_pycaret_repo" {
   }
   encryption_configuration {
     encryption_type = "KMS"
-    kms_key         = aws_kms_key.ecr_kms.arn
+    kms_key         = aws_kms_key.ecr_encryption
   }
 }

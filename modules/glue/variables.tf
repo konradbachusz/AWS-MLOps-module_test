@@ -1,5 +1,3 @@
-variable "tags" {}
-variable "model_name" {}
 variable "retraining_schedule" {}
 
 # Training data bucket
@@ -23,5 +21,12 @@ variable "config_s3_bucket" {
 }
 variable "config_bucket_key_arn" {
   description = "The ARN of the KMS key using which glue scripts are encrypted in S3."
+  type        = string
+}
+
+# Naming and Tagging
+variable "tags" {}
+variable "resource_naming_prefix" {
+  description = "Naming prefix to be attached to every resource created by this module."
   type        = string
 }

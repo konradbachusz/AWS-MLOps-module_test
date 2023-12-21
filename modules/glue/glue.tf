@@ -9,9 +9,9 @@ resource "aws_s3_object" "retraining_job_script" {
 
 #####Retraining Glue job#####
 
-resource "aws_glue_job" "retraining_glue_job" {
-  name     = "${var.model_name}-retraining-glue-job"
-  role_arn = aws_iam_role.iam_for_glue_retraining_job_role.arn
+resource "aws_glue_job" "retraining" {
+  name     = "${var.resource_naming_prefix}-retraining-glue-job"
+  role_arn = aws_iam_role.glue_retraining_job.arn
 
   command {
     script_location = "s3://${var.config_s3_bucket}/glue_scripts/retraining_job.py"
@@ -29,14 +29,14 @@ resource "aws_glue_job" "retraining_glue_job" {
 
 
 #Retraining Glue job trigger
-resource "aws_glue_trigger" "retraining_job_trigger" {
-  name = "${var.model_name}_retraining_glue_job_trigger"
+resource "aws_glue_trigger" "retraining" {
+  name = "${var.resource_naming_prefix}_retraining_glue_job_trigger"
 
   schedule = var.retraining_schedule
   type     = "SCHEDULED"
 
   actions {
-    job_name = aws_glue_job.retraining_glue_job.name
+    job_name = aws_glue_job.retraining.name
   }
   tags = var.tags
 }

@@ -1,18 +1,18 @@
-resource "aws_sagemaker_notebook_instance" "notebook_instance" {
+resource "aws_sagemaker_notebook_instance" "notebook" {
   name                  = "${var.model_name}-notebook-instance"
   instance_type         = var.sagemaker_instance_type
   role_arn              = var.sagemaker_execution_role_arn
-  lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.sagemaker_lifecycle_configuration.name
+  lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
   tags                  = var.tags
 }
 
 
-resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_lifecycle_configuration" {
-  name = "mlops-sagemaker-lifecycle-config"
+resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
+  name = aws_sagemaker_notebook_instance.notebook.name
   on_start = base64encode(<<EOL
        #!/bin/bash
        # Location of the scripts
-       aws s3 sync s3://${var.config_bucket_id}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*.env"
+       aws s3 sync s3://${var.config_s3_bucket}/ /home/ec2-user/SageMaker/ --delete --exact-timestamps --exclude "*.env"
 
        # Make the ipython notebooks editable after copy
        chmod -R 777 /home/ec2-user/SageMaker/

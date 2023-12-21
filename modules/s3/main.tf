@@ -8,10 +8,11 @@ locals {
     tolist(fileset(local.file_path, "*.ipynb")),
     tolist(fileset(local.file_path, "*.py"))
   )
-  bucket_names = tolist(["${var.model_name}-model", "${var.model_name}-config-bucket"])
+  bucket_names = tolist(["${var.resource_naming_prefix}-model", "${var.resource_naming_prefix}-config-bucket"])
 }
 
-resource "aws_kms_key" "s3_kms_key" {
+resource "aws_kms_key" "model_buckets" {
+  description         = "${var.resource_naming_prefix}-s3-encryption-key"
   enable_key_rotation = true
 }
 
@@ -19,12 +20,16 @@ resource "aws_s3_bucket" "model_buckets" {
   count         = length(local.bucket_names)
   bucket        = local.bucket_names[count.index]
   force_destroy = true
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.s3_kms_key.arn
-        sse_algorithm     = "aws:kms"
-      }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "model_buckets" {
+  for_each = toset(local.bucket_names)
+  bucket   = each.value
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.model_buckets.arn
+      sse_algorithm     = "aws:kms"
     }
   }
 }

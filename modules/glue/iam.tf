@@ -4,8 +4,8 @@ locals {
   kms_key_arns = compact([var.config_bucket_key_arn, var.data_bucket_key_arn])
 }
 
-resource "aws_iam_role" "iam_for_glue_retraining_job_role" {
-  name = "${var.model_name}-retraining-job-glue-iam"
+resource "aws_iam_role" "glue_retraining_job" {
+  name = aws_glue_job.retraining.name
 
   assume_role_policy = <<EOF
 {
@@ -27,7 +27,7 @@ EOF
   tags               = var.tags
 }
 
-data "aws_iam_policy_document" "retraining_glue" {
+data "aws_iam_policy_document" "glue_retraining_job" {
   statement {
     sid = "S3Access"
     actions = [
@@ -57,23 +57,23 @@ data "aws_iam_policy_document" "retraining_glue" {
   }
 }
 
-resource "aws_iam_policy" "retraining_glue_policy" {
-  name   = "${var.model_name}-retraining-glue-policy"
-  policy = data.aws_iam_policy_document.retraining_glue.json
+resource "aws_iam_policy" "glue_retraining_job" {
+  name   = "${aws_glue_job.retraining.name}-policy"
+  policy = data.aws_iam_policy_document.glue_retraining_job.json
   tags   = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRole" {
-  role       = aws_iam_role.iam_for_glue_retraining_job_role.name
+  role       = aws_iam_role.glue_retraining_job.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
 
-resource "aws_iam_role_policy_attachment" "retraining_glue_policy_attachment" {
-  role       = aws_iam_role.iam_for_glue_retraining_job_role.name
-  policy_arn = aws_iam_policy.retraining_glue_policy.arn
+resource "aws_iam_role_policy_attachment" "glue_retraining_job_custom" {
+  role       = aws_iam_role.glue_retraining_job.name
+  policy_arn = aws_iam_policy.glue_retraining_job.arn
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueConsoleFullAccess" {
-  role       = aws_iam_role.iam_for_glue_retraining_job_role.name
+  role       = aws_iam_role.glue_retraining_job.name
   policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
 }
