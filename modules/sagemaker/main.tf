@@ -23,6 +23,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
        echo "algorithm_choice=${var.algorithm_choice}" >> /home/ec2-user/SageMaker/.env
        echo "endpoint_name=${var.endpoint_name}" >> /home/ec2-user/SageMaker/.env
        echo "model_name=${var.model_name}" >> /home/ec2-user/SageMaker/.env
+       echo "model_s3_bucket=${var.model_s3_bucket}" >> /home/ec2-user/SageMaker/.env
        echo "instance_type" = ${var.sagemaker_instance_type} >> /home/ec2-user/SageMaker/.env
        echo "model_instance_count" = ${var.model_instance_count} >> /home/ec2-user/SageMaker/.env
        echo "ecr_repo_uri" = ${var.ecr_repo_uri} >> /home/ec2-user/SageMaker/.env
