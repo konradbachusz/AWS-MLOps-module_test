@@ -95,18 +95,15 @@ Will not be tracked by your Terraform state file so if you decide to run "terraf
 To destroy these resourses we recommend that you add these commands to your CI/CD pipeline:
 
 ```bash
-            aws sagemaker delete-model --model-name < demo-regression-model >
-            aws sagemaker delete-endpoint-config --endpoint-config-name < demo-regression-model-config >
-            aws sagemaker delete-endpoint --endpoint-name < demo-regression-model >    
+aws sagemaker delete-model --model-name < demo-regression-model >
+aws sagemaker delete-endpoint-config --endpoint-config-name < demo-regression-model-config >
+aws sagemaker delete-endpoint --endpoint-name < demo-regression-model >    
 ```
 
 But before this you will need to add your AWS credentials to the environment if you have not do already:
 ```bash
-- name: "Configure AWS credentials"
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: < aws-access-key-id >
-          aws-secret-access-key: < aws-secret-access-key >
-          aws-region: < region >
+aws-access-key-id: < aws-access-key-id >
+aws-secret-access-key: < aws-secret-access-key >
+aws-region: < region >
 ```
 <!-- END_TF_DOCS -->
