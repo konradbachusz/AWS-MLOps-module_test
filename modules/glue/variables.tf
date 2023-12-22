@@ -9,6 +9,7 @@ variable "resource_naming_prefix" {
 variable "tags" {
   description = "Tags applied to your resources"
   default     = {}
+  type        = map(string)
 }
 
 ##########################################

@@ -9,9 +9,8 @@ module "sagemaker" {
   source = "./modules/sagemaker"
 
   # Naming
-  endpoint_name = local.endpoint_name
-  model_name    = local.model_name
-  tags          = var.tags
+  resource_naming_prefix = var.resource_naming_prefix
+  tags                   = var.tags
 
   # Training
   algorithm_choice = var.algorithm_choice
@@ -58,6 +57,6 @@ module "retraining_job" {
 module "ecr" {
   source = "./modules/ecr"
 
-  pycaret_ecr_name = local.pycaret_ecr_name
-  tags             = var.tags
+  resource_naming_prefix = var.resource_naming_prefix
+  tags                   = var.tags
 }

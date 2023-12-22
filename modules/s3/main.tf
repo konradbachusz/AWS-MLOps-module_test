@@ -58,7 +58,7 @@ resource "aws_s3_object" "config_files" {
 
 # Random suffix to be appended to bucket names to ensure global uniqueness
 resource "random_string" "s3_suffix" {
-  length  = 4
+  length  = 6
   lower   = true
   special = false
   upper   = false

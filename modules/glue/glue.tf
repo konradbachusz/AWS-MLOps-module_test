@@ -9,7 +9,7 @@ resource "aws_s3_object" "retraining_job_script" {
 
 #####Retraining Glue job#####
 
-resource "aws_glue_job" "retraining" {
+resource "aws_glue_job" "retraining_job" {
   name     = aws_iam_role.glue_retraining_job.name
   role_arn = aws_iam_role.glue_retraining_job.arn
 
@@ -29,14 +29,14 @@ resource "aws_glue_job" "retraining" {
 
 
 #Retraining Glue job trigger
-resource "aws_glue_trigger" "retraining" {
+resource "aws_glue_trigger" "retraining_job" {
   name = "${var.resource_naming_prefix}_retraining_glue_job_trigger"
 
   schedule = var.retraining_schedule
   type     = "SCHEDULED"
 
   actions {
-    job_name = aws_glue_job.retraining.name
+    job_name = aws_glue_job.retraining_job.name
   }
   tags = var.tags
 }

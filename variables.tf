@@ -3,35 +3,26 @@
 ##########################################
 
 variable "resource_naming_prefix" {
-  description = "Naming prefix to be applied to all resources created by this module unless explicitly overriden."
+  description = "Naming prefix to be applied to all resources created by this module"
   type        = string
 }
 variable "tags" {
   description = "Tags applied to your resources"
   default     = {}
+  type        = map(string)
 }
 
 ##########################################
 # Sagemaker
 ##########################################
 
-variable "model_name" {
-  description = "Name of the Sagemaker model. If not specified, a default name will be generated using naming prefix."
-  type        = string
-  default     = ""
-}
-variable "endpoint_name" {
-  description = "Name of the Sagemaker endpoint for prediction. If not specified, a default name will be generated using naming prefix."
-  type        = string
-  default     = ""
-}
 variable "sagemaker_instance_type" {
   description = "The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type"
   default     = "ml.t2.medium"
   type        = string
 }
 variable "model_instance_count" {
-  description = "The initial number of instances to run the Sagemaker model"
+  description = "The initial number of instances to serve the model endpoint"
   type        = number
   default     = 1
 }
@@ -82,21 +73,11 @@ variable "retrain_model_bool" {
 }
 
 ##########################################
-# ECR
-##########################################
-
-variable "pycaret_ecr_name" {
-  description = "Name of ECR repository that will be created and used to store the pycaret container image required for the model"
-  type        = string
-  default     = ""
-}
-
-##########################################
 # Model arguments
 ##########################################
 
 variable "model_target_variable" {
-  description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
+  description = "The dependent variable (or 'label') that the model aims to predict. This should be a column name in the dataset."
   type        = string
 }
 variable "algorithm_choice" {

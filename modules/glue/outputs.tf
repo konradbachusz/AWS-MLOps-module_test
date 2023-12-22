@@ -1,6 +1,6 @@
 output "retraining_job" {
   description = "The Glue retraining job Terraform object."
-  value       = aws_glue_job.retraining
+  value       = aws_glue_job.retraining_job
 }
 
 output "retraining_role" {

@@ -44,11 +44,11 @@ output "sagemaker_notebook_instance" {
 
 output "sagemaker_endpoint_name" {
   description = "Sagemaker model endpoint name"
-  value       = local.endpoint_name
+  value       = module.sagemaker.endpoint_name
 }
 
 output "sagemaker_model_name" {
   description = "Sagemaker model name"
-  value       = local.model_name
+  value       = module.sagemaker.model_name
 }
 

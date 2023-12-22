@@ -1,11 +1,11 @@
 resource "aws_kms_key" "ecr_encryption" {
-  description         = "${var.pycaret_ecr_name}-encryption-key"
+  description         = "${var.resource_naming_prefix}-encryption-key"
   enable_key_rotation = true
   tags                = var.tags
 }
 
 resource "aws_ecr_repository" "pycaret" {
-  name                 = var.pycaret_ecr_name
+  name                 = "${var.resource_naming_prefix}-pycaret-repository"
   force_delete         = true
   image_tag_mutability = "MUTABLE"
   image_scanning_configuration {

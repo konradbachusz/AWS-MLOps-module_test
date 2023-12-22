@@ -2,19 +2,14 @@
 # Naming and Tagging
 ##########################################
 
-variable "model_name" {
-  description = "Name of the Sagemaker model"
+variable "resource_naming_prefix" {
+  description = "Naming prefix to be applied to all resources created by this module"
   type        = string
-  default     = ""
-}
-variable "endpoint_name" {
-  description = "Name of the Sagemaker endpoint for prediction"
-  type        = string
-  default     = ""
 }
 variable "tags" {
   description = "Tags applied to your resources"
   default     = {}
+  type        = map(string)
 }
 
 #########################################
@@ -39,11 +34,11 @@ variable "sagemaker_instance_type" {
 
 # Model
 variable "model_target_variable" {
-  description = "The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset."
+  description = "The dependent variable (or 'label') that the model aims to predict. This should be a column name in the dataset."
   type        = string
 }
 variable "model_instance_count" {
-  description = "The initial number of instances to run the Sagemaker model"
+  description = "The initial number of instances to serve the model endpoint"
   type        = number
 }
 variable "ecr_repo_uri" {
@@ -71,20 +66,20 @@ variable "data_bucket_key_arn" {
 
 # Model bucket
 variable "model_s3_bucket" {
-  description = "The name of an S3 bucket within which training data is located."
+  description = "The name of an S3 bucket within which the model artifact should be saved."
   type        = string
 }
 variable "model_bucket_key_arn" {
-  description = "The ARN of the KMS key using which data is encrypted in S3."
+  description = "The ARN of the KMS key that has been used to encrypted the S3 bucket."
   type        = string
 }
 
 # Config Bucket
 variable "config_s3_bucket" {
-  description = "The name of an S3 bucket within which glue scripts should be stored."
+  description = "The name of the S3 bucket within which notebook scripts are stored, to be copied onto the instance on boot."
   type        = string
 }
 variable "config_bucket_key_arn" {
-  description = "The ARN of the KMS key using which glue scripts are encrypted in S3."
+  description = "The ARN of the KMS key using which notebook scripts are encrypted in S3."
   type        = string
 }

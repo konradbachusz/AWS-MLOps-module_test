@@ -8,7 +8,7 @@ resource "aws_sagemaker_notebook_instance" "notebook" {
 
 
 resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
-  name = "${var.model_name}-notebook-instance"
+  name = "${local.model_name}-notebook-instance"
   on_start = base64encode(<<EOL
        #!/bin/bash
        # Location of the scripts
@@ -21,8 +21,8 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
        echo "data_location_s3=${var.data_s3_bucket}${var.data_location_s3}" > /home/ec2-user/SageMaker/.env
        echo "target=${var.model_target_variable}" >> /home/ec2-user/SageMaker/.env
        echo "algorithm_choice=${var.algorithm_choice}" >> /home/ec2-user/SageMaker/.env
-       echo "endpoint_name=${var.endpoint_name}" >> /home/ec2-user/SageMaker/.env
-       echo "model_name=${var.model_name}" >> /home/ec2-user/SageMaker/.env
+       echo "endpoint_name=${local.endpoint_name}" >> /home/ec2-user/SageMaker/.env
+       echo "model_name=${local.model_name}" >> /home/ec2-user/SageMaker/.env
        echo "model_s3_bucket=${var.model_s3_bucket}" >> /home/ec2-user/SageMaker/.env
        echo "instance_type" = ${var.sagemaker_instance_type} >> /home/ec2-user/SageMaker/.env
        echo "model_instance_count" = ${var.model_instance_count} >> /home/ec2-user/SageMaker/.env
