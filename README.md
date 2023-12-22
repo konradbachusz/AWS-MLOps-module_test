@@ -90,13 +90,11 @@ After creating the resources made using this the module, the resources:
 - Sagemaker Endpoint  
 - Endpoint configuration
   
-Will not be tracked by your Terraform state file so if you decide to  run "terraform destroy" these resources will not be deleted.
+Will not be tracked by your Terraform state file so if you decide to run "terraform destroy" these resources will not be deleted.
 
-To destroy these resourses we recommend that you add these commands to your CICD pipeline:
+To destroy these resourses we recommend that you add these commands to your CI/CD pipeline:
 
 ```bash
- - name: "Destroy Untracked Resources"
-          run: |
             aws sagemaker delete-model --model-name < demo-regression-model >
             aws sagemaker delete-endpoint-config --endpoint-config-name < demo-regression-model-config >
             aws sagemaker delete-endpoint --endpoint-name < demo-regression-model >    
