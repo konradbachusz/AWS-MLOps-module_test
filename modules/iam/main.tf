@@ -172,7 +172,7 @@ resource "aws_iam_role_policy_attachment" "query_training_status-policy_attachme
 }
 
 
-resource "aws_iam_role_policy_attachment" "query_training_status-policy_attachment" {
+resource "aws_iam_role_policy_attachment" "prebuilt-policies" {
   for_each = toset([
     "arn:aws:iam::aws:policy/AmazonSageMakerReadOnly",
     "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
