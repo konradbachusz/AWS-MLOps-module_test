@@ -105,32 +105,21 @@ EOF
   tags   = var.tags
 }
 
-resource "aws_iam_role_policy_attachment" "sagemaker_role_policy_attachment" {
-  for_each   = toset([
-    aws_iam_policy.sagemaker_policy.arn,
-    "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess",
-    "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
-  ])
 
+resource "aws_iam_role_policy_attachment" "policy_attachment" {
   role       = aws_iam_role.sagemaker_role.name
-  policy_arn = each.value
+  policy_arn = aws_iam_policy.sagemaker_policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
+  role       = aws_iam_role.sagemaker_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+}
 
-# resource "aws_iam_role_policy_attachment" "policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = aws_iam_policy.sagemaker_policy.arn
-# }
-
-# resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
-# }
-
-# resource "aws_iam_role_policy_attachment" "sagemaker_stepfunction_policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
-# }
+resource "aws_iam_role_policy_attachment" "sagemaker_stepfunction_policy_attachment" {
+  role       = aws_iam_role.sagemaker_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
+}
 
 
 
