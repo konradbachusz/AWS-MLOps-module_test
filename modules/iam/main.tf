@@ -111,15 +111,6 @@ resource "aws_iam_role_policy_attachment" "policy_attachment" {
   policy_arn = aws_iam_policy.sagemaker_policy.arn
 }
 
-# resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
-# }
-
-# resource "aws_iam_role_policy_attachment" "sagemaker_stepfunction_policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
-# }
 
 
 resource "aws_iam_role_policy_attachment" "sagemaker_role_policy_attachment" {
@@ -179,6 +170,18 @@ resource "aws_iam_role_policy_attachment" "query_training_status-policy_attachme
   role       = aws_iam_role.query_training_status_role.name
   policy_arn = aws_iam_policy.query_training_status_policy.arn
 }
+
+
+resource "aws_iam_role_policy_attachment" "query_training_status-policy_attachment" {
+  for_each = toset([
+    "arn:aws:iam::aws:policy/AmazonSageMakerReadOnly",
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  ])
+
+  role       = aws_iam_role.query_training_status_role.name
+  policy_arn = each.value
+}
+
 
 
 
