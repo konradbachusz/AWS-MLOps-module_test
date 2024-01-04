@@ -106,10 +106,10 @@ EOF
 }
 
 
-# resource "aws_iam_role_policy_attachment" "policy_attachment" {
-#   role       = aws_iam_role.sagemaker_role.name
-#   policy_arn = aws_iam_policy.sagemaker_policy.arn
-# }
+resource "aws_iam_role_policy_attachment" "policy_attachment" {
+  role       = aws_iam_role.sagemaker_role.name
+  policy_arn = aws_iam_policy.sagemaker_policy.arn
+}
 
 # resource "aws_iam_role_policy_attachment" "sagemaker_policy_attachment" {
 #   role       = aws_iam_role.sagemaker_role.name
@@ -121,24 +121,16 @@ EOF
 #   policy_arn = "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
 # }
 
-locals {
-  policy_arns = concat(
-    [for arn in [
-      aws_iam_policy.sagemaker_policy.arn,
-      "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess",
-      "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
-    ] : arn if arn != ""]
-  )
-}
 
 resource "aws_iam_role_policy_attachment" "sagemaker_role_policy_attachment" {
-  for_each   = toset(local.policy_arns)
+  for_each   = toset([
+    "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess",
+    "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
+  ])
 
   role       = aws_iam_role.sagemaker_role.name
   policy_arn = each.value
 }
-
-
 
 
 resource "aws_iam_role" "query_training_status_role" {
