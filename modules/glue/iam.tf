@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "glue_retraining_job" {
 }
 
 resource "aws_iam_policy" "glue_retraining_job" {
-  name   = "${aws_glue_job.retraining.name}-policy"
+  name   = "${aws_glue_job.retraining_job.name}-policy"
   policy = data.aws_iam_policy_document.glue_retraining_job.json
   tags   = var.tags
 }
