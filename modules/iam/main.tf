@@ -55,7 +55,8 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "s3:PutObject",
                 "s3:DeleteObject",
                 "s3:ListBucket", 
-                "s3:CreateBucket"
+                "s3:CreateBucket",
+                "s3:GetBucketLocation"
             ],
             "Resource": [
                 "arn:aws:s3:::streaming-data-platform-ml-data",
