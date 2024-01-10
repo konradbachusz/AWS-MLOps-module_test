@@ -29,7 +29,7 @@ ENV PYTHONUNBUFFERED=TRUE
 ENV PYTHONDONTWRITEBYTECODE=TRUE
 ENV PATH="/opt/program:${PATH}"
 
-COPY pycaret_image_files/train.py /opt/ml/code/train.py
+COPY pycaret_image_files/train.py /opt/ml/train.py
 # Set up the program in the image
 COPY pycaret_image_files /opt/program
 WORKDIR /opt/program
