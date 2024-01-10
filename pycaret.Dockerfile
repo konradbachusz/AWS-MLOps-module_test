@@ -16,8 +16,11 @@ RUN apt-get clean && \
     wget build-essential gcc nginx ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+# COPY requirements.txt ./
+# RUN pip install --no-cache-dir -r requirements.txt
+
+COPY requirements.txt /home/requirements.txt
+RUN pip install --no-cache-dir -r /home/requirements.txt
 
 # Set some environment variables. PYTHONUNBUFFERED keeps Python from buffering our standard
 # output stream, which means that logs can be delivered to the user quickly. PYTHONDONTWRITEBYTECODE
