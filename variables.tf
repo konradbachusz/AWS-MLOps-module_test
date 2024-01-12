@@ -16,12 +16,17 @@ variable "tags" {
 # Sagemaker
 ##########################################
 
-variable "sagemaker_instance_type" {
-  description = "The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type"
+variable "sagemaker_training_notebook_instance_type" {
+  description = "The Sagemaker notebook instance type to be created for training the model. Must be a valid EC2 instance type"
   default     = "ml.t2.medium"
   type        = string
 }
-variable "model_instance_count" {
+variable "inference_instance_type" {
+  description = "The instance type to be created for serving the model. Must be a valid EC2 instance type"
+  default     = "ml.t2.medium"
+  type        = string
+}
+variable "inference_instance_count" {
   description = "The initial number of instances to serve the model endpoint"
   type        = number
   default     = 1

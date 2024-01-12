@@ -4,6 +4,10 @@
 **BREAKING CHANGES**
 * Mandatory variable `resource_naming_prefix` has now been added.
 * Mandatory variable `data_s3_bucket` has now been added.
+* Variable `model_instance_count` has been renamed `inference_instance_count`
+* Variable `sagemaker_instance_type` has been replaced with two variables:
+  * `sagemaker_training_notebook_instance_type`, which now defines the type of the training notebook only.
+  * `inference_instance_type`, which now defines the type of instance used to serve the model only.
 * The syntax for `data_location_s3` has now changed - should not include bucket name.
 * `region` and `account_id` variables have been removed - no longer required.
 * All outputs have now been refactored to be more useful.

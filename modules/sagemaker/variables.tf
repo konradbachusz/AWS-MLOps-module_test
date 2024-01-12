@@ -27,19 +27,24 @@ variable "tuning_metric" {
 }
 
 # Notebook
-variable "sagemaker_instance_type" {
-  description = "The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type"
+variable "training_notebook_instance_type" {
+  description = "The Sagemaker notebook instance type to be created for training the model. Must be a valid EC2 instance type"
   type        = string
 }
 
 # Model
+variable "inference_instance_type" {
+  description = "The instance type to be created for serving the model. Must be a valid EC2 instance type"
+  default     = "ml.t2.medium"
+  type        = string
+}
+variable "inference_instance_count" {
+  description = "The initial number of instances to serve the model endpoint"
+  type        = number
+}
 variable "model_target_variable" {
   description = "The dependent variable (or 'label') that the model aims to predict. This should be a column name in the dataset."
   type        = string
-}
-variable "model_instance_count" {
-  description = "The initial number of instances to serve the model endpoint"
-  type        = number
 }
 variable "ecr_repo_uri" {
   description = "The URI of the ECR repository containing the pycaret image, including tag."

@@ -1,13 +1,13 @@
-resource "aws_sagemaker_notebook_instance" "notebook" {
-  name                  = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
-  instance_type         = var.sagemaker_instance_type
+resource "aws_sagemaker_notebook_instance" "training_notebook" {
+  name                  = aws_sagemaker_notebook_instance_lifecycle_configuration.training_notebook.name
+  instance_type         = var.training_notebook_instance_type
   role_arn              = aws_iam_role.sagemaker.arn
-  lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.notebook.name
+  lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.training_notebook.name
   tags                  = var.tags
 }
 
 
-resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
+resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "training_notebook" {
   name = "${local.model_name}-notebook-instance"
   on_start = base64encode(<<EOL
        #!/bin/bash
@@ -24,8 +24,8 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "notebook" {
        echo "endpoint_name=${local.endpoint_name}" >> /home/ec2-user/SageMaker/.env
        echo "model_name=${local.model_name}" >> /home/ec2-user/SageMaker/.env
        echo "model_s3_bucket=${var.model_s3_bucket}" >> /home/ec2-user/SageMaker/.env
-       echo "instance_type" = ${var.sagemaker_instance_type} >> /home/ec2-user/SageMaker/.env
-       echo "model_instance_count" = ${var.model_instance_count} >> /home/ec2-user/SageMaker/.env
+       echo "inference_instance_type" = ${var.inference_instance_type} >> /home/ec2-user/SageMaker/.env
+       echo "inference_instance_count" = ${var.inference_instance_count} >> /home/ec2-user/SageMaker/.env
        echo "ecr_repo_uri" = ${var.ecr_repo_uri} >> /home/ec2-user/SageMaker/.env
        echo "tuning_metric" = ${var.tuning_metric} >> /home/ec2-user/SageMaker/.env
      EOL

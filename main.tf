@@ -17,12 +17,13 @@ module "sagemaker" {
   tuning_metric    = var.tuning_metric
 
   # Notebook
-  sagemaker_instance_type = var.sagemaker_instance_type
+  training_notebook_instance_type = var.sagemaker_training_notebook_instance_type
 
   # Model
-  model_target_variable = var.model_target_variable
-  model_instance_count  = var.model_instance_count
-  ecr_repo_uri          = "${module.ecr.repository.repository_url}:latest"
+  inference_instance_type  = var.inference_instance_type
+  model_target_variable    = var.model_target_variable
+  inference_instance_count = var.inference_instance_count
+  ecr_repo_uri             = "${module.ecr.repository.repository_url}:latest"
 
   # S3
   config_s3_bucket      = module.s3.config_bucket.id

@@ -3,7 +3,7 @@ from sagemaker.model import Model
 
 def deploy_model(
     model_name: str, model_type: str, model_s3_bucket: str, instance_type: str, endpoint_name,
-    role: str, model_instance_count: int, image_uri: str
+    role: str, inference_instance_count: int, image_uri: str
 ) -> None:
 
     """This script deploys the sagemaker endpoint using the tar.gz file
@@ -16,7 +16,7 @@ def deploy_model(
         instance_type (str): The sagemaker instance type you want to deploy
         endpoint_name (_type_): What you will like to call the endpoint.
         role (str): Your execution role
-        model_instance_count (int): initial instance number of model
+        inference_instance_count (int): initial instance number of model
     """
     model_file = f"s3://{model_s3_bucket}/{model_name}.tar.gz"
     model = Model(
@@ -29,7 +29,7 @@ def deploy_model(
         }
     )
     model.deploy(
-        initial_instance_count=model_instance_count,
+        initial_instance_count=inference_instance_count,
         instance_type=instance_type,
         endpoint_name=endpoint_name,
     )

@@ -22,8 +22,8 @@ module "MLOps" {
   pycaret_ecr_name        = "your-ecr-name"
   algorithm_choice        = "classification"
   endpoint_name           = "classification-model-endpoint"
-  sagemaker_instance_type = "ml.m4.xlarge"
-  model_instance_count    = 1
+  sagemaker_training_notebook_instance_type = "ml.m4.xlarge"
+  inference_instance_count    = 1
   tags                    = {
                               my-tag-key = "my-tag-value"
                             }
@@ -66,16 +66,14 @@ No resources.
 | <a name="input_data_location_s3"></a> [data\_location\_s3](#input\_data\_location\_s3) | The path to a file in the data S3 bucket within which training data is located. Should be in the format /<path>/<filename>. If the file is in the root of the bucket, this should be set to /<filename> only. | `string` | n/a | yes |
 | <a name="input_data_s3_bucket"></a> [data\_s3\_bucket](#input\_data\_s3\_bucket) | The name of an S3 bucket within which training data is located. | `string` | n/a | yes |
 | <a name="input_data_s3_bucket_encryption_key_arn"></a> [data\_s3\_bucket\_encryption\_key\_arn](#input\_data\_s3\_bucket\_encryption\_key\_arn) | The ARN of the KMS key using which training data is encrypted in S3, if such a key exists. | `string` | `""` | no |
-| <a name="input_endpoint_name"></a> [endpoint\_name](#input\_endpoint\_name) | Name of the Sagemaker endpoint for prediction. If not specified, a default name will be generated using naming prefix. | `string` | `""` | no |
-| <a name="input_model_instance_count"></a> [model\_instance\_count](#input\_model\_instance\_count) | The initial number of instances to run the Sagemaker model | `number` | `1` | no |
-| <a name="input_model_name"></a> [model\_name](#input\_model\_name) | Name of the Sagemaker model. If not specified, a default name will be generated using naming prefix. | `string` | `""` | no |
-| <a name="input_model_target_variable"></a> [model\_target\_variable](#input\_model\_target\_variable) | The dependent variable (or 'label') that the regression model aims to predict. This should be a column name in the dataset. | `string` | n/a | yes |
-| <a name="input_pycaret_ecr_name"></a> [pycaret\_ecr\_name](#input\_pycaret\_ecr\_name) | Name of ECR repository that will be created and used to store the pycaret container image required for the model | `string` | `""` | no |
-| <a name="input_resource_naming_prefix"></a> [resource\_naming\_prefix](#input\_resource\_naming\_prefix) | Naming prefix to be applied to all resources created by this module unless explicitly overriden. | `string` | n/a | yes |
+| <a name="input_inference_instance_count"></a> [inference\_instance\_count](#input\_inference\_instance\_count) | The initial number of instances to serve the model endpoint | `number` | `1` | no |
+| <a name="input_inference_instance_type"></a> [inference\_instance\_type](#input\_inference\_instance\_type) | The instance type to be created for serving the model. Must be a valid EC2 instance type | `string` | `"ml.t2.medium"` | no |
+| <a name="input_model_target_variable"></a> [model\_target\_variable](#input\_model\_target\_variable) | The dependent variable (or 'label') that the model aims to predict. This should be a column name in the dataset. | `string` | n/a | yes |
+| <a name="input_resource_naming_prefix"></a> [resource\_naming\_prefix](#input\_resource\_naming\_prefix) | Naming prefix to be applied to all resources created by this module | `string` | n/a | yes |
 | <a name="input_retrain_model_bool"></a> [retrain\_model\_bool](#input\_retrain\_model\_bool) | Boolean to indicate if the retraining pipeline shoud be added | `bool` | `false` | no |
 | <a name="input_retraining_schedule"></a> [retraining\_schedule](#input\_retraining\_schedule) | Cron expression for the model retraining frequency in the AWS format. See https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-expressions.html for details | `string` | `""` | no |
-| <a name="input_sagemaker_instance_type"></a> [sagemaker\_instance\_type](#input\_sagemaker\_instance\_type) | The Sagemaker notebook instance type to be created. Must be a valid EC2 instance type | `string` | `"ml.t2.medium"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to your resources | `map` | `{}` | no |
+| <a name="input_sagemaker_training_notebook_instance_type"></a> [sagemaker\_training\_notebook\_instance\_type](#input\_sagemaker\_training\_notebook\_instance\_type) | The Sagemaker notebook instance type to be created for training the model. Must be a valid EC2 instance type | `string` | `"ml.t2.medium"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to your resources | `map(string)` | `{}` | no |
 | <a name="input_tuning_metric"></a> [tuning\_metric](#input\_tuning\_metric) | The metric user want to focus when tuning hyperparameter | `string` | n/a | yes |
 
 ## Outputs
