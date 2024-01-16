@@ -2,6 +2,7 @@ module "s3" {
   source     = "./modules/s3"
   model_name = var.model_name
   tags       = var.tags
+  preprocessing_script_path = var.preprocessing_script_path
 }
 
 

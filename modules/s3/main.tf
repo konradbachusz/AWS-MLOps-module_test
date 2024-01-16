@@ -3,10 +3,12 @@
 # The model bucket will contain the model artifact
 # The config-bucket is used to store ipynb files, python files and other configuration files
 locals {
+  preprocessing_script_path = var.preprocessing_script_path
   file_path = "${path.module}/../../mlops_ml_models"
   files_to_upload = concat(
     tolist(fileset(local.file_path, "*.ipynb")),
-    tolist(fileset(local.file_path, "*.py"))
+    tolist(fileset(local.file_path, "*.py")),
+    tolist(local.preprocessing_script_path, "*.py")
   )
   bucket_names = tolist(["${var.model_name}-model", "${var.model_name}-config-bucket"])
 }

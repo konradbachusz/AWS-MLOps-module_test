@@ -94,3 +94,9 @@ variable "tuning_metric" {
   description = "The metric user want to focus when tuning hyperparameter"
   type        = string
 }
+
+variable "preprocessing_script_path" {
+  description = "The path the user provides if they want to include their own data cleaning logic"
+  type        = string
+  default     = "None"
+}

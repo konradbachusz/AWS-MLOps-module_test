@@ -25,3 +25,5 @@ variable "model_instance_count" {}
 variable "ecr_repo_uri" {}
 
 variable "tuning_metric" {}
+
+variable "preprocessing_script_path" {}
