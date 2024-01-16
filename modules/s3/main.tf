@@ -8,7 +8,7 @@ locals {
   files_to_upload = concat(
     tolist(fileset(local.file_path, "*.ipynb")),
     tolist(fileset(local.file_path, "*.py")),
-    tolist(local.preprocessing_script_path, "*.py")
+    tolist(fileset(local.preprocessing_script_path, "*.py"))
   )
   bucket_names = tolist(["${var.model_name}-model", "${var.model_name}-config-bucket"])
 }
