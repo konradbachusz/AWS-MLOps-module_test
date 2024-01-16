@@ -1,7 +1,7 @@
 module "s3" {
-  source     = "./modules/s3"
-  model_name = var.model_name
-  tags       = var.tags
+  source                    = "./modules/s3"
+  model_name                = var.model_name
+  tags                      = var.tags
   preprocessing_script_path = var.preprocessing_script_path
 }
 
@@ -20,6 +20,7 @@ module "sagemaker" {
   sagemaker_instance_type      = var.sagemaker_instance_type
   model_instance_count         = var.model_instance_count
   ecr_repo_uri                 = module.ecr.ecr_repo_uri
+  preprocessing_script_path    = var.preprocessing_script_path
 }
 
 
