@@ -68,7 +68,7 @@ resource "aws_iam_policy" "sagemaker_policy" {
         }, 
         {
           "Sid": "AllowPassRole",
-          "Action": "iam:PassRole",
+          "Action": ["iam:GetRole","iam:PassRole"],
           "Effect": "Allow",
           "Resource": "arn:aws:iam::${var.account_id}:role/*",
           "Condition": {
@@ -115,7 +115,7 @@ resource "aws_iam_role_policy_attachment" "policy_attachment" {
 
 
 resource "aws_iam_role_policy_attachment" "sagemaker_role_policy_attachment" {
-  for_each   = toset([
+  for_each = toset([
     "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess",
     "arn:aws:iam::aws:policy/AWSStepFunctionsFullAccess"
   ])
