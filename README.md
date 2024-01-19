@@ -73,6 +73,7 @@ No resources.
 | <a name="input_sagemaker_instance_type"></a> [sagemaker\_instance\_type](#input\_sagemaker\_instance\_type) | the sagemaker instance type that is being created | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags applied to your resources | `map` | `{}` | no |
 | <a name="input_tuning_metric"></a> [tuning\_metric](#input\_tuning\_metric) | The metric user want to focus when tuning hyperparameter | `string` | n/a | yes |
+| <a name="preprocessing_script_path"></a> [Preprocessing\_script](#input\_Preprocessing\_script) | Input the local path of your data cleaning script. This script will be excuted during the running of the notebook. (Note the file has to be in the same repo from where you run terraform apply) | `string` | 'None'| No |
 
 ## Outputs
 

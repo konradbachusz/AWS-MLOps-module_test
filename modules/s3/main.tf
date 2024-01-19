@@ -8,7 +8,7 @@ locals {
   files_to_upload = concat(
     tolist(fileset(local.file_path, "*.ipynb")),
     tolist(fileset(local.file_path, "*.py")),
-    # tolist(fileset(local.preprocessing_script_path))
+
   )
   bucket_names = tolist(["${var.model_name}-model", "${var.model_name}-config-bucket"])
 }
@@ -52,8 +52,8 @@ resource "aws_s3_object" "config_files" {
 
 resource "aws_s3_object" "preprocessing_script_path" {
   bucket   = aws_s3_bucket.model_buckets[1].id
-  key      = var.preprocessing_script_path
+  key      = "preprocess_data.py"
   source   = var.preprocessing_script_path
-  etag     = filemd5(var.preprocessing_script_path)
+  etag     = filemd5(local.preprocessing_script_path)
   tags     = var.tags
 }
