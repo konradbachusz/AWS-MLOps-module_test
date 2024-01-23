@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "sagemaker" {
   statement {
     sid = "SagemakerAccess"
     actions = [
-      "sagemaker:CreateEndpoint*"
+      "sagemaker:CreateEndpoint*",
       "sagemaker:DeleteEndpoint*"
     ]
     resources = ["arn:aws:sagemaker:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:endpoint/${local.endpoint_name}"]
