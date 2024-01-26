@@ -15,14 +15,14 @@ module "MLOps" {
   resource_naming_prefix  = "your-app"
   data_s3_bucket          = "your-bucket-name"
   data_location_s3        = "/your_s3_folder/your_data.csv"
+  data_s3_bucket_encryption_key_arn = "arn:aws:your_kms_key_arn"
   model_target_variable   = "y"
   model_name              = "your-ml-model"
   retrain_model_bool      = true
   retraining_schedule     = "cron(0 8 1 * ? *)"
-  pycaret_ecr_name        = "your-ecr-name"
   algorithm_choice        = "classification"
-  endpoint_name           = "classification-model-endpoint"
   sagemaker_training_notebook_instance_type = "ml.m4.xlarge"
+  inference_instance_type     = "ml.m4.xlarge"
   inference_instance_count    = 1
   tuning_metric = "AUC"
   tags                    = {
