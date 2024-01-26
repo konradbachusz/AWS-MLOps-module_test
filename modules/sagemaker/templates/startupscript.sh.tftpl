@@ -10,8 +10,8 @@ chmod -R 777 /home/ec2-user/SageMaker/
 
 # Setting environment variables
 cat << EOF > /home/ec2-user/SageMaker/.env
-%{ for var in env ~}
-${var}=${var}
+%{ for key, value in env ~}
+${key}=${value}
 %{ endfor ~}
 EOF
 
