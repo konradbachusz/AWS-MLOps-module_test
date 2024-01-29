@@ -27,7 +27,12 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "sagemaker_li
        echo "model_instance_count" = ${var.model_instance_count} >> /home/ec2-user/SageMaker/.env
        echo "ecr_repo_uri" = ${var.ecr_repo_uri} >> /home/ec2-user/SageMaker/.env
        echo "tuning_metric" = ${var.tuning_metric} >> /home/ec2-user/SageMaker/.env
-       echo "preprocessing_script_path" = preprocess_data.py >> /home/ec2-user/SageMaker/.env
+       if [ ${var.preprocessing_script_path} == "None" ]; then
+          echo "preprocessing_script_path" = "None" >> /home/ec2-user/SageMaker/.env
+       else
+          echo "preprocessing_script_path" = preprocess_data.py >> /home/ec2-user/SageMaker/.env
+       fi
+      
      EOL
   )
 }

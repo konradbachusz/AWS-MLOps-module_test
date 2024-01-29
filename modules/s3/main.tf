@@ -51,6 +51,7 @@ resource "aws_s3_object" "config_files" {
 }
 
 resource "aws_s3_object" "preprocessing_script_path" {
+  count = var.preprocessing_script_path != "None" ? 1 : 0
   bucket   = aws_s3_bucket.model_buckets[1].id
   key      = "preprocess_data.py"
   source   = var.preprocessing_script_path
