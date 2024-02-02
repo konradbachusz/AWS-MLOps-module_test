@@ -57,6 +57,12 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "s3:DeleteObject",
                 "s3:ListBucket", 
                 "s3:GetBucketLocation", 
+                "states:CreateStateMachine",
+                "states:DeleteStateMachine",
+                "states:UpdateStateMachine",
+                "states:CreateActivity",
+                "states:DeleteActivity",
+                "states:UpdateActivity",
                 "states:*"
             ],
             "Resource": [
