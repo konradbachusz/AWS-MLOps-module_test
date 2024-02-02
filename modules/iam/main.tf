@@ -57,20 +57,6 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "s3:DeleteObject",
                 "s3:ListBucket", 
                 "s3:GetBucketLocation", 
-                "states:CreateStateMachine",
-                "states:DeleteStateMachine",
-                "states:UpdateStateMachine",
-                "states:CreateActivity",
-                "states:DeleteActivity",
-                "states:UpdateActivity",
-                "states:*",
-                "events:PutTargets",
-                "events:PutRule",
-                "events:DescribeRule",
-                "events:DeleteRule",
-                "events:DisableRule",
-                "events:EnableRule",
-                "events:ListRules"
             ],
             "Resource": [
                 "arn:aws:s3:::streaming-data-platform-ml-data",
@@ -81,6 +67,21 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "arn:aws:s3:::${var.model_name}-config-bucket/*"
             ]
         }, 
+        {
+          "Sid": "StateFunctions", 
+          "Effect": "Allow",
+          "Action": [
+            "states:*", 
+            "events:PutTargets",
+            "events:PutRule",
+            "events:DescribeRule",
+            "events:DeleteRule",
+            "events:DisableRule",
+            "events:EnableRule",
+            "events:ListRules"
+          ],
+          "Resource": "*"
+        },
         {
           "Sid": "AllowPassRole",
           "Action": ["iam:GetRole","iam:PassRole"],
