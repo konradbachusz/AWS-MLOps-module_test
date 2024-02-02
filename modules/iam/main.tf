@@ -66,7 +66,11 @@ resource "aws_iam_policy" "sagemaker_policy" {
                 "states:*",
                 "events:PutTargets",
                 "events:PutRule",
-                "events:DescribeRule"
+                "events:DescribeRule",
+                "events:DeleteRule",
+                "events:DisableRule",
+                "events:EnableRule",
+                "events:ListRules"
             ],
             "Resource": [
                 "arn:aws:s3:::streaming-data-platform-ml-data",
