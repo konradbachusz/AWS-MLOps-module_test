@@ -10,7 +10,8 @@ resource "aws_iam_role" "sagemaker_role" {
       "Principal": {
         "Service": [
           "sagemaker.amazonaws.com",
-          "lambda.amazonaws.com"
+          "lambda.amazonaws.com", 
+          "states.amazonaws.com"
         ]
       },
       "Action": "sts:AssumeRole"
